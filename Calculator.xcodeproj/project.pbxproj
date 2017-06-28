@@ -8,20 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		0E9002AF1F03C2D00016977B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002AE1F03C2D00016977B /* AppDelegate.swift */; };
-		0E9002B11F03C2D00016977B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002B01F03C2D00016977B /* ViewController.swift */; };
 		0E9002B41F03C2D00016977B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E9002B21F03C2D00016977B /* Main.storyboard */; };
 		0E9002B61F03C2D00016977B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E9002B51F03C2D00016977B /* Assets.xcassets */; };
 		0E9002B91F03C2D00016977B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E9002B71F03C2D00016977B /* LaunchScreen.storyboard */; };
+		0E9002C11F03C2F90016977B /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002C01F03C2F90016977B /* Protocols.swift */; };
+		0E9002C31F03C3250016977B /* Brain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002C21F03C3250016977B /* Brain.swift */; };
+		0E9002C51F03C3330016977B /* InputAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002C41F03C3330016977B /* InputAdapter.swift */; };
+		0E9002C71F03C3420016977B /* OutputAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002C61F03C3420016977B /* OutputAdapter.swift */; };
+		0E9002CA1F03C3810016977B /* KeypadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002C91F03C3810016977B /* KeypadController.swift */; };
+		0E9002CC1F03C3950016977B /* InfoPresentedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002CB1F03C3950016977B /* InfoPresentedController.swift */; };
+		0E9002CE1F03C3F30016977B /* MainLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002CD1F03C3F30016977B /* MainLayoutController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E9002AB1F03C2CF0016977B /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9002AE1F03C2D00016977B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0E9002B01F03C2D00016977B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0E9002B31F03C2D00016977B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0E9002B51F03C2D00016977B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E9002B81F03C2D00016977B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E9002BA1F03C2D00016977B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0E9002C01F03C2F90016977B /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		0E9002C21F03C3250016977B /* Brain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brain.swift; sourceTree = "<group>"; };
+		0E9002C41F03C3330016977B /* InputAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputAdapter.swift; sourceTree = "<group>"; };
+		0E9002C61F03C3420016977B /* OutputAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputAdapter.swift; sourceTree = "<group>"; };
+		0E9002C91F03C3810016977B /* KeypadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeypadController.swift; sourceTree = "<group>"; };
+		0E9002CB1F03C3950016977B /* InfoPresentedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPresentedController.swift; sourceTree = "<group>"; };
+		0E9002CD1F03C3F30016977B /* MainLayoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainLayoutController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +47,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E14D79B1F03C49200A239EA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0E9002CD1F03C3F30016977B /* MainLayoutController.swift */,
+				0E9002CB1F03C3950016977B /* InfoPresentedController.swift */,
+				0E9002C91F03C3810016977B /* KeypadController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		0E9002A21F03C2CF0016977B = {
 			isa = PBXGroup;
 			children = (
@@ -54,14 +76,26 @@
 		0E9002AD1F03C2CF0016977B /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				0E14D79B1F03C49200A239EA /* Controllers */,
+				0E9002C81F03C34B0016977B /* Model */,
 				0E9002AE1F03C2D00016977B /* AppDelegate.swift */,
-				0E9002B01F03C2D00016977B /* ViewController.swift */,
 				0E9002B21F03C2D00016977B /* Main.storyboard */,
 				0E9002B51F03C2D00016977B /* Assets.xcassets */,
 				0E9002B71F03C2D00016977B /* LaunchScreen.storyboard */,
 				0E9002BA1F03C2D00016977B /* Info.plist */,
 			);
 			path = Calculator;
+			sourceTree = "<group>";
+		};
+		0E9002C81F03C34B0016977B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0E9002C01F03C2F90016977B /* Protocols.swift */,
+				0E9002C21F03C3250016977B /* Brain.swift */,
+				0E9002C41F03C3330016977B /* InputAdapter.swift */,
+				0E9002C61F03C3420016977B /* OutputAdapter.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,8 +170,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E9002B11F03C2D00016977B /* ViewController.swift in Sources */,
+				0E9002C11F03C2F90016977B /* Protocols.swift in Sources */,
+				0E9002CC1F03C3950016977B /* InfoPresentedController.swift in Sources */,
+				0E9002C71F03C3420016977B /* OutputAdapter.swift in Sources */,
+				0E9002C31F03C3250016977B /* Brain.swift in Sources */,
+				0E9002C51F03C3330016977B /* InputAdapter.swift in Sources */,
 				0E9002AF1F03C2D00016977B /* AppDelegate.swift in Sources */,
+				0E9002CE1F03C3F30016977B /* MainLayoutController.swift in Sources */,
+				0E9002CA1F03C3810016977B /* KeypadController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +341,7 @@
 				0E9002BF1F03C2D00016977B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
