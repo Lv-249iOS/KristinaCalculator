@@ -111,6 +111,7 @@
                     </view>
                     <connections>
                         <outlet property="displayLabel" destination="YE7-eV-UqU" id="2Kw-7C-ox2"/>
+                        <outlet property="historyLabel" destination="9gg-r8-KL8" id="fCO-cj-Ebu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAL-EE-y2m" userLabel="First Responder" sceneMemberID="firstResponder"/>

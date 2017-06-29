@@ -11,11 +11,16 @@ import UIKit
 class InfoPresentedController: UIViewController {
 
     @IBOutlet var displayLabel: UILabel!
+    @IBOutlet var historyLabel: UILabel!
     
     let output = OutputAdapter.shared
     
-    func present(value: String) {
-        displayLabel.text = value
+    func presentResult(_ result: String) {
+        displayLabel.text = result
+    }
+    
+    func presentHistory(_ history: String) {
+        historyLabel.text = history
     }
     
     override func viewDidLoad() {

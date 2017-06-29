@@ -10,13 +10,13 @@ import UIKit
 
 class KeypadController: UIViewController {
     var onNumTap: ((_ num: Int)->())?
-    var onUtilityTap: ((_ symbol: Int)->())?
+    var onUtilityTap: ((_ symbol: String)->())?
     
     @IBAction func onNumericTap(button: UIButton) {
         onNumTap?(button.tag)
     }
     
     @IBAction func onUtilityTap(button: UIButton) {
-        onUtilityTap?(button.tag)
+        onUtilityTap?(button.currentTitle!)
     }
 }

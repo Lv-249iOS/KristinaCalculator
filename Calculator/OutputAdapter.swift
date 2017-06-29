@@ -10,13 +10,13 @@ import Foundation
 
 class OutputAdapter: OutputProtocol {
     static let shared = OutputAdapter()
-    
+
     var display: InfoPresentedController?
     
     func presentResult(result: String) {
-        display?.present(value: result)
+        display?.presentResult(result)
     }
-    func presentOperand(operand: String) {
-        display?.present(value: operand)
+    func presentHistory(history: String) {
+        display?.presentHistory(history)
     }
 }

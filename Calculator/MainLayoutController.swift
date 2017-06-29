@@ -24,6 +24,10 @@ class MainLayoutController: UIViewController {
             keypad.onNumTap = { [weak self] num in
                 self?.onNumericTap(num: num)
             }
+            
+            keypad.onUtilityTap = { [weak self] symbol in
+                self?.onUtilityTap(symbol: symbol)
+            }
         }
     }
     
@@ -31,7 +35,7 @@ class MainLayoutController: UIViewController {
         inputAdapter.enterNum(num)
     }
     
-    func onUtilityTap(symbol: Int) {
+    func onUtilityTap(symbol: String) {
         inputAdapter.enterUtility(symbol)
     }
 }

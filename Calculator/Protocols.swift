@@ -10,7 +10,7 @@ import Foundation
 
 protocol InputProtocol {
     func enterNum(_ number: Int)
-    func enterUtility(_ symbol: Int)
+    func enterUtility(_ symbol: String)
 }
 
 protocol OutputProtocol {
@@ -18,7 +18,6 @@ protocol OutputProtocol {
 }
 
 protocol Model {
-    func inputOperand(_ digit: Int)
-    func inputOperation(operation: String)
+    func EnterEquation(equation: String)
 }
 

@@ -11,17 +11,36 @@ import Foundation
 class IntputAdapter: InputProtocol {
     static let shared = IntputAdapter()
     let brain = Brain.shared
-    
-    private var isTyping = false
-    private var isDotTouched = false
-    private var digit: String?
+    var buffer: String!
     
     func enterNum(_ number: Int) {
-        brain.inputOperand(number)
+        if buffer == nil {
+            buffer = String(number)
+        } else {
+            buffer = buffer + " \(number)"
+        }
+
+        brain.EnterEquation(equation: buffer)
     }
     
-    // gggggggg
-    func enterUtility(_ symbol: Int) {
-        
+    func enterUtility(_ symbol: String) {
+        if buffer != nil {
+            if symbol == "+" || symbol == "-" {
+                buffer = symbol
+            } else if symbol == "." {
+                buffer = "0."
+            }
+        } else if buffer.characters.last == "+" || buffer.characters.last == "-" {
+            if buffer.characters.count == 1 && (symbol == "+" || symbol == "-") {
+                buffer = symbol
+            } else {
+                buffer.characters.removeLast()
+                buffer = symbol
+            }
+        } else if symbol == "." && buffer.characters.last != "." {
+            buffer! += symbol
+        } else {
+            buffer = buffer + " \(symbol)"
+        }
     }
 }
