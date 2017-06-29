@@ -48,9 +48,6 @@ class IntputAdapter: InputProtocol {
             buffer.characters.removeLast()
             buffer = buffer + symbol
         }
-        
-        // -----------
-        brain.EnterEquation(equation: buffer)
     }
 }
 

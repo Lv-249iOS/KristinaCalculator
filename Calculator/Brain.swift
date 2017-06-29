@@ -10,41 +10,52 @@ import Foundation
 
 class Brain: Model {
     static let shared = Brain()
+    
     let output = OutputAdapter.shared
     var equation: String!
-    var result: String?
 
-
-    
     func EnterEquation(equation: String) {
         self.equation = equation
         process()
     }
     
-    func CalculateResult() -> Double {
-        let tokens = equation?.characters.split{ $0 == " " }.map(String.init)
-        
-        var stack = [Double]()
-        
-        for tok in tokens! {
-            if let tokenNum = Double(tok) {
-                stack.append(tokenNum)
-            } else {
-                // pop 1 pop 2 
-                // calc 1 and 2 
-                // push
-            }
-        
-        }
-        return stack[0]
-    }
-    
-    
     func process() {
         output.presentHistory(history: equation ?? "0.0")
-        //output.presentResult(result: String(CalculateResult()))
-       // output.presentResult(result: ReverseToPolandNotation(tokens: equation!))
+        output.presentResult(result: String(CalculateResult()))
+    }
+    
+    func CalculateResult() -> Double {
+        let rpnStr = ReverseToPolandNotation(tokens: parseInfix(equation))
+        var stack : [String] = []
         
+        for tok in rpnStr {
+            if Double(tok) != nil {
+                stack += [tok]
+            } else {
+                let firstOperand = Double(stack.removeLast())
+                let secondOperand = Double(stack.removeLast())
+                
+                switch tok {
+                case "+":
+                    stack += [String(firstOperand! + secondOperand!)]
+                case "−":
+                    stack += [String(firstOperand! - secondOperand!)]
+                case "÷":
+                    stack += [String(firstOperand! / secondOperand!)]
+                case "×":
+                    stack += [String(firstOperand! * secondOperand!)]
+                default:
+                    break
+                }
+            }
+        }
+        
+        return Double(stack.removeLast())!
+    }
+    
+    func parseInfix(_ equationStr: String) -> [String] {
+        let tokens = equationStr.characters.split{ $0 == " " }.map(String.init)
+        return tokens
     }
     
     func ReverseToPolandNotation(tokens: [String]) -> [String] {
@@ -81,16 +92,14 @@ class Brain: Model {
                 }
             }
         }
-        return rpn + stack.reversed()
+        return (rpn + stack.reversed())
     }
     
     let operation = [
         "^": (prec: 4, rAssoc: true),
-        "*": (prec: 3, rAssoc: false),
-        "/": (prec: 3, rAssoc: false),
+        "×": (prec: 3, rAssoc: false),
+        "÷": (prec: 3, rAssoc: false),
         "+": (prec: 2, rAssoc: false),
-        "-": (prec: 2, rAssoc: false),
+        "−": (prec: 2, rAssoc: false),
     ]
-    
-
 }
