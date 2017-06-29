@@ -16,31 +16,41 @@ class IntputAdapter: InputProtocol {
     func enterNum(_ number: Int) {
         if buffer == nil {
             buffer = String(number)
+        } else if buffer.characters.last == "." || buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
+            buffer = buffer + "\(number)"
         } else {
             buffer = buffer + " \(number)"
         }
-
+        
         brain.EnterEquation(equation: buffer)
     }
     
     func enterUtility(_ symbol: String) {
-        if buffer != nil {
-            if symbol == "+" || symbol == "-" {
+        if buffer == nil {
+            if symbol == "+" || symbol == "−" {
                 buffer = symbol
             } else if symbol == "." {
                 buffer = "0."
             }
-        } else if buffer.characters.last == "+" || buffer.characters.last == "-" {
-            if buffer.characters.count == 1 && (symbol == "+" || symbol == "-") {
-                buffer = symbol
-            } else {
-                buffer.characters.removeLast()
+        } else if buffer.characters.count == 1 && (buffer.characters.last == "+" || buffer.characters.last == "−") {
+            if symbol == "+" || symbol == "−" {
                 buffer = symbol
             }
         } else if symbol == "." && buffer.characters.last != "." {
-            buffer! += symbol
+            if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
+                buffer! += symbol
+            } else {
+                buffer = buffer + " 0\(symbol)"
+            }
+        } else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
+            buffer = buffer + " " + symbol
         } else {
-            buffer = buffer + " \(symbol)"
+            buffer.characters.removeLast()
+            buffer = buffer + symbol
         }
+        
+        // -----------
+        brain.EnterEquation(equation: buffer)
     }
 }
+

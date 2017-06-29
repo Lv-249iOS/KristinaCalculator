@@ -26,7 +26,8 @@ class InfoPresentedController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        output.display = self
+        output.resultDisplay = self
+        output.historyDisplay = self
     }
 
 }

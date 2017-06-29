@@ -23,6 +23,7 @@ class Brain: Model {
     
     func CalculateResult() -> Double {
         let tokens = equation?.characters.split{ $0 == " " }.map(String.init)
+        
         var stack = [Double]()
         
         for tok in tokens! {
@@ -42,13 +43,14 @@ class Brain: Model {
     func process() {
         output.presentHistory(history: equation ?? "0.0")
         //output.presentResult(result: String(CalculateResult()))
-        output.presentResult(result: equation ?? "0.0")
+       // output.presentResult(result: ReverseToPolandNotation(tokens: equation!))
         
     }
     
     func ReverseToPolandNotation(tokens: [String]) -> [String] {
         var rpn : [String] = []
         var stack : [String] = []
+
         for tok in tokens {
             switch tok {
             case "(":

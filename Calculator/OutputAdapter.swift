@@ -11,12 +11,13 @@ import Foundation
 class OutputAdapter: OutputProtocol {
     static let shared = OutputAdapter()
 
-    var display: InfoPresentedController?
+    var resultDisplay: InfoPresentedController?
+    var historyDisplay: InfoPresentedController?
     
     func presentResult(result: String) {
-        display?.presentResult(result)
+        resultDisplay?.presentResult(result)
     }
     func presentHistory(history: String) {
-        display?.presentHistory(history)
+        historyDisplay?.presentHistory(history)
     }
 }
