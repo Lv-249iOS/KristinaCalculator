@@ -19,6 +19,21 @@ class Brain: Model {
         process()
     }
     
+    func clear() {
+        equation = nil
+        output.presentHistory(history: "history")
+        output.presentResult(result: "0")
+    }
+    
+    func equal() -> String {
+        output.presentHistory(history: "")
+        
+        equation = String(CalculateResult())
+        output.presentResult(result: equation)
+        return equation
+    }
+
+    
     func process() {
         output.presentHistory(history: equation ?? "0.0")
         output.presentResult(result: String(CalculateResult()))
@@ -32,8 +47,8 @@ class Brain: Model {
             if Double(tok) != nil {
                 stack += [tok]
             } else {
-                let firstOperand = Double(stack.removeLast())
                 let secondOperand = Double(stack.removeLast())
+                let firstOperand = Double(stack.removeLast())
                 
                 switch tok {
                 case "+":

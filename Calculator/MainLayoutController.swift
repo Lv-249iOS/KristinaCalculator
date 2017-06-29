@@ -28,6 +28,10 @@ class MainLayoutController: UIViewController {
             keypad.onUtilityTap = { [weak self] symbol in
                 self?.onUtilityTap(symbol: symbol)
             }
+            
+            keypad.onServiceTap = { [weak self] keyNum in
+                self?.onServiceTap(keyNum: keyNum)
+            }
         }
     }
     
@@ -37,5 +41,9 @@ class MainLayoutController: UIViewController {
     
     func onUtilityTap(symbol: String) {
         inputAdapter.enterUtility(symbol)
+    }
+    
+    func onServiceTap(keyNum: Int) {
+        inputAdapter.enterServiceKey(keyNum)
     }
 }

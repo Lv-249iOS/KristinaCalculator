@@ -11,6 +11,7 @@ import UIKit
 class KeypadController: UIViewController {
     var onNumTap: ((_ num: Int)->())?
     var onUtilityTap: ((_ symbol: String)->())?
+    var onServiceTap: ((_ keyNum: Int)->())?
     
     @IBAction func onNumericTap(button: UIButton) {
         onNumTap?(button.tag)
@@ -19,4 +20,9 @@ class KeypadController: UIViewController {
     @IBAction func onUtilityTap(button: UIButton) {
         onUtilityTap?(button.currentTitle!)
     }
+    
+    @IBAction func onServiceTap(_ button: UIButton) {
+        onServiceTap?(button.tag)
+    }
+    
 }

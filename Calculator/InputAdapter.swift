@@ -14,7 +14,7 @@ class IntputAdapter: InputProtocol {
     var buffer: String!
     
     func enterNum(_ number: Int) {
-        if buffer == nil {
+        if buffer == nil || buffer == "0" {
             buffer = String(number)
         } else if buffer.characters.last == "." || buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
             buffer = buffer + "\(number)"
@@ -26,7 +26,7 @@ class IntputAdapter: InputProtocol {
     }
     
     func enterUtility(_ symbol: String) {
-        if buffer == nil {
+        if buffer == nil || buffer == "0" {
             if symbol == "+" || symbol == "−" {
                 buffer = symbol
             } else if symbol == "." {
@@ -47,6 +47,17 @@ class IntputAdapter: InputProtocol {
         } else {
             buffer.characters.removeLast()
             buffer = buffer + symbol
+        }
+    }
+    
+    func enterServiceKey(_ serviceKey: Int) {
+        if serviceKey == 10001 {
+            // equal
+            buffer = brain.equal()
+        } else {
+            // erase
+            buffer = nil
+            brain.clear()
         }
     }
 }

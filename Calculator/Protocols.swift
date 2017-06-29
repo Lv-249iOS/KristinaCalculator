@@ -20,4 +20,3 @@ protocol OutputProtocol {
 protocol Model {
     func EnterEquation(equation: String)
 }
-

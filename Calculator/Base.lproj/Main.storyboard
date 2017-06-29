@@ -280,7 +280,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="oob-cT-mgF">
                                 <rect key="frame" x="257.5" y="0.0" width="85.5" height="497"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdd-nn-Ltg">
+                                    <button opaque="NO" tag="10002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdd-nn-Ltg">
                                         <rect key="frame" x="0.0" y="0.0" width="85.5" height="83"/>
                                         <color key="backgroundColor" red="0.20523887869999999" green="0.2054253221" blue="0.20526778700000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -289,6 +289,7 @@
                                             <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="onServiceTap:" destination="nkh-j5-4QT" eventType="touchUpInside" id="cgc-cd-8GX"/>
                                             <action selector="onUtilityTapWithButton:" destination="nkh-j5-4QT" eventType="touchUpInside" id="4sh-8C-Q3v"/>
                                         </connections>
                                     </button>
@@ -336,7 +337,7 @@
                                             <action selector="onUtilityTapWithButton:" destination="nkh-j5-4QT" eventType="touchUpInside" id="pWr-oj-N05"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Xv-fo-Dog">
+                                    <button opaque="NO" tag="10001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Xv-fo-Dog">
                                         <rect key="frame" x="0.0" y="414" width="85.5" height="83"/>
                                         <color key="backgroundColor" red="0.94283391500000002" green="0.63262267800000005" blue="0.355956622" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="45"/>
@@ -344,6 +345,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
+                                            <action selector="onServiceTap:" destination="nkh-j5-4QT" eventType="touchUpInside" id="c9R-8m-ouZ"/>
                                             <action selector="onUtilityTapWithButton:" destination="nkh-j5-4QT" eventType="touchUpInside" id="tmr-bC-jAa"/>
                                         </connections>
                                     </button>
