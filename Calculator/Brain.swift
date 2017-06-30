@@ -13,21 +13,40 @@ class Brain: Model {
     
     let output = OutputAdapter.shared
     var equation: String!
+    var history: String!
+    var temp: String = ""
+    
+    var countLeftBrackets: Int = 0
+    var countRightBrackets: Int = 0
 
     func EnterEquation(equation: String) {
-        self.equation = equation
+        while countLeftBrackets != countRightBrackets {
+            temp = temp + " )"
+            countRightBrackets += 1
+        }
+        
+        self.history = equation
+        self.equation = equation + temp
         process()
     }
     
+    func presentHistory(currentInput: String?) {
+        output.presentHistory(history: currentInput ?? "history")
+    }
     func clear() {
+        temp = ""
+        countLeftBrackets = 0
+        countRightBrackets = 0
         equation = nil
         output.presentHistory(history: "history")
         output.presentResult(result: "0")
     }
     
     func equal() -> String {
+        temp = ""
+        countLeftBrackets = 0
+        countRightBrackets = 0
         output.presentHistory(history: "")
-        
         equation = String(CalculateResult())
         output.presentResult(result: equation)
         return equation
@@ -35,7 +54,7 @@ class Brain: Model {
 
     
     func process() {
-        output.presentHistory(history: equation ?? "0.0")
+        output.presentHistory(history: history)
         output.presentResult(result: String(CalculateResult()))
     }
     
@@ -46,10 +65,12 @@ class Brain: Model {
         for tok in rpnStr {
             if Double(tok) != nil {
                 stack += [tok]
+            } else if tok == "sin" {
+                let operand = Double(stack.removeLast())
+                stack += [String(sin(operand!))]
             } else {
                 let secondOperand = Double(stack.removeLast())
                 let firstOperand = Double(stack.removeLast())
-                
                 switch tok {
                 case "+":
                     stack += [String(firstOperand! + secondOperand!)]
@@ -59,6 +80,8 @@ class Brain: Model {
                     stack += [String(firstOperand! / secondOperand!)]
                 case "×":
                     stack += [String(firstOperand! * secondOperand!)]
+                case "^":
+                    stack += [String(pow(firstOperand!,secondOperand!))]
                 default:
                     break
                 }
@@ -116,5 +139,6 @@ class Brain: Model {
         "÷": (prec: 3, rAssoc: false),
         "+": (prec: 2, rAssoc: false),
         "−": (prec: 2, rAssoc: false),
+        "sin": (prec: 3, rAssoc: true),
     ]
 }

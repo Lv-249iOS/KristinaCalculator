@@ -27,35 +27,66 @@ class IntputAdapter: InputProtocol {
     
     func enterUtility(_ symbol: String) {
         if buffer == nil || buffer == "0" {
+            
             if symbol == "+" || symbol == "−" {
                 buffer = symbol
             } else if symbol == "." {
                 buffer = "0."
+            } else if symbol == "(" {
+                buffer = symbol
+                brain.countLeftBrackets += 1
             }
         } else if buffer.characters.count == 1 && (buffer.characters.last == "+" || buffer.characters.last == "−") {
+            
             if symbol == "+" || symbol == "−" {
                 buffer = symbol
             }
         } else if symbol == "." && buffer.characters.last != "." {
+            
             if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
                 buffer! += symbol
             } else {
                 buffer = buffer + " 0\(symbol)"
             }
         } else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
+            
+            if symbol == "(" {
+                buffer = buffer + " * ("
+                brain.countLeftBrackets += 1
+            } else {
+                buffer = buffer + " " + symbol
+            }
+        } else if symbol == "(" {
+            
+            buffer = buffer + " " + symbol
+            brain.countLeftBrackets += 1
+        } else if symbol == ")" {
+            
+            if brain.countLeftBrackets != 0 {
+                if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" || (buffer.characters.last == ")" && brain.countLeftBrackets >= brain.countRightBrackets) {
+                    buffer = buffer + " )"
+                } else {
+                    buffer.characters.removeLast()
+                    buffer = buffer + symbol
+                }
+                brain.countRightBrackets += 1
+            }
+        } else if buffer.characters.last == ")" {
+            
             buffer = buffer + " " + symbol
         } else {
+            
             buffer.characters.removeLast()
             buffer = buffer + symbol
         }
+        
+        brain.presentHistory(currentInput: buffer)
     }
     
     func enterServiceKey(_ serviceKey: Int) {
         if serviceKey == 10001 {
-            // equal
             buffer = brain.equal()
         } else {
-            // erase
             buffer = nil
             brain.clear()
         }
