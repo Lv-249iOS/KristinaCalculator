@@ -192,6 +192,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5x-Pz-mJn">
                                         <rect key="frame" x="0.0" y="0.0" width="85.5" height="99.5"/>
                                         <state key="normal" title="sin"/>
+                                        <connections>
+                                            <action selector="onUtilityTapWithButton:" destination="nkh-j5-4QT" eventType="touchUpInside" id="I8D-ab-YEf"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZR-EF-fVv">
                                         <rect key="frame" x="0.0" y="99.5" width="85.5" height="99.5"/>

@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Calculator/InputAdapter.swift"
-            timestampString = "520511961.506552"
+            filePath = "Calculator/Brain.swift"
+            timestampString = "520513945.799381"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "enterUtility(_:)"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "CalculateResult()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

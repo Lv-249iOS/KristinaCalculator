@@ -35,6 +35,9 @@ class IntputAdapter: InputProtocol {
             } else if symbol == "(" {
                 buffer = symbol
                 brain.countLeftBrackets += 1
+            } else if symbol == "sin" {
+                buffer = symbol + " ("
+                brain.countLeftBrackets += 1
             }
         } else if buffer.characters.count == 1 && (buffer.characters.last == "+" || buffer.characters.last == "−") {
             
@@ -74,6 +77,10 @@ class IntputAdapter: InputProtocol {
         } else if buffer.characters.last == ")" {
             
             buffer = buffer + " " + symbol
+        } else if symbol == "sin" {
+            
+            buffer = buffer + " " + symbol + " ("
+            brain.countLeftBrackets += 1
         } else {
             
             buffer.characters.removeLast()

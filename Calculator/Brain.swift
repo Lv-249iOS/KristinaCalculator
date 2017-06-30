@@ -31,7 +31,7 @@ class Brain: Model {
     }
     
     func presentHistory(currentInput: String?) {
-        output.presentHistory(history: currentInput ?? "history")
+        output.presentHistory(history: currentInput ?? "History")
     }
     func clear() {
         temp = ""
