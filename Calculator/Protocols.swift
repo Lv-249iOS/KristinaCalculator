@@ -20,3 +20,12 @@ protocol OutputProtocol {
 protocol Model {
     func EnterEquation(equation: String)
 }
+
+let operation = [
+    "^": (prec: 4, rAssoc: true),
+    "×": (prec: 3, rAssoc: false),
+    "÷": (prec: 3, rAssoc: false),
+    "+": (prec: 2, rAssoc: false),
+    "−": (prec: 2, rAssoc: false),
+    "sin": (prec: 5, rAssoc: true),
+]

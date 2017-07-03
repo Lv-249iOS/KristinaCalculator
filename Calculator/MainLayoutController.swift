@@ -16,10 +16,9 @@ class MainLayoutController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "InfoPresentedControllerSegue", let controller = segue.destination as? InfoPresentedController {
-            
             display = controller
-        } else if segue.identifier == "KeypadControllerSegue", let controller = segue.destination as? KeypadController {
             
+        } else if segue.identifier == "KeypadControllerSegue", let controller = segue.destination as? KeypadController {
             keypad = controller
             keypad.onNumTap = { [weak self] num in
                 self?.onNumericTap(num: num)

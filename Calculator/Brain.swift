@@ -14,18 +14,26 @@ class Brain: Model {
     let output = OutputAdapter.shared
     var equation: String!
     var history: String!
-    var temp: String = ""
     
+    var temp: String = ""
     var countLeftBrackets: Int = 0
     var countRightBrackets: Int = 0
 
+    
+    func ResetProperties() {
+        temp = ""
+        countLeftBrackets = 0
+        countRightBrackets = 0
+    }
+    
+    // init string with equation
     func EnterEquation(equation: String) {
         while countLeftBrackets != countRightBrackets {
             temp = temp + " )"
             countRightBrackets += 1
         }
         
-        self.history = equation
+        history = equation
         self.equation = equation + temp
         process()
     }
@@ -33,44 +41,52 @@ class Brain: Model {
     func presentHistory(currentInput: String?) {
         output.presentHistory(history: currentInput ?? "History")
     }
+    
+    
     func clear() {
-        temp = ""
-        countLeftBrackets = 0
-        countRightBrackets = 0
+        ResetProperties()
         equation = nil
         output.presentHistory(history: "history")
         output.presentResult(result: "0")
     }
     
     func equal() -> String {
-        temp = ""
-        countLeftBrackets = 0
-        countRightBrackets = 0
+        ResetProperties()
         output.presentHistory(history: "")
         equation = String(CalculateResult())
         output.presentResult(result: equation)
+        
         return equation
     }
 
-    
+    // calc equation and present history
     func process() {
         output.presentHistory(history: history)
         output.presentResult(result: String(CalculateResult()))
     }
     
+    // split String to [String]
+    func parseInfix(_ equationStr: String) -> [String] {
+        let tokens = equationStr.characters.split{ $0 == " " }.map(String.init)
+        return tokens
+    }
+    
     func CalculateResult() -> Double {
-        let rpnStr = ReverseToPolandNotation(tokens: parseInfix(equation))
-        var stack : [String] = []
+        let rpnStr = ReverseToPolandNotation(tokens: parseInfix(equation)) // reverse to RPN
+        var stack : [String] = [] // buffer for digit
         
         for tok in rpnStr {
             if Double(tok) != nil {
                 stack += [tok]
+                
             } else if tok == "sin" {
                 let operand = Double(stack.removeLast())
                 stack += [String(sin(operand!))]
+                
             } else {
                 let secondOperand = Double(stack.removeLast())
                 let firstOperand = Double(stack.removeLast())
+                
                 switch tok {
                 case "+":
                     stack += [String(firstOperand! + secondOperand!)]
@@ -84,21 +100,17 @@ class Brain: Model {
                     stack += [String(pow(firstOperand!,secondOperand!))]
                 default:
                     break
+                    
                 }
             }
         }
         
         return Double(stack.removeLast())!
     }
-    
-    func parseInfix(_ equationStr: String) -> [String] {
-        let tokens = equationStr.characters.split{ $0 == " " }.map(String.init)
-        return tokens
-    }
-    
+
     func ReverseToPolandNotation(tokens: [String]) -> [String] {
-        var rpn : [String] = []
-        var stack : [String] = []
+        var rpn : [String] = [] // buffer for entire equation in RPN
+        var stack : [String] = [] // buffer for operation
 
         for tok in tokens {
             switch tok {
@@ -125,20 +137,14 @@ class Brain: Model {
                         break
                     }
                     stack += [tok]
+                    
                 } else { 
-                    rpn += [tok] 
+                    rpn += [tok]
+                    
                 }
             }
         }
+        
         return (rpn + stack.reversed())
     }
-    
-    let operation = [
-        "^": (prec: 4, rAssoc: true),
-        "×": (prec: 3, rAssoc: false),
-        "÷": (prec: 3, rAssoc: false),
-        "+": (prec: 2, rAssoc: false),
-        "−": (prec: 2, rAssoc: false),
-        "sin": (prec: 5, rAssoc: true),
-    ]
 }
