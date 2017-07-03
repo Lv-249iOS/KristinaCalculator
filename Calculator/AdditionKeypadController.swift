@@ -9,11 +9,12 @@
 import UIKit
 
 class AdditionKeypadController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
     
+    var onSymbolTap: ((_ button: UIButton)->())?
+
+    
+    @IBAction func onUtilitySymbolTap(_ button: UIButton) {
+        onSymbolTap?(button)
+    }
     
 }

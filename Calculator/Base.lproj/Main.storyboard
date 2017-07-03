@@ -438,6 +438,9 @@
                                                 <state key="normal" title="(">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onUtilitySymbolTap:" destination="dga-d7-gn0" eventType="touchUpInside" id="VSE-ku-XIO"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iKP-Uj-nqy">
                                                 <rect key="frame" x="0.0" y="94" width="70" height="94"/>
@@ -446,6 +449,9 @@
                                                 <state key="normal" title=")">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onUtilitySymbolTap:" destination="dga-d7-gn0" eventType="touchUpInside" id="Z3U-WQ-cGx"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4S7-Xm-Xt1">
                                                 <rect key="frame" x="0.0" y="188" width="70" height="94"/>
@@ -454,6 +460,9 @@
                                                 <state key="normal" title="cos">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onUtilitySymbolTap:" destination="dga-d7-gn0" eventType="touchUpInside" id="BIt-Lq-7Pa"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IvW-Ir-7HY">
                                                 <rect key="frame" x="0.0" y="282" width="70" height="94"/>
@@ -462,6 +471,9 @@
                                                 <state key="normal" title="sin">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onUtilitySymbolTap:" destination="dga-d7-gn0" eventType="touchUpInside" id="NfB-NA-cvV"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -475,6 +487,9 @@
                                                 <state key="normal" title="!">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onUtilitySymbolTap:" destination="dga-d7-gn0" eventType="touchUpInside" id="JfS-LH-AIL"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9V-Eo-HuT">
                                                 <rect key="frame" x="0.0" y="94" width="70" height="94"/>
@@ -483,6 +498,9 @@
                                                 <state key="normal" title="√">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onUtilitySymbolTap:" destination="dga-d7-gn0" eventType="touchUpInside" id="Pc3-7e-w1h"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dn7-Xh-zqc">
                                                 <rect key="frame" x="0.0" y="188" width="70" height="94"/>
@@ -491,6 +509,9 @@
                                                 <state key="normal" title="^">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onUtilitySymbolTap:" destination="dga-d7-gn0" eventType="touchUpInside" id="cp9-gA-jIO"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z25-0z-bj3">
                                                 <rect key="frame" x="0.0" y="282" width="70" height="94"/>
@@ -499,6 +520,9 @@
                                                 <state key="normal" title="ln">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onUtilitySymbolTap:" destination="dga-d7-gn0" eventType="touchUpInside" id="cgs-dM-sl4"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

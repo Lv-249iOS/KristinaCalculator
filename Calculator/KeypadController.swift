@@ -29,6 +29,10 @@ class KeypadController: UIViewController, UIPopoverPresentationControllerDelegat
         if segue.identifier == "AdditionKeypadSegue", let controller = segue.destination as? AdditionKeypadController {
             let additionKeypad = controller
             additionKeypad.popoverPresentationController?.delegate = self
+            
+           additionKeypad.onSymbolTap = { [weak self] button in
+                self?.onUtilityTap(button: button)
+            }
         }
     }
     
