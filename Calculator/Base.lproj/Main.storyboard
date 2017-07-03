@@ -73,18 +73,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="343" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="uut-Zb-hCl">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="uut-Zb-hCl">
                                 <rect key="frame" x="16" y="0.0" width="311" height="150"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History   " textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gg-r8-KL8">
-                                        <rect key="frame" x="0.0" y="0.0" width="311" height="62.5"/>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TYh-QD-bWi">
+                                        <rect key="frame" x="0.0" y="0.0" width="311" height="75"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eWj-nL-CSC" userLabel="ContentView">
+                                                <rect key="frame" x="0.0" y="0.0" width="311" height="75"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History   " textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gg-r8-KL8">
+                                                        <rect key="frame" x="0.0" y="0.0" width="311" height="75"/>
+                                                        <color key="backgroundColor" red="0.1658470812" green="0.1140831569" blue="0.037911150210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
+                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.1658470812" green="0.1140831569" blue="0.037911150210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="9gg-r8-KL8" firstAttribute="top" secondItem="eWj-nL-CSC" secondAttribute="top" id="4d9-gR-HCe"/>
+                                                    <constraint firstAttribute="trailing" secondItem="9gg-r8-KL8" secondAttribute="trailing" id="837-m2-hqr"/>
+                                                    <constraint firstAttribute="bottom" secondItem="9gg-r8-KL8" secondAttribute="bottom" id="JH5-zt-HdY"/>
+                                                    <constraint firstItem="9gg-r8-KL8" firstAttribute="leading" secondItem="eWj-nL-CSC" secondAttribute="leading" id="hu8-TB-J0x"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" red="0.1658470812" green="0.1140831569" blue="0.037911150210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </label>
+                                        <constraints>
+                                            <constraint firstItem="eWj-nL-CSC" firstAttribute="top" secondItem="TYh-QD-bWi" secondAttribute="top" id="B7U-nT-ynR"/>
+                                            <constraint firstItem="eWj-nL-CSC" firstAttribute="width" relation="greaterThanOrEqual" secondItem="TYh-QD-bWi" secondAttribute="width" id="F7t-cc-I5J"/>
+                                            <constraint firstItem="eWj-nL-CSC" firstAttribute="height" secondItem="TYh-QD-bWi" secondAttribute="height" id="Kjs-zf-Q8G"/>
+                                            <constraint firstAttribute="trailing" secondItem="eWj-nL-CSC" secondAttribute="trailing" id="XXI-M6-IlM"/>
+                                            <constraint firstAttribute="bottom" secondItem="eWj-nL-CSC" secondAttribute="bottom" id="g1Y-7Y-qk6"/>
+                                            <constraint firstItem="eWj-nL-CSC" firstAttribute="leading" secondItem="TYh-QD-bWi" secondAttribute="leading" id="wve-Np-wtk"/>
+                                        </constraints>
+                                    </scrollView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YE7-eV-UqU">
-                                        <rect key="frame" x="0.0" y="62.5" width="311" height="87.5"/>
+                                        <rect key="frame" x="0.0" y="75" width="311" height="75"/>
                                         <color key="backgroundColor" red="0.16584708121827407" green="0.11408315691890639" blue="0.037911150208682791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -92,10 +118,7 @@
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="9gg-r8-KL8" firstAttribute="top" secondItem="uut-Zb-hCl" secondAttribute="top" id="DNz-tS-LtB"/>
-                                    <constraint firstAttribute="trailing" secondItem="9gg-r8-KL8" secondAttribute="trailing" id="HsB-Z7-1Wf"/>
                                     <constraint firstItem="YE7-eV-UqU" firstAttribute="leading" secondItem="uut-Zb-hCl" secondAttribute="leading" id="IhA-50-caC"/>
-                                    <constraint firstItem="9gg-r8-KL8" firstAttribute="leading" secondItem="uut-Zb-hCl" secondAttribute="leading" id="NWi-sP-Hv2"/>
                                     <constraint firstAttribute="bottom" secondItem="YE7-eV-UqU" secondAttribute="bottom" id="NdG-zc-TmG"/>
                                     <constraint firstAttribute="trailing" secondItem="YE7-eV-UqU" secondAttribute="trailing" id="laD-Hb-0wh"/>
                                 </constraints>
@@ -112,6 +135,7 @@
                     <connections>
                         <outlet property="displayLabel" destination="YE7-eV-UqU" id="2Kw-7C-ox2"/>
                         <outlet property="historyLabel" destination="9gg-r8-KL8" id="fCO-cj-Ebu"/>
+                        <outlet property="scrollView" destination="TYh-QD-bWi" id="QxM-xt-wwe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAL-EE-y2m" userLabel="First Responder" sceneMemberID="firstResponder"/>
