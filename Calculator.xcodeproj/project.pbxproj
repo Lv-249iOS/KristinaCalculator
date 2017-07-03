@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E4FAFA91F0A7BB900A5042E /* AdditionKeypadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4FAFA81F0A7BB900A5042E /* AdditionKeypadController.swift */; };
 		0E9002AF1F03C2D00016977B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002AE1F03C2D00016977B /* AppDelegate.swift */; };
 		0E9002B41F03C2D00016977B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E9002B21F03C2D00016977B /* Main.storyboard */; };
 		0E9002B61F03C2D00016977B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E9002B51F03C2D00016977B /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E4FAFA81F0A7BB900A5042E /* AdditionKeypadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdditionKeypadController.swift; sourceTree = "<group>"; };
 		0E9002AB1F03C2CF0016977B /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9002AE1F03C2D00016977B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E9002B31F03C2D00016977B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 				0E9002CD1F03C3F30016977B /* MainLayoutController.swift */,
 				0E9002CB1F03C3950016977B /* InfoPresentedController.swift */,
 				0E9002C91F03C3810016977B /* KeypadController.swift */,
+				0E4FAFA81F0A7BB900A5042E /* AdditionKeypadController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				0E9002C31F03C3250016977B /* Brain.swift in Sources */,
 				0E9002C51F03C3330016977B /* InputAdapter.swift in Sources */,
 				0E9002AF1F03C2D00016977B /* AppDelegate.swift in Sources */,
+				0E4FAFA91F0A7BB900A5042E /* AdditionKeypadController.swift in Sources */,
 				0E9002CE1F03C3F30016977B /* MainLayoutController.swift in Sources */,
 				0E9002CA1F03C3810016977B /* KeypadController.swift in Sources */,
 			);

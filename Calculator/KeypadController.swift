@@ -8,7 +8,7 @@
 
 import UIKit
 
-class KeypadController: UIViewController {
+class KeypadController: UIViewController, UIPopoverPresentationControllerDelegate {
     var onNumTap: ((_ num: Int)->())?
     var onUtilityTap: ((_ symbol: String)->())?
     var onServiceTap: ((_ keyNum: Int)->())?
@@ -23,6 +23,17 @@ class KeypadController: UIViewController {
     
     @IBAction func onServiceTap(_ button: UIButton) {
         onServiceTap?(button.tag)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AdditionKeypadSegue", let controller = segue.destination as? AdditionKeypadController {
+            let additionKeypad = controller
+            additionKeypad.popoverPresentationController?.delegate = self
+        }
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
     }
     
 }
