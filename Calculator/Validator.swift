@@ -34,7 +34,7 @@ class Validator {
             
         } else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
             buffer = buffer + " +"
-        } else {
+        } else if buffer.characters.last != "(" {
             buffer.characters.removeLast()
             buffer = buffer + "+"
         }
@@ -48,7 +48,7 @@ class Validator {
             
         } else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
             buffer = buffer + " -"
-        } else {
+        } else if buffer.characters.last != "(" {
             buffer.characters.removeLast()
             buffer = buffer + "-"
         }
@@ -60,7 +60,7 @@ class Validator {
         } else if buffer.characters.last != "." {
             if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
                 buffer! += "."
-            } else {
+            } else if buffer.characters.last != "(" {
                 buffer = buffer + " 0."
             }
         }
@@ -73,7 +73,7 @@ class Validator {
             } else if buffer.characters.last == ")" {
                 buffer = buffer + " ×"
                 
-            } else {
+            } else if buffer.characters.last != "(" {
                 buffer.characters.removeLast()
                 buffer = buffer + "×"
             }
@@ -87,7 +87,7 @@ class Validator {
             } else if buffer.characters.last == ")" {
                 buffer = buffer + " ÷"
                 
-            } else {
+            } else if buffer.characters.last != "(" {
                 buffer.characters.removeLast()
                 buffer = buffer + "÷"
             }
@@ -101,7 +101,7 @@ class Validator {
             } else if buffer.characters.last == ")" {
                 buffer = buffer + " ^"
                 
-            } else {
+            } else if buffer.characters.last != "(" {
                 buffer.characters.removeLast()
                 buffer = buffer + "^"
             }
