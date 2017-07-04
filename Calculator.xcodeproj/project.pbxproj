@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E4FAFA91F0A7BB900A5042E /* AdditionKeypadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4FAFA81F0A7BB900A5042E /* AdditionKeypadController.swift */; };
+		0E81C10E1F0B9F93006CCD23 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E81C10D1F0B9F93006CCD23 /* Validator.swift */; };
 		0E9002AF1F03C2D00016977B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002AE1F03C2D00016977B /* AppDelegate.swift */; };
 		0E9002B41F03C2D00016977B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E9002B21F03C2D00016977B /* Main.storyboard */; };
 		0E9002B61F03C2D00016977B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E9002B51F03C2D00016977B /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		0E4FAFA81F0A7BB900A5042E /* AdditionKeypadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdditionKeypadController.swift; sourceTree = "<group>"; };
+		0E81C10D1F0B9F93006CCD23 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		0E9002AB1F03C2CF0016977B /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9002AE1F03C2D00016977B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E9002B31F03C2D00016977B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				0E9002C21F03C3250016977B /* Brain.swift */,
 				0E9002C41F03C3330016977B /* InputAdapter.swift */,
 				0E9002C61F03C3420016977B /* OutputAdapter.swift */,
+				0E81C10D1F0B9F93006CCD23 /* Validator.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 			files = (
 				0E9002C11F03C2F90016977B /* Protocols.swift in Sources */,
 				0E9002CC1F03C3950016977B /* InfoPresentedController.swift in Sources */,
+				0E81C10E1F0B9F93006CCD23 /* Validator.swift in Sources */,
 				0E9002C71F03C3420016977B /* OutputAdapter.swift in Sources */,
 				0E9002C31F03C3250016977B /* Brain.swift in Sources */,
 				0E9002C51F03C3330016977B /* InputAdapter.swift in Sources */,
