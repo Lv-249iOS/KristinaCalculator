@@ -41,78 +41,156 @@ class IntputAdapter: InputProtocol {
     }
     
     func enterUtility(_ symbol: String) {
-        if buffer == nil || buffer == "0" {
-            if symbol == "+" || symbol == "-" || symbol == "√" {
-                buffer = symbol
-            } else if symbol == "." {
-                buffer = "0."
-            } else if symbol == "(" {
-                buffer = symbol
-                brain.countLeftBrackets += 1
-            } else if symbol == "sin" || symbol == "cos"  {
-                buffer = symbol + " ("
-                brain.countLeftBrackets += 1
-            } else if symbol == "ln" {
-                buffer = "log ("
-                brain.countLeftBrackets += 1
-            }
-            
-        } else if buffer.characters.count == 1 && (buffer.characters.last == "+" || buffer.characters.last == "-") {
-            if symbol == "+" || symbol == "-" {
-                buffer = symbol
-            }
-            
-        } else if symbol == "." && buffer.characters.last != "." {
-            if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
-                buffer! += symbol
-            } else {
-                buffer = buffer + " 0\(symbol)"
-            }
-            
-        } else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
-            if symbol == "(" {
-                buffer = buffer + " × ("
-                brain.countLeftBrackets += 1
-            } else {
-                buffer = buffer + " " + symbol
-            }
-            
-        } else if symbol == "(" {
-            buffer = buffer + " " + symbol
-            brain.countLeftBrackets += 1
-            
-        } else if symbol == ")" {
-            if brain.countLeftBrackets != 0 {
-                if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" ||
-                    (buffer.characters.last == ")" && brain.countLeftBrackets >= brain.countRightBrackets) {
-                  
-                    buffer = buffer + " )"
-                } else {
-                    buffer.characters.removeLast()
-                    buffer = buffer + symbol
-                }
-                brain.countRightBrackets += 1
-            }
-            
-        } else if buffer.characters.last == ")" {
-            buffer = buffer + " " + symbol
-            
-        } else if symbol == "sin" || symbol == "cos"  {
-            buffer = buffer + " " + symbol + " ("
-            brain.countLeftBrackets += 1
-            
-        } else if symbol == "ln" {
-            buffer = buffer + " ln ("
-            brain.countLeftBrackets += 1
-        
-        } else if symbol == "√" {
-            buffer = buffer + " " + symbol
-        
-        } else {
-            buffer.characters.removeLast()
-            buffer = buffer + symbol
+        switch symbol {
+        case "+" : validatePls()
+        case "-" : validateMns()
+        case "×" : validateMul()
+        case "÷" : validateDiv()
+        case "^" : validatePow()
+        case "." : validateDot()
+        case "(" : validateLeftBracket()
+        case ")" : validateRightBracket()
+        case "√" : validateSqrt()
+        case "ln" : validateLog()
+        case "sin" : validateSin()
+        case "cos" : validateCos()
+        default: break
         }
         
         brain.presentHistory(currentInput: buffer)
     }
+    
+    // =======================
+    
+    func validatePls() {
+        if buffer == nil || buffer == "0" || buffer.characters.count == 1 && buffer.characters.last == "-" {
+            buffer = "+"
+        } else if buffer.characters.last == ")" {
+            buffer = buffer + " +"
+            
+        } else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
+            buffer = buffer + " +"
+        } else {
+            buffer.characters.removeLast()
+            buffer = buffer + "+"
+        }
+    }
+        
+    func validateMns() {
+        if buffer == nil || buffer == "0" || buffer.characters.count == 1 && buffer.characters.last == "+" {
+            buffer = "-"
+        } else if buffer.characters.last == ")" {
+            buffer = buffer + " )"
+            
+        } else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
+            buffer = buffer + " -"
+        } else {
+            buffer.characters.removeLast()
+            buffer = buffer + "-"
+        }
+    }
+        
+    func validateDot() {
+        if buffer == nil || buffer == "0" {
+            buffer = "0."
+        } else if buffer.characters.last != "." {
+            if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
+                buffer! += "."
+            } else {
+                buffer = buffer + " 0."
+            }
+        }
+    }
+    
+        
+     func validateMul() {
+        if buffer != nil && buffer.characters.count > 1 {
+            if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
+                buffer = buffer + " ×"
+            } else if buffer.characters.last == ")" {
+                buffer = buffer + " ×"
+                
+            } else {
+                buffer.characters.removeLast()
+                buffer = buffer + "×"
+            }
+        }
+    }
+        
+    func validateDiv() {
+        if buffer != nil && buffer.characters.count > 1 {
+            if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
+                buffer = buffer + " ÷"
+            } else if buffer.characters.last == ")" {
+                buffer = buffer + " ÷"
+                
+            } else {
+                buffer.characters.removeLast()
+                buffer = buffer + "÷"
+            }
+        }
+    }
+
+        
+    func validatePow() {
+        if (buffer != nil && buffer != "0") && buffer.characters.count >= 1 {
+            if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
+                buffer = buffer + " ^"
+            } else if buffer.characters.last == ")" {
+                buffer = buffer + " ^"
+                
+            } else {
+                buffer.characters.removeLast()
+                buffer = buffer + "^"
+            }
+        }
+    }
+        
+    func validateSqrt() {
+            buffer == nil || buffer == "0" ? (buffer = "√") : (buffer = buffer + " √")
+        }
+    
+    func validateLog() {
+        buffer == nil || buffer == "0" ? (buffer = "ln (") : (buffer = buffer + " ln (")
+        brain.countLeftBrackets += 1
+    }
+    
+    func validateSin() {
+        buffer == nil || buffer == "0" ? (buffer = "sin (") : (buffer = buffer + " sin (")
+        brain.countLeftBrackets += 1
+    }
+    
+    func validateCos() {
+        buffer == nil || buffer == "0" ? (buffer = "cos (") : (buffer = buffer + " cos (")
+        brain.countLeftBrackets += 1
+    }
+    
+    func validateLeftBracket() {
+        if buffer == nil || buffer == "0" {
+            buffer = "("
+            brain.countLeftBrackets += 1
+        } else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
+            buffer = buffer + " × ("
+            brain.countLeftBrackets += 1
+        } else {
+            buffer = buffer + " ("
+            brain.countLeftBrackets += 1
+        }
+    }
+
+    func validateRightBracket() {
+        if brain.countLeftBrackets != 0 {
+            if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" ||
+                (buffer.characters.last == ")" && brain.countLeftBrackets > brain.countRightBrackets) {
+                
+                buffer = buffer + " )"
+                brain.countRightBrackets += 1
+            } else {
+                buffer.characters.removeLast()
+                buffer = buffer + ")"
+                brain.countRightBrackets += 1
+            }
+        }
+    }
+    
 }

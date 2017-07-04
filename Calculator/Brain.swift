@@ -14,23 +14,23 @@ class Brain: Model {
     let output = OutputAdapter.shared
     var equation: String!
     var history: String!
-    var temp: String = ""
 
     var countLeftBrackets: Int = 0
     var countRightBrackets: Int = 0
 
     
     func ResetProperties() {
-        temp = ""
         countLeftBrackets = 0
         countRightBrackets = 0
     }
     
     // init string with equation
     func EnterEquation(equation: String) {
-        while countLeftBrackets != countRightBrackets {
-            temp = temp + " )"
-            countRightBrackets += 1
+        var temp: String = ""
+        var counter: Int = countRightBrackets
+        while countLeftBrackets > counter {
+             temp = temp + " )"
+            counter += 1
         }
         
         history = equation
