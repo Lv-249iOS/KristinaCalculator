@@ -23,9 +23,12 @@ protocol Model {
 
 let operation = [
     "^": (prec: 4, rAssoc: true),
+    "√": (prec: 5, rAssoc: true),
     "×": (prec: 3, rAssoc: false),
     "÷": (prec: 3, rAssoc: false),
     "+": (prec: 2, rAssoc: false),
     "−": (prec: 2, rAssoc: false),
     "sin": (prec: 5, rAssoc: true),
+    "cos": (prec: 5, rAssoc: true),
+    "log": (prec: 4, rAssoc: true),
 ]

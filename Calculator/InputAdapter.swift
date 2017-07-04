@@ -40,15 +40,18 @@ class IntputAdapter: InputProtocol {
     
     func enterUtility(_ symbol: String) {
         if buffer == nil || buffer == "0" {
-            if symbol == "+" || symbol == "−" {
+            if symbol == "+" || symbol == "−" || symbol == "√" {
                 buffer = symbol
             } else if symbol == "." {
                 buffer = "0."
             } else if symbol == "(" {
                 buffer = symbol
                 brain.countLeftBrackets += 1
-            } else if symbol == "sin" || symbol == "cos" || symbol == "log" {
+            } else if symbol == "sin" || symbol == "cos"  {
                 buffer = symbol + " ("
+                brain.countLeftBrackets += 1
+            } else if symbol == "ln" {
+                buffer = "log ("
                 brain.countLeftBrackets += 1
             }
             
@@ -92,11 +95,18 @@ class IntputAdapter: InputProtocol {
         } else if buffer.characters.last == ")" {
             buffer = buffer + " " + symbol
             
-        } else if symbol == "sin" {
+        } else if symbol == "sin" || symbol == "cos"  {
             buffer = buffer + " " + symbol + " ("
             brain.countLeftBrackets += 1
             
-        } else {   
+        } else if symbol == "ln" {
+            buffer = buffer + " log ("
+            brain.countLeftBrackets += 1
+        
+        } else if symbol == "√" {
+            buffer = buffer + " " + symbol
+        
+        } else {
             buffer.characters.removeLast()
             buffer = buffer + symbol
         }
