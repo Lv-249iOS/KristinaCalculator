@@ -22,6 +22,7 @@ class IntputAdapter: InputProtocol {
         case 10013: Validator.Buffer = brain.equal()
         case 10014: Validator.Buffer = nil; brain.clear()
         default: break;
+        
         }
     }
     
@@ -40,6 +41,7 @@ class IntputAdapter: InputProtocol {
         case "sin" : Validator.validateSin()
         case "cos" : Validator.validateCos()
         default: break
+        
         }
         
         brain.presentHistory(currentInput: Validator.Buffer)

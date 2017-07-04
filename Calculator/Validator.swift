@@ -10,7 +10,7 @@ import Foundation
 
 class Validator {
     private static var buffer: String!
-    static var Buffer: String! { set { buffer = newValue } get { return self.buffer } }
+    static var Buffer: String! { set { self.buffer = newValue } get { return self.buffer } }
     
     static func validateNum(_ num: Int) {
         if buffer == nil || buffer == "0" {
@@ -23,7 +23,6 @@ class Validator {
             buffer = buffer + "\(num)"
         } else {
             buffer = buffer + " \(num)"
-            
         }
         
     }
@@ -132,7 +131,7 @@ class Validator {
         if buffer == nil || buffer == "0" {
             buffer = "("
             Brain.shared.countLeftBrackets += 1
-        } else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
+        } else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" || buffer.characters.last! == ")" {
             buffer = buffer + " × ("
             Brain.shared.countLeftBrackets += 1
         } else {
