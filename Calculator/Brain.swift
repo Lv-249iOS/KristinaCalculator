@@ -50,7 +50,7 @@ class Brain: Model {
     
     func equal() -> String {
         ResetProperties()
-        equation = String(CalculateResult())
+        equation = String(format: "%g", CalculateResult())
         
         output.presentHistory(history: "")
         output.presentResult(result: equation)
@@ -61,7 +61,9 @@ class Brain: Model {
     // calc equation and present history
     func process() {
         output.presentHistory(history: history)
-        output.presentResult(result: String(CalculateResult()))
+        output.presentResult(result: String(format: "%g", CalculateResult()))
+        
+
     }
     
     // split String to [String]
