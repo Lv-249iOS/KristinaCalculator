@@ -47,7 +47,7 @@ class IntputAdapter: InputProtocol {
             } else if symbol == "(" {
                 buffer = symbol
                 brain.countLeftBrackets += 1
-            } else if symbol == "sin" {
+            } else if symbol == "sin" || symbol == "cos" || symbol == "log" {
                 buffer = symbol + " ("
                 brain.countLeftBrackets += 1
             }
@@ -66,7 +66,7 @@ class IntputAdapter: InputProtocol {
             
         } else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
             if symbol == "(" {
-                buffer = buffer + " * ("
+                buffer = buffer + " × ("
                 brain.countLeftBrackets += 1
             } else {
                 buffer = buffer + " " + symbol
@@ -104,4 +104,3 @@ class IntputAdapter: InputProtocol {
         brain.presentHistory(currentInput: buffer)
     }
 }
-

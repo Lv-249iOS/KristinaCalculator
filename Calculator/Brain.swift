@@ -14,8 +14,8 @@ class Brain: Model {
     let output = OutputAdapter.shared
     var equation: String!
     var history: String!
-    
     var temp: String = ""
+
     var countLeftBrackets: Int = 0
     var countRightBrackets: Int = 0
 
