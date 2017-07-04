@@ -79,13 +79,13 @@ class Brain: Model {
             if Double(tok) != nil {
                 stack += [tok]
                 
-            } else if tok == "sin" || tok == "cos" || tok == "log" || tok == "√"{
+            } else if tok == "sin" || tok == "cos" || tok == "ln" || tok == "√"{
                 let operand = Double(stack.removeLast())
                 
                 switch tok {
                 case "sin": stack += [String(sin(operand!))]
                 case "cos": stack += [String(cos(operand!))]
-                case "log": stack += [String(log(operand!))]
+                case "ln": stack += [String(log(operand!))]
                 case "√": stack += [String(sqrt(operand!))]
                 default: break
                     
@@ -97,7 +97,7 @@ class Brain: Model {
                 
                 switch tok {
                 case "+": stack += [String(firstOperand! + secondOperand!)]
-                case "−": stack += [String(firstOperand! - secondOperand!)]
+                case "-": stack += [String(firstOperand! - secondOperand!)]
                 case "÷": stack += [String(firstOperand! / secondOperand!)]
                 case "×": stack += [String(firstOperand! * secondOperand!)]
                 case "^": stack += [String(pow(firstOperand!,secondOperand!))]

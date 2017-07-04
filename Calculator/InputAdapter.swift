@@ -20,6 +20,8 @@ class IntputAdapter: InputProtocol {
         } else if buffer.characters.last == "." || buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
             buffer = buffer + "\(number)"
             
+        } else if buffer.characters.count == 1 && (buffer.characters.last == "+" || buffer.characters.last == "-")  {
+            buffer = buffer + "\(number)"
         } else {
             buffer = buffer + " \(number)"
             
@@ -40,7 +42,7 @@ class IntputAdapter: InputProtocol {
     
     func enterUtility(_ symbol: String) {
         if buffer == nil || buffer == "0" {
-            if symbol == "+" || symbol == "−" || symbol == "√" {
+            if symbol == "+" || symbol == "-" || symbol == "√" {
                 buffer = symbol
             } else if symbol == "." {
                 buffer = "0."
@@ -55,8 +57,8 @@ class IntputAdapter: InputProtocol {
                 brain.countLeftBrackets += 1
             }
             
-        } else if buffer.characters.count == 1 && (buffer.characters.last == "+" || buffer.characters.last == "−") {
-            if symbol == "+" || symbol == "−" {
+        } else if buffer.characters.count == 1 && (buffer.characters.last == "+" || buffer.characters.last == "-") {
+            if symbol == "+" || symbol == "-" {
                 buffer = symbol
             }
             
@@ -100,7 +102,7 @@ class IntputAdapter: InputProtocol {
             brain.countLeftBrackets += 1
             
         } else if symbol == "ln" {
-            buffer = buffer + " log ("
+            buffer = buffer + " ln ("
             brain.countLeftBrackets += 1
         
         } else if symbol == "√" {
