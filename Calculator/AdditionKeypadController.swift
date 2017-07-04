@@ -11,7 +11,6 @@ import UIKit
 class AdditionKeypadController: UIViewController {
     
     var onSymbolTap: ((_ button: UIButton)->())?
-
     
     @IBAction func onUtilitySymbolTap(_ button: UIButton) {
         onSymbolTap?(button)

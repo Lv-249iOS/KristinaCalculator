@@ -24,7 +24,6 @@ class Brain: Model {
         countRightBrackets = 0
     }
     
-    // init string with equation
     func EnterEquation(equation: String) {
         var temp: String = ""
         var counter: Int = countRightBrackets
@@ -42,7 +41,6 @@ class Brain: Model {
         output.presentHistory(history: currentInput ?? "History")
     }
     
-    
     func clear() {
         ResetProperties()
         equation = nil
@@ -52,8 +50,9 @@ class Brain: Model {
     
     func equal() -> String {
         ResetProperties()
-        output.presentHistory(history: "")
         equation = String(CalculateResult())
+        
+        output.presentHistory(history: "")
         output.presentResult(result: equation)
         
         return equation
@@ -149,4 +148,16 @@ class Brain: Model {
         
         return (rpn + stack.reversed())
     }
+    
+    let operation = [
+        "^": (prec: 4, rAssoc: true),
+        "√": (prec: 5, rAssoc: true),
+        "×": (prec: 3, rAssoc: false),
+        "÷": (prec: 3, rAssoc: false),
+        "+": (prec: 2, rAssoc: false),
+        "−": (prec: 2, rAssoc: false),
+        "sin": (prec: 5, rAssoc: true),
+        "cos": (prec: 5, rAssoc: true),
+        "ln": (prec: 4, rAssoc: true),
+    ]
 }

@@ -24,8 +24,8 @@ class Validator {
         } else {
             buffer = buffer + " \(num)"
         }
-        
     }
+    
     static func validatePls() {
         if buffer == nil || buffer == "0" || buffer.characters.count == 1 && buffer.characters.last == "-" {
             buffer = "+"
