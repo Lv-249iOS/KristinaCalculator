@@ -12,6 +12,7 @@ class KeypadController: UIViewController, UIPopoverPresentationControllerDelegat
     var onNumTap: ((_ num: Int)->())?
     var onUtilityTap: ((_ symbol: Int)->())?
     var onServiceTap: ((_ keyNum: Int)->())?
+    var additionKeypad: AdditionKeypadController!
     
     @IBAction func onNumericTap(button: UIButton) {
         onNumTap?(button.tag)
@@ -23,10 +24,13 @@ class KeypadController: UIViewController, UIPopoverPresentationControllerDelegat
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AdditionKeypadSegue", let controller = segue.destination as? AdditionKeypadController {
-            let additionKeypad = controller
+            additionKeypad = controller
             additionKeypad.popoverPresentationController?.delegate = self
             
-           additionKeypad.onSymbolTap = { [weak self] button in
+            additionKeypad.popoverPresentationController?.sourceRect = CGRect(x: ((sender as? UIButton)?.bounds.midX)!, y: ((sender as? UIButton)?.bounds.midY)!, width: 0, height: 0)
+            additionKeypad.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.left
+            
+            additionKeypad.onSymbolTap = { [weak self] button in
                 self?.onUtilityTap(button: button)
             }
         }
@@ -35,5 +39,4 @@ class KeypadController: UIViewController, UIPopoverPresentationControllerDelegat
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
-    
 }

@@ -19,7 +19,7 @@ class IntputAdapter: InputProtocol {
     
     func enterUtility(_ symbol: Int) {
         switch symbol {
-        case  Operation.pls.rawValue: Validator.validatePls()
+        case Operation.pls.rawValue : Validator.validatePls()
         case Operation.mns.rawValue : Validator.validateMns()
         case Operation.mul.rawValue : Validator.validateMul()
         case Operation.div.rawValue : Validator.validateDiv()
