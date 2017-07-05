@@ -9,13 +9,11 @@
 import UIKit
 
 class AdditionKeypadController: UIViewController {
-    
     var onSymbolTap: ((_ button: UIButton)->())?
     
     @IBAction func dismissPopup(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
     
     @IBAction func onUtilitySymbolTap(_ button: UIButton) {
         onSymbolTap?(button)

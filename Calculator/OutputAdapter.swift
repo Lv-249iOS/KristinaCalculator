@@ -17,6 +17,7 @@ class OutputAdapter: OutputProtocol {
     func presentResult(result: String) {
         resultDisplay?.presentResult(result)
     }
+    
     func presentHistory(history: String) {
         historyDisplay?.presentHistory(history)
     }

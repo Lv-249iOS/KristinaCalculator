@@ -10,7 +10,7 @@ import Foundation
 
 class Brain: Model {
     static let shared = Brain()
-    
+
     let output = OutputAdapter.shared
     var equation: String!
     var history: String!
@@ -27,12 +27,13 @@ class Brain: Model {
     func EnterEquation(equation: String) {
         var temp: String = ""
         var counter: Int = countRightBrackets
+        
         while countLeftBrackets > counter {
              temp = temp + " )"
             counter += 1
         }
         
-        history = equation
+        self.history = equation
         self.equation = equation + temp
         process()
     }
@@ -51,9 +52,9 @@ class Brain: Model {
     func equal() -> String {
         ResetProperties()
         equation = String(format: "%g", CalculateResult())
-        
-        output.presentHistory(history: "")
+
         output.presentResult(result: equation)
+        output.presentHistory(history: "")
         
         return equation
     }
@@ -62,8 +63,6 @@ class Brain: Model {
     func process() {
         output.presentHistory(history: history)
         output.presentResult(result: String(format: "%g", CalculateResult()))
-        
-
     }
     
     // split String to [String]
@@ -80,7 +79,7 @@ class Brain: Model {
             if Double(tok) != nil {
                 stack += [tok]
                 
-            } else if tok == "sin" || tok == "cos" || tok == "ln" || tok == "√"{
+            } else if tok == "sin" || tok == "cos" || tok == "ln" || tok == "√" {
                 let operand = Double(stack.removeLast())
                 
                 switch tok {
@@ -89,7 +88,6 @@ class Brain: Model {
                 case "ln": stack += [String(log(operand!))]
                 case "√": stack += [String(sqrt(operand!))]
                 default: break
-                    
                 }
                 
             } else {
@@ -103,7 +101,6 @@ class Brain: Model {
                 case "×": stack += [String(firstOperand! * secondOperand!)]
                 case "^": stack += [String(pow(firstOperand!,secondOperand!))]
                 default: break
-                    
                 }
             }
         }

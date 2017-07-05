@@ -9,7 +9,6 @@
 import UIKit
 
 class InfoPresentedController: UIViewController {
-
     @IBOutlet var displayLabel: UILabel!
     @IBOutlet var historyLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -22,7 +21,7 @@ class InfoPresentedController: UIViewController {
     
     func presentHistory(_ history: String) {
         historyLabel.text = history
-        scrollView.scrollRectToVisible(historyLabel.bounds, animated: false)
+        scrollView.scrollRectToVisible(historyLabel.bounds, animated: true)
     }
     
     override func viewDidLoad() {

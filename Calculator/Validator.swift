@@ -44,7 +44,7 @@ class Validator {
         if buffer == nil || buffer == "0" || buffer.characters.count == 1 && buffer.characters.last == "+" {
             buffer = "-"
         } else if buffer.characters.last == ")" {
-            buffer = buffer + " )"
+            buffer = buffer + " -"
             
         } else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
             buffer = buffer + " -"
@@ -109,22 +109,57 @@ class Validator {
     }
     
     static func validateSqrt() {
-        buffer == nil || buffer == "0" ? (buffer = "√") : (buffer = buffer + " √")
+        if buffer == nil || buffer == "0" {
+            buffer = "√"
+        } else if buffer.characters.last == ")" {
+            buffer = buffer + " × √"
+        } else {
+            buffer = buffer + " √"
+        }
     }
     
     static func validateLog() {
-        buffer == nil || buffer == "0" ? (buffer = "ln (") : (buffer = buffer + " ln (")
+        if buffer == nil || buffer == "0" {
+            buffer = "ln ("
+        } else if buffer.characters.last == ")" {
+            buffer = buffer + " × ln ("
+        } else {
+            buffer = buffer + " ln ("
+        }
         Brain.shared.countLeftBrackets += 1
     }
     
     static func validateSin() {
-        buffer == nil || buffer == "0" ? (buffer = "sin (") : (buffer = buffer + " sin (")
+        if buffer == nil || buffer == "0" {
+            buffer = "sin ("
+        } else if buffer.characters.last == ")" {
+            buffer = buffer + " × sin ("
+        } else {
+            buffer = buffer + " sin ("
+        }
+        
         Brain.shared.countLeftBrackets += 1
     }
     
     static func validateCos() {
-        buffer == nil || buffer == "0" ? (buffer = "cos (") : (buffer = buffer + " cos (")
+        if buffer == nil || buffer == "0" {
+            buffer = "cos ("
+        } else if buffer.characters.last == ")" {
+            buffer = buffer + " × cos ("
+        } else {
+            buffer = buffer + " cos ("
+        }
         Brain.shared.countLeftBrackets += 1
+    }
+    
+    static func validatePi() {
+        if buffer == nil || buffer == "0" {
+            buffer = "\(Double.pi)"
+        } else if buffer.characters.last == ")" {
+            buffer = buffer + " × \(Double.pi)"
+        } else {
+            buffer = buffer + " \(Double.pi)"
+        }
     }
     
     static func validateLeftBracket() {
@@ -144,10 +179,9 @@ class Validator {
         if Brain.shared.countLeftBrackets != 0 {
             if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" ||
                 (buffer.characters.last == ")" && Brain.shared.countLeftBrackets > Brain.shared.countRightBrackets) {
-                
                 buffer = buffer + " )"
                 Brain.shared.countRightBrackets += 1
-            } else {
+            } else if !(buffer.characters.last == "(") {
                 buffer.characters.removeLast()
                 buffer = buffer + ")"
                 Brain.shared.countRightBrackets += 1
