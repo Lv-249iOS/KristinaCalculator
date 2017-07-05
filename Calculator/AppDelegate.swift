@@ -19,10 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
 //        if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
-//            statusBar.backgroundColor = UIColor.black
+//            statusBar.backgroundColor = UIColor.orange
 //        }
 //        UIApplication.shared.statusBarStyle = .lightContent
-        
+//        
         return true
     }
 
