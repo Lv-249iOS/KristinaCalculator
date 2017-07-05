@@ -15,7 +15,6 @@ class Validator {
     static func validateNum(_ num: Int) {
         if buffer == nil || buffer == "0" {
             buffer = String(num)
-            
         } else if buffer.characters.last == "." || buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
             buffer = buffer + "\(num)"
             
@@ -157,7 +156,7 @@ class Validator {
             buffer = "\(Double.pi)"
         } else if buffer.characters.last == ")" {
             buffer = buffer + " × \(Double.pi)"
-        } else {
+        } else if buffer.characters.last != "." {
             buffer = buffer + " \(Double.pi)"
         }
     }

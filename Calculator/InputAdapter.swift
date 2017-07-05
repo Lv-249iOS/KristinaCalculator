@@ -29,13 +29,16 @@ class IntputAdapter: InputProtocol {
         case Operation.sin.rawValue: Validator.validateSin()
         case Operation.cos.rawValue: Validator.validateCos()
         case Operation.sqrt.rawValue: Validator.validateSqrt()
-        case Operation.pi.rawValue: Validator.validatePi() // dont work
         case Operation.equal.rawValue: Validator.Buffer = brain.equal()
         case Operation.leftBracket.rawValue: Validator.validateLeftBracket()
         case Operation.rightBracket.rawValue: Validator.validateRightBracket()
+        case Operation.pi.rawValue:
+            Validator.validatePi()
+            brain.EnterEquation(equation: Validator.Buffer)
         case Operation.clear.rawValue:
             Validator.Buffer = nil
             brain.clear()
+            
         default: break
         }
 
@@ -44,3 +47,5 @@ class IntputAdapter: InputProtocol {
         }
     }    
 }
+
+
