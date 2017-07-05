@@ -154,7 +154,7 @@ class Brain: Model {
         "×": (prec: 3, rAssoc: false),
         "÷": (prec: 3, rAssoc: false),
         "+": (prec: 2, rAssoc: false),
-        "−": (prec: 2, rAssoc: false),
+        "-": (prec: 2, rAssoc: false),
         "sin": (prec: 5, rAssoc: true),
         "cos": (prec: 5, rAssoc: true),
         "ln": (prec: 4, rAssoc: true),
