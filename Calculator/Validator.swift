@@ -15,10 +15,8 @@ class Validator {
     static func validateNum(_ num: Int) {
         if buffer == nil || buffer == "0" {
             buffer = String(num)
-        } else if buffer.characters.last == "." || buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
-            buffer = buffer + "\(num)"
-            
-        } else if buffer.characters.count == 1 && (buffer.characters.last == "+" || buffer.characters.last == "-")  {
+        } else if buffer.characters.last == "." || buffer.characters.last! >= "0" && buffer.characters.last! <= "9" ||
+            (buffer.characters.count == 1 && (buffer.characters.last == "+" || buffer.characters.last == "-"))  {
             buffer = buffer + "\(num)"
         } else {
             buffer = buffer + " \(num)"
@@ -28,10 +26,7 @@ class Validator {
     static func validatePls() {
         if buffer == nil || buffer == "0" || buffer.characters.count == 1 && buffer.characters.last == "-" {
             buffer = "+"
-        } else if buffer.characters.last == ")" {
-            buffer = buffer + " +"
-            
-        } else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
+        } else if buffer.characters.last == ")" || buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
             buffer = buffer + " +"
         } else if buffer.characters.last != "(" {
             buffer.characters.removeLast()
@@ -42,10 +37,7 @@ class Validator {
     static func validateMns() {
         if buffer == nil || buffer == "0" || buffer.characters.count == 1 && buffer.characters.last == "+" {
             buffer = "-"
-        } else if buffer.characters.last == ")" {
-            buffer = buffer + " -"
-            
-        } else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
+        } else if buffer.characters.last == ")" || buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
             buffer = buffer + " -"
         } else if buffer.characters.last != "(" {
             buffer.characters.removeLast()
@@ -67,11 +59,8 @@ class Validator {
     
     static func validateMul() {
         if buffer != nil && buffer.characters.count > 1 {
-            if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
+            if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" || buffer.characters.last == ")" {
                 buffer = buffer + " ×"
-            } else if buffer.characters.last == ")" {
-                buffer = buffer + " ×"
-                
             } else if buffer.characters.last != "(" {
                 buffer.characters.removeLast()
                 buffer = buffer + "×"
@@ -81,9 +70,7 @@ class Validator {
     
     static func validateDiv() {
         if buffer != nil && buffer.characters.count > 1 {
-            if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
-                buffer = buffer + " ÷"
-            } else if buffer.characters.last == ")" {
+            if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" || buffer.characters.last == ")" {
                 buffer = buffer + " ÷"
                 
             } else if buffer.characters.last != "(" {
@@ -95,9 +82,7 @@ class Validator {
     
     static func validatePow() {
         if (buffer != nil && buffer != "0") && buffer.characters.count >= 1 {
-            if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
-                buffer = buffer + " ^"
-            } else if buffer.characters.last == ")" {
+            if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" || buffer.characters.last == ")" {
                 buffer = buffer + " ^"
                 
             } else if buffer.characters.last != "(" {
