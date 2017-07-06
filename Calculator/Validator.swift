@@ -9,8 +9,16 @@
 import Foundation
 
 class Validator {
-    private static var buffer: String!
-    static var Buffer: String! { set { self.buffer = newValue } get { return self.buffer } }
+    private static var buffer: String! = "0"
+    
+    static var Buffer: String! {
+        set {
+            newValue != "-inf" && newValue != "inf" && newValue != "nan" ? (self.buffer = newValue) : (self.buffer = nil)
+        }
+        get {
+            return self.buffer
+        }
+    }
     
     static func validateNum(_ num: Int) {
         if buffer == nil || buffer == "0" {
@@ -58,7 +66,7 @@ class Validator {
     }
     
     static func validateMul() {
-        if buffer != nil && buffer.characters.count > 1 {
+        if buffer != nil && buffer.characters.count >= 1 {
             if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" || buffer.characters.last == ")" {
                 buffer = buffer + " ×"
             } else if buffer.characters.last != "(" {
@@ -69,10 +77,9 @@ class Validator {
     }
     
     static func validateDiv() {
-        if buffer != nil && buffer.characters.count > 1 {
+        if buffer != nil && buffer.characters.count >= 1 {
             if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" || buffer.characters.last == ")" {
                 buffer = buffer + " ÷"
-                
             } else if buffer.characters.last != "(" {
                 buffer.characters.removeLast()
                 buffer = buffer + "÷"
@@ -81,10 +88,9 @@ class Validator {
     }
     
     static func validatePow() {
-        if (buffer != nil && buffer != "0") && buffer.characters.count >= 1 {
+        if buffer != nil && buffer != "0" && buffer.characters.count >= 1 {
             if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" || buffer.characters.last == ")" {
                 buffer = buffer + " ^"
-                
             } else if buffer.characters.last != "(" {
                 buffer.characters.removeLast()
                 buffer = buffer + "^"
@@ -95,7 +101,7 @@ class Validator {
     static func validateSqrt() {
         if buffer == nil || buffer == "0" {
             buffer = "√"
-        } else if buffer.characters.last == ")" {
+        } else if buffer.characters.last == ")" || buffer.characters.last! >= "0" && buffer.characters.last! <= "9"  {
             buffer = buffer + " × √"
         } else {
             buffer = buffer + " √"
@@ -105,7 +111,7 @@ class Validator {
     static func validateLog() {
         if buffer == nil || buffer == "0" {
             buffer = "ln ("
-        } else if buffer.characters.last == ")" {
+        } else if buffer.characters.last == ")" || buffer.characters.last! >= "0" && buffer.characters.last! <= "9"  {
             buffer = buffer + " × ln ("
         } else {
             buffer = buffer + " ln ("
@@ -116,7 +122,7 @@ class Validator {
     static func validateSin() {
         if buffer == nil || buffer == "0" {
             buffer = "sin ("
-        } else if buffer.characters.last == ")" {
+        } else if buffer.characters.last == ")" || buffer.characters.last! >= "0" && buffer.characters.last! <= "9"  {
             buffer = buffer + " × sin ("
         } else {
             buffer = buffer + " sin ("
@@ -128,7 +134,7 @@ class Validator {
     static func validateCos() {
         if buffer == nil || buffer == "0" {
             buffer = "cos ("
-        } else if buffer.characters.last == ")" {
+        } else if buffer.characters.last == ")" || buffer.characters.last! >= "0" && buffer.characters.last! <= "9"  {
             buffer = buffer + " × cos ("
         } else {
             buffer = buffer + " cos ("
@@ -139,7 +145,7 @@ class Validator {
     static func validatePi() {
         if buffer == nil || buffer == "0" {
             buffer = "\(Double.pi)"
-        } else if buffer.characters.last == ")" {
+        } else if buffer.characters.last == ")" || buffer.characters.last! >= "0" && buffer.characters.last! <= "9"  {
             buffer = buffer + " × \(Double.pi)"
         } else if buffer.characters.last != "." {
             buffer = buffer + " \(Double.pi)"
@@ -170,6 +176,14 @@ class Validator {
                 buffer = buffer + ")"
                 Brain.shared.countRightBrackets += 1
             }
+        }
+    }
+    
+    static func isAllowedPressEqual() -> Bool {
+        if buffer == nil || buffer == "" || (buffer.characters.count == 1 && buffer.characters.last == "+" || buffer.characters.last == "-") {
+            return false
+        } else {
+            return true
         }
     }
 }

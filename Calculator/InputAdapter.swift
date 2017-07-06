@@ -29,7 +29,6 @@ class IntputAdapter: InputProtocol {
         case Operation.sin.rawValue: Validator.validateSin()
         case Operation.cos.rawValue: Validator.validateCos()
         case Operation.sqrt.rawValue: Validator.validateSqrt()
-        case Operation.equal.rawValue: Validator.Buffer = brain.equal()
         case Operation.leftBracket.rawValue: Validator.validateLeftBracket()
         case Operation.rightBracket.rawValue: Validator.validateRightBracket()
         case Operation.pi.rawValue:
@@ -38,7 +37,10 @@ class IntputAdapter: InputProtocol {
         case Operation.clear.rawValue:
             Validator.Buffer = nil
             brain.clear()
-            
+        case Operation.equal.rawValue:
+            if Validator.isAllowedPressEqual() {
+                Validator.Buffer = brain.equal()
+            }
         default: break
         }
 

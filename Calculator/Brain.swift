@@ -17,7 +17,18 @@ class Brain: Model {
 
     var countLeftBrackets: Int = 0
     var countRightBrackets: Int = 0
-
+    
+    let operation = [
+        "^": (prec: 4, rAssoc: true),
+        "√": (prec: 5, rAssoc: true),
+        "×": (prec: 3, rAssoc: false),
+        "÷": (prec: 3, rAssoc: false),
+        "+": (prec: 2, rAssoc: false),
+        "-": (prec: 2, rAssoc: false),
+        "sin": (prec: 5, rAssoc: true),
+        "cos": (prec: 5, rAssoc: true),
+        "ln": (prec: 4, rAssoc: true),
+    ]
     
     func ResetProperties() {
         countLeftBrackets = 0
@@ -29,7 +40,7 @@ class Brain: Model {
         var counter: Int = countRightBrackets
         
         while countLeftBrackets > counter {
-             temp = temp + " )"
+            temp = temp + " )"
             counter += 1
         }
         
@@ -52,10 +63,8 @@ class Brain: Model {
     func equal() -> String {
         ResetProperties()
         equation = String(format: "%g", CalculateResult())
-
         output.presentResult(result: equation)
         output.presentHistory(history: "")
-        
         return equation
     }
 
@@ -147,16 +156,4 @@ class Brain: Model {
         
         return (rpn + stack.reversed())
     }
-    
-    let operation = [
-        "^": (prec: 4, rAssoc: true),
-        "√": (prec: 5, rAssoc: true),
-        "×": (prec: 3, rAssoc: false),
-        "÷": (prec: 3, rAssoc: false),
-        "+": (prec: 2, rAssoc: false),
-        "-": (prec: 2, rAssoc: false),
-        "sin": (prec: 5, rAssoc: true),
-        "cos": (prec: 5, rAssoc: true),
-        "ln": (prec: 4, rAssoc: true),
-    ]
 }
