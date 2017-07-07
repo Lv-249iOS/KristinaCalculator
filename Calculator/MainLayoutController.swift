@@ -36,6 +36,7 @@ class MainLayoutController: UIViewController {
     }
     
     func onUtilityTap(symbol: Int) {
-        inputAdapter.enterUtility(symbol)
+        let op = Operation(rawValue: symbol)
+        inputAdapter.enterUtility(op!)
     }
 }
