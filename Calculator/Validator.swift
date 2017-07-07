@@ -180,7 +180,7 @@ class Validator {
     }
     
     static func isAllowedPressEqual() -> Bool {
-        if buffer == nil || buffer == "" || (buffer.characters.count == 1 && buffer.characters.last == "+" || buffer.characters.last == "-") {
+        if buffer == nil || buffer == "" || buffer == "0" || (buffer.characters.count == 1 && !(buffer.characters.last! >= "0" && buffer.characters.last! <= "9")) {
             return false
         } else {
             return true
