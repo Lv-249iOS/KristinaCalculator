@@ -55,7 +55,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-151" y="46"/>
+            <point key="canvasLocation" x="-164" y="58"/>
         </scene>
         <!--Info Presented Controller-->
         <scene sceneID="YYg-xI-MXD">
@@ -136,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAL-EE-y2m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="730" y="-196"/>
+            <point key="canvasLocation" x="729" y="-201"/>
         </scene>
         <!--Keypad Controller-->
         <scene sceneID="PQ4-TR-kPA">
@@ -372,10 +372,13 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </stackView>
+                    <connections>
+                        <segue destination="an4-x6-7ew" kind="show" identifier="KeypadPlusForLanscapeSegue" id="Qvb-TP-tEX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4XX-Z0-8zO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="751" y="251"/>
+            <point key="canvasLocation" x="729" y="141"/>
         </scene>
         <!--Addition Keypad Controller-->
         <scene sceneID="fsa-30-ycp">
@@ -421,24 +424,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zSY-gL-OJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1679" y="67"/>
+            <point key="canvasLocation" x="1569" y="59"/>
         </scene>
         <!--Keypad Plus Controller-->
         <scene sceneID="y38-uD-HZt">
             <objects>
                 <viewController id="an4-x6-7ew" customClass="KeypadPlusController" customModule="Calculator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="88V-KG-Fbh">
-                        <rect key="frame" x="0.0" y="0.0" width="281" height="500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="485"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ptb-04-1v8">
-                                <rect key="frame" x="0.0" y="0.0" width="281" height="500"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="485"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="u3f-5x-ct9">
-                                        <rect key="frame" x="0.0" y="0.0" width="140.5" height="500"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="485"/>
                                         <subviews>
                                             <button opaque="NO" tag="10010" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cM7-rS-2ec">
-                                                <rect key="frame" x="0.0" y="0.0" width="140.5" height="125"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="121.5"/>
                                                 <color key="backgroundColor" red="0.20523887869999999" green="0.2054253221" blue="0.20526778700000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                                 <state key="normal" title="(">
@@ -450,7 +453,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="10011" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swH-aY-lf2">
-                                                <rect key="frame" x="0.0" y="125" width="140.5" height="125"/>
+                                                <rect key="frame" x="0.0" y="121.5" width="187.5" height="121"/>
                                                 <color key="backgroundColor" red="0.20523887869999999" green="0.2054253221" blue="0.20526778700000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                                 <state key="normal" title=")">
@@ -462,7 +465,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="10008" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WzH-qf-Qb2">
-                                                <rect key="frame" x="0.0" y="250" width="140.5" height="125"/>
+                                                <rect key="frame" x="0.0" y="242.5" width="187.5" height="121.5"/>
                                                 <color key="backgroundColor" red="0.20523887869999999" green="0.2054253221" blue="0.20526778700000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                                 <state key="normal" title="cos">
@@ -474,7 +477,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="10007" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6X-e8-1AZ">
-                                                <rect key="frame" x="0.0" y="375" width="140.5" height="125"/>
+                                                <rect key="frame" x="0.0" y="364" width="187.5" height="121"/>
                                                 <color key="backgroundColor" red="0.20523887869999999" green="0.2054253221" blue="0.20526778700000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                                 <state key="normal" title="sin">
@@ -488,10 +491,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="6aF-l5-v67">
-                                        <rect key="frame" x="140.5" y="0.0" width="140.5" height="500"/>
+                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="485"/>
                                         <subviews>
                                             <button opaque="NO" tag="10012" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JcP-Er-4N7">
-                                                <rect key="frame" x="0.0" y="0.0" width="140.5" height="125"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="121.5"/>
                                                 <color key="backgroundColor" red="0.20523887869999999" green="0.2054253221" blue="0.20526778700000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                                 <state key="normal" title="π">
@@ -503,7 +506,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="10006" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECg-PQ-6Ad">
-                                                <rect key="frame" x="0.0" y="125" width="140.5" height="125"/>
+                                                <rect key="frame" x="0.0" y="121.5" width="187.5" height="121"/>
                                                 <color key="backgroundColor" red="0.20523887869999999" green="0.2054253221" blue="0.20526778700000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                                 <state key="normal" title="√">
@@ -515,7 +518,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="10005" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPr-5w-nQD">
-                                                <rect key="frame" x="0.0" y="250" width="140.5" height="125"/>
+                                                <rect key="frame" x="0.0" y="242.5" width="187.5" height="121.5"/>
                                                 <color key="backgroundColor" red="0.20523887869999999" green="0.2054253221" blue="0.20526778700000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                                 <state key="normal" title="^">
@@ -527,7 +530,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="10009" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I0a-Xj-Rob">
-                                                <rect key="frame" x="0.0" y="375" width="140.5" height="125"/>
+                                                <rect key="frame" x="0.0" y="364" width="187.5" height="121"/>
                                                 <color key="backgroundColor" red="0.20523887869999999" green="0.2054253221" blue="0.20526778700000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                                 <state key="normal" title="ln">
@@ -556,7 +559,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pWJ-dV-47a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2396" y="141"/>
+            <point key="canvasLocation" x="1569" y="788"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Qvb-TP-tEX"/>
+    </inferredMetricsTieBreakers>
 </document>

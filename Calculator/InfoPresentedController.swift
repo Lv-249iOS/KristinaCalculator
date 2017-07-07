@@ -27,8 +27,13 @@ class InfoPresentedController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        output.resultDisplay = self
-        output.historyDisplay = self
+        output.historyDisplay = { [weak self] history in
+            self?.presentHistory(history)
+        }
+        
+        output.resultDisplay = { [weak self] result in
+            self?.presentResult(result)
+        }
     }
 
 }

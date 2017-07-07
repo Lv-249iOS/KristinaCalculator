@@ -31,5 +31,5 @@ class KeypadController: UIViewController {
                 self?.onUtilityTap(button: button)
             }
         }
-    }
+    }    
 }
