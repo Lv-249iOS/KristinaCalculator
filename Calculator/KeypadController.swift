@@ -11,9 +11,12 @@ import UIKit
 class KeypadController: UIViewController {
     var onNumTap: ((_ num: Int)->())?
     var onUtilityTap: ((_ symbol: Int)->())?
-    var onServiceTap: ((_ keyNum: Int)->())?
+    
+    @IBOutlet weak var arrowButton: UIButton!
+    @IBOutlet weak var keypadPlus: UIStackView!
     
     var additionKeypad: AdditionKeypadController!
+    var keypad: KeypadPlusController!
     
     @IBAction func onNumericTap(button: UIButton) {
         onNumTap?(button.tag)
@@ -30,6 +33,34 @@ class KeypadController: UIViewController {
             additionKeypad.onSymbolTap = { [weak self] button in
                 self?.onUtilityTap(button: button)
             }
+        } else if segue.identifier == "KeypadPlusForLandscapeSegue", let controller = segue.destination as? KeypadPlusController {
+            keypad = controller
+            
+            keypad.onButtonTap = { [weak self] button in
+                self?.onUtilityTap(button: button)
+            }
         }
-    }    
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape {
+            isVisibleKeypadPlus(true)
+        } else {
+            isVisibleKeypadPlus(false)
+        }
+    }
+    
+    private func isVisibleKeypadPlus(_ state: Bool) {
+        keypadPlus?.isHidden = !state
+        arrowButton?.isEnabled = !state
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if UIDevice.current.orientation.isLandscape {
+            isVisibleKeypadPlus(true)
+        } else {
+            isVisibleKeypadPlus(false)
+        }
+    }
+    
 }
