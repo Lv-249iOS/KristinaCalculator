@@ -8,11 +8,14 @@
 
 import UIKit
 
-class MainLayoutController: UIViewController {
+class MainLayoutController: UIViewController, UIPopoverPresentationControllerDelegate {
     var display: InfoPresentedController!
     var keypad: KeypadController!
+    var designSettings: SettingsController!
     
     let inputAdapter = IntputAdapter.shared
+    
+    var switchThemeToLight: Bool!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "InfoPresentedControllerSegue", let controller = segue.destination as? InfoPresentedController {
@@ -28,6 +31,14 @@ class MainLayoutController: UIViewController {
             keypad.onUtilityTap = { [weak self] symbol in
                 self?.onUtilityTap(symbol: symbol)
             }
+        } else if segue.identifier == "SettingsPopOverSegue", let controller = segue.destination as? SettingsController {
+            designSettings = controller
+            
+            designSettings.popoverPresentationController?.delegate = self
+            designSettings.popoverPresentationController?.sourceRect = CGRect(x: ((sender as? UIButton)?.bounds.midX)!, y: ((sender as? UIButton)?.bounds.midY)!, width: 0, height: 0)
+            designSettings.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
+            
+            
         }
     }
     
@@ -39,4 +50,10 @@ class MainLayoutController: UIViewController {
         let op = Operation(rawValue: symbol)
         inputAdapter.enterUtility(op!)
     }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
+    
 }
