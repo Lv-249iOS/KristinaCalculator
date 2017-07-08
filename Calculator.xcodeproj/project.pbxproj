@@ -26,7 +26,7 @@
 
 /* Begin PBXFileReference section */
 		0E4FAFA81F0A7BB900A5042E /* AdditionKeypadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdditionKeypadController.swift; sourceTree = "<group>"; };
-		0E81C10D1F0B9F93006CCD23 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		0E81C10D1F0B9F93006CCD23 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Validator.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0E8382AE1F0F66290062DCA2 /* KeypadPlusController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeypadPlusController.swift; sourceTree = "<group>"; };
 		0E9002AB1F03C2CF0016977B /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9002AE1F03C2D00016977B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };

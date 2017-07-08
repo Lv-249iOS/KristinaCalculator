@@ -10,9 +10,9 @@ import UIKit
 
 class SettingsController: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    @IBOutlet weak var themeSwitcher: UISwitch!
+    @IBOutlet weak var eluminationSlider: UISlider!
+    @IBOutlet weak var fontSizeSteper: UIStepper!
     
     @IBAction func changeTheme(_ sender: UISwitch) {
         

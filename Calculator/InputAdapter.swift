@@ -36,6 +36,7 @@ class IntputAdapter: InputProtocol {
             brain.EnterEquation(equation: Validator.Buffer)
         case .clear:
             Validator.Buffer = nil
+            Validator.isDotTap = false
             brain.clear()
         case .equal:
             Validator.isAllowedPressEqual() ? (Validator.Buffer = brain.equal()) : (/* do nothing */)

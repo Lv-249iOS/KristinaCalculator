@@ -37,8 +37,6 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
             designSettings.popoverPresentationController?.delegate = self
             designSettings.popoverPresentationController?.sourceRect = CGRect(x: ((sender as? UIButton)?.bounds.midX)!, y: ((sender as? UIButton)?.bounds.midY)!, width: 0, height: 0)
             designSettings.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
-            
-            
         }
     }
     
@@ -54,6 +52,7 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
+    
     
     
 }
