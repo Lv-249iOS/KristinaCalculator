@@ -38,9 +38,7 @@ class IntputAdapter: InputProtocol {
             Validator.Buffer = nil
             brain.clear()
         case .equal:
-            if Validator.isAllowedPressEqual() {
-                Validator.Buffer = brain.equal()
-            }
+            Validator.isAllowedPressEqual() ? (Validator.Buffer = brain.equal()) : (/* do nothing */)
         default: break
         }
 

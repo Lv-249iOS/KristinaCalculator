@@ -15,8 +15,8 @@ class KeypadController: UIViewController {
     @IBOutlet weak var arrowButton: UIButton!
     @IBOutlet weak var keypadPlus: UIStackView!
     
-    var additionKeypad: AdditionKeypadController!
-    var keypad: KeypadPlusController!
+    var popUpAdditionKeypad: AdditionKeypadController!
+    var sideAdditionkeypad: KeypadPlusController!
     
     @IBAction func onNumericTap(button: UIButton) {
         onNumTap?(button.tag)
@@ -28,39 +28,32 @@ class KeypadController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AdditionKeypadSegue", let controller = segue.destination as? AdditionKeypadController {
-            additionKeypad = controller
+            popUpAdditionKeypad = controller
             
-            additionKeypad.onSymbolTap = { [weak self] button in
+            popUpAdditionKeypad.onSymbolTap = { [weak self] button in
                 self?.onUtilityTap(button: button)
             }
         } else if segue.identifier == "KeypadPlusForLandscapeSegue", let controller = segue.destination as? KeypadPlusController {
-            keypad = controller
+            sideAdditionkeypad = controller
             
-            keypad.onButtonTap = { [weak self] button in
+            sideAdditionkeypad.onButtonTap = { [weak self] button in
                 self?.onUtilityTap(button: button)
             }
         }
     }
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        if UIDevice.current.orientation.isLandscape {
-            isVisibleKeypadPlus(true)
-        } else {
-            isVisibleKeypadPlus(false)
-        }
+        UIDevice.current.orientation.isLandscape ? isHiddenKeypadPlus(false) : isHiddenKeypadPlus(true)
     }
     
-    private func isVisibleKeypadPlus(_ state: Bool) {
-        keypadPlus?.isHidden = !state
-        arrowButton?.isEnabled = !state
+    private func isHiddenKeypadPlus(_ state: Bool) {
+        keypadPlus?.isHidden = state
+        arrowButton?.isEnabled = state
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UIDevice.current.orientation.isLandscape {
-            isVisibleKeypadPlus(true)
-        } else {
-            isVisibleKeypadPlus(false)
-        }
+        UIDevice.current.orientation.isLandscape ? isHiddenKeypadPlus(false) : isHiddenKeypadPlus(true)
     }
     
 }

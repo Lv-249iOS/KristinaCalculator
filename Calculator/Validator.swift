@@ -69,7 +69,7 @@ class Validator {
         if buffer != nil && buffer.characters.count >= 1 {
             if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" || buffer.characters.last == ")" {
                 buffer = buffer + " ×"
-            } else if buffer.characters.last != "(" {
+            } else if buffer.characters.last != "(" && buffer != "+" && buffer != "-" {
                 buffer.characters.removeLast()
                 buffer = buffer + "×"
             }
@@ -80,7 +80,7 @@ class Validator {
         if buffer != nil && buffer.characters.count >= 1 {
             if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" || buffer.characters.last == ")" {
                 buffer = buffer + " ÷"
-            } else if buffer.characters.last != "(" {
+            } else if buffer.characters.last != "(" && buffer != "+" && buffer != "-" {
                 buffer.characters.removeLast()
                 buffer = buffer + "÷"
             }
