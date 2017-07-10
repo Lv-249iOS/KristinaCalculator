@@ -45,7 +45,7 @@
                             <constraint firstItem="IYX-kg-fOf" firstAttribute="top" secondItem="Fxm-uU-n60" secondAttribute="bottom" id="qJD-en-fLF"/>
                         </constraints>
                     </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="250" height="150"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="250" height="100"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="250" height="100"/>
                     <connections>

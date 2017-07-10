@@ -22,6 +22,7 @@
 		0E9002CE1F03C3F30016977B /* MainLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002CD1F03C3F30016977B /* MainLayoutController.swift */; };
 		0EB2DB671F13872400D0BB71 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB2DB661F13872400D0BB71 /* Constants.swift */; };
 		0EB2DB691F138EB800D0BB71 /* StyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB2DB681F138EB800D0BB71 /* StyleManager.swift */; };
+		0EB2DB6D1F13C6D400D0BB71 /* AdditionKeypadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB2DB6C1F13C6D400D0BB71 /* AdditionKeypadController.swift */; };
 		0EBC5A4A1F10F64B00498602 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC5A491F10F64B00498602 /* SettingsController.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		0E9002CD1F03C3F30016977B /* MainLayoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainLayoutController.swift; sourceTree = "<group>"; };
 		0EB2DB661F13872400D0BB71 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0EB2DB681F138EB800D0BB71 /* StyleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleManager.swift; sourceTree = "<group>"; };
+		0EB2DB6C1F13C6D400D0BB71 /* AdditionKeypadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdditionKeypadController.swift; sourceTree = "<group>"; };
 		0EBC5A491F10F64B00498602 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,6 +65,7 @@
 				0E9002CD1F03C3F30016977B /* MainLayoutController.swift */,
 				0E9002CB1F03C3950016977B /* InfoPresentedController.swift */,
 				0E9002C91F03C3810016977B /* KeypadController.swift */,
+				0EB2DB6C1F13C6D400D0BB71 /* AdditionKeypadController.swift */,
 				0E8382AE1F0F66290062DCA2 /* KeypadPlusController.swift */,
 				0EBC5A491F10F64B00498602 /* SettingsController.swift */,
 			);
@@ -198,6 +201,7 @@
 				0E9002CE1F03C3F30016977B /* MainLayoutController.swift in Sources */,
 				0E9002CA1F03C3810016977B /* KeypadController.swift in Sources */,
 				0EB2DB691F138EB800D0BB71 /* StyleManager.swift in Sources */,
+				0EB2DB6D1F13C6D400D0BB71 /* AdditionKeypadController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
