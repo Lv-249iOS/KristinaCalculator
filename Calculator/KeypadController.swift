@@ -12,6 +12,8 @@ class KeypadController: UIViewController {
     var onNumTap: ((_ num: Int)->())?
     var onUtilityTap: ((_ symbol: Int)->())?
     
+    @IBOutlet var DigitButtons: [UIButton]!
+    @IBOutlet var UtilityButtons: [UIButton]!
     @IBOutlet weak var arrowButton: UIButton!
     @IBOutlet weak var keypadPlus: UIStackView!
     

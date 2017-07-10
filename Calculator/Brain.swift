@@ -97,6 +97,7 @@ class Brain: Model {
                 case "ln": stack += [String(log(operand!))]
                 case "√": stack += [String(sqrt(operand!))]
                 default: break
+                    
                 }
                 
             } else {
@@ -110,6 +111,7 @@ class Brain: Model {
                 case "×": stack += [String(firstOperand! * secondOperand!)]
                 case "^": stack += [String(pow(firstOperand!,secondOperand!))]
                 default: break
+                    
                 }
             }
         }

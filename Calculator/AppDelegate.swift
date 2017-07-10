@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            statusBar.backgroundColor = UIColor.orange
 //        }
 //        UIApplication.shared.statusBarStyle = .lightContent
+          UserDefaults.standard.setValue(true, forKey: "themeSwitcher")
 //        
         return true
     }
