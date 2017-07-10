@@ -39,6 +39,11 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        UserDefaults.standard.setValue(true, forKey: "themeSwitcher")
+    }
+    
     func onNumericTap(num: Int) {
         inputAdapter.enterNum(num)
     }

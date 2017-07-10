@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E4FAFA91F0A7BB900A5042E /* AdditionKeypadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4FAFA81F0A7BB900A5042E /* AdditionKeypadController.swift */; };
 		0E81C10E1F0B9F93006CCD23 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E81C10D1F0B9F93006CCD23 /* Validator.swift */; };
 		0E8382AF1F0F66290062DCA2 /* KeypadPlusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8382AE1F0F66290062DCA2 /* KeypadPlusController.swift */; };
 		0E9002AF1F03C2D00016977B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002AE1F03C2D00016977B /* AppDelegate.swift */; };
@@ -27,7 +26,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0E4FAFA81F0A7BB900A5042E /* AdditionKeypadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdditionKeypadController.swift; sourceTree = "<group>"; };
 		0E81C10D1F0B9F93006CCD23 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Validator.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0E8382AE1F0F66290062DCA2 /* KeypadPlusController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeypadPlusController.swift; sourceTree = "<group>"; };
 		0E9002AB1F03C2CF0016977B /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,7 +63,6 @@
 				0E9002CD1F03C3F30016977B /* MainLayoutController.swift */,
 				0E9002CB1F03C3950016977B /* InfoPresentedController.swift */,
 				0E9002C91F03C3810016977B /* KeypadController.swift */,
-				0E4FAFA81F0A7BB900A5042E /* AdditionKeypadController.swift */,
 				0E8382AE1F0F66290062DCA2 /* KeypadPlusController.swift */,
 				0EBC5A491F10F64B00498602 /* SettingsController.swift */,
 			);
@@ -198,7 +195,6 @@
 				0EB2DB671F13872400D0BB71 /* Constants.swift in Sources */,
 				0E9002C51F03C3330016977B /* InputAdapter.swift in Sources */,
 				0E9002AF1F03C2D00016977B /* AppDelegate.swift in Sources */,
-				0E4FAFA91F0A7BB900A5042E /* AdditionKeypadController.swift in Sources */,
 				0E9002CE1F03C3F30016977B /* MainLayoutController.swift in Sources */,
 				0E9002CA1F03C3810016977B /* KeypadController.swift in Sources */,
 				0EB2DB691F138EB800D0BB71 /* StyleManager.swift in Sources */,

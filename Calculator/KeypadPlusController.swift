@@ -25,13 +25,13 @@ class KeypadPlusController: UIViewController {
     func changeTheme() {
         if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
             for but in keypadPlus {
-                but.backgroundColor = StyleManager.shared.LightTheme["backgroundColor"]
-                but.setTitleColor(StyleManager.shared.LightTheme["textColor"], for: .normal)
+                but.backgroundColor = StyleManager.shared.darkTheme["buttonColor"]
+                but.setTitleColor(StyleManager.shared.darkTheme["textColor"], for: .normal)
             }
         } else {
             for but in keypadPlus {
-                but.backgroundColor = StyleManager.shared.DarkTheme["backgroundColor"]
-                but.setTitleColor(StyleManager.shared.DarkTheme["textColor"], for: .normal)
+                but.backgroundColor = StyleManager.shared.lightTheme["buttonColor"]
+                but.setTitleColor(StyleManager.shared.lightTheme["textColor"], for: .normal)
             }
         }
     }

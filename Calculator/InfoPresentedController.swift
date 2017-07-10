@@ -40,15 +40,15 @@ class InfoPresentedController: UIViewController {
     
     func changeTheme() {
         if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
-            displayLabel.backgroundColor = StyleManager.shared.LightTheme["backgroundColor"]
-            historyLabel.backgroundColor = StyleManager.shared.LightTheme["backgroundColor"]
-            displayLabel.textColor = StyleManager.shared.LightTheme["textColor"]
-            historyLabel.textColor = StyleManager.shared.LightTheme["textColor"]
+            displayLabel.backgroundColor = StyleManager.shared.lightTheme["backgroundColor"]
+            historyLabel.backgroundColor = StyleManager.shared.lightTheme["backgroundColor"]
+            displayLabel.textColor = StyleManager.shared.lightTheme["textColor"]
+            historyLabel.textColor = StyleManager.shared.lightTheme["textColor"]
         } else {
-            displayLabel.backgroundColor = StyleManager.shared.DarkTheme["backgroundColor"]
-            historyLabel.backgroundColor = StyleManager.shared.DarkTheme["backgroundColor"]
-            displayLabel.textColor = StyleManager.shared.DarkTheme["textColor"]
-            historyLabel.textColor = StyleManager.shared.DarkTheme["textColor"]
+            displayLabel.backgroundColor = StyleManager.shared.darkTheme["backgroundColor"]
+            historyLabel.backgroundColor = StyleManager.shared.darkTheme["backgroundColor"]
+            displayLabel.textColor = StyleManager.shared.darkTheme["textColor"]
+            historyLabel.textColor = StyleManager.shared.darkTheme["textColor"]
         }
     }
 
