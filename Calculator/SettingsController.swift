@@ -15,10 +15,12 @@ class SettingsController: UIViewController {
     @IBOutlet weak var themeSwitcher: UISwitch!
     @IBOutlet weak var fontSizeSteper: UIStepper!
     
-    var isChangeToLight: ((_ isChange: Bool)->())?
+    var isChangeToLight: ((_ color: UIColor)->())?
     
     @IBAction func changeTheme(_ sender: UISwitch) {
-        isChangeToLight?(themeSwitcher.isOn)
+        themeSwitcher.isOn ? NotificationCenter.default.post(name: CHANGE_STYLE_COLOR, object: nil) :
+            NotificationCenter.default.post(name: CHANGE_STYLE_COLOR, object: nil)
+        
         UserDefaults.standard.setValue(themeSwitcher.isOn, forKey: "themeSwitcher")
     }
 
@@ -27,7 +29,7 @@ class SettingsController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
        if UserDefaults.standard.value(forKey: "themeSwitcher") != nil {
-            themeSwitcher.setOn((UserDefaults.standard.value(forKey: "themeSwitcher") as? Bool)!, animated: true)
+            themeSwitcher.setOn((UserDefaults.standard.value(forKey: "themeSwitcher") as? Bool)!, animated: false)
         }
     }
     

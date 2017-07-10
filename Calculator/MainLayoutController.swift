@@ -29,16 +29,13 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
             keypad.onUtilityTap = { [weak self] symbol in
                 self?.onUtilityTap(symbol: symbol)
             }
+            
         } else if segue.identifier == "SettingsPopOverSegue", let controller = segue.destination as? SettingsController {
             designSettings = controller
             
             designSettings.popoverPresentationController?.delegate = self
             designSettings.popoverPresentationController?.sourceRect = CGRect(x: ((sender as? UIButton)?.bounds.midX)!, y: ((sender as? UIButton)?.bounds.midY)!, width: 0, height: 0)
             designSettings.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
-           
-            designSettings.isChangeToLight = { [weak self] change in
-                self?.changeTheme(change)
-            }
         }
     }
     
@@ -54,49 +51,4 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
-    
-    // ---------
-    func changeTheme(_ cangeTolight: Bool) {
-        if cangeTolight {
-
-            display.displayLabel.backgroundColor = UIColor.white
-            display.displayLabel.textColor = UIColor.black
-            display.historyLabel.backgroundColor =  UIColor.white
-            display.historyLabel.textColor = UIColor.black
-            
-            for but in keypad.UtilityButtons {
-                but.backgroundColor = UIColor.white
-                but.setTitleColor(UIColor.black, for: .normal)
-            }
-            for but in keypad.DigitButtons {
-                but.backgroundColor = UIColor.white
-                but.setTitleColor(UIColor.black, for: .normal)
-            }
-            for but in keypad.sideAdditionkeypad.keypadPlus {
-                but.backgroundColor = UIColor.white
-                but.setTitleColor(UIColor.black, for: .normal)
-            }
-
-        } else {
-
-            display.displayLabel.backgroundColor = UIColor.black
-            display.displayLabel.textColor = UIColor.white
-            display.historyLabel.backgroundColor =  UIColor.black
-            display.historyLabel.textColor = UIColor.white
-            
-            for but in keypad.UtilityButtons {
-                but.backgroundColor = UIColor.black
-                but.setTitleColor(UIColor.white, for: .normal)
-            }
-            for but in keypad.DigitButtons {
-                but.backgroundColor = UIColor.black
-                but.setTitleColor(UIColor.white, for: .normal)
-            }
-            for but in keypad.sideAdditionkeypad.keypadPlus {
-                but.backgroundColor = UIColor.black
-                but.setTitleColor(UIColor.white, for: .normal)
-            }
-        } 
-    }
-    
 }

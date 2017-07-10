@@ -56,6 +56,29 @@ class KeypadController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UIDevice.current.orientation.isLandscape ? isHiddenKeypadPlus(false) : isHiddenKeypadPlus(true)
+        NotificationCenter.default.addObserver(self, selector: #selector(changeTheme), name: CHANGE_STYLE_COLOR, object: nil)
+    }
+    
+    func changeTheme() {
+        if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
+            for but in DigitButtons {
+                but.backgroundColor = StyleManager.shared.LightTheme["backgroundColor"]
+                but.setTitleColor(StyleManager.shared.LightTheme["textColor"], for: .normal)
+            }
+            for but in UtilityButtons {
+                but.backgroundColor = StyleManager.shared.LightTheme["backgroundColor"]
+                but.setTitleColor(StyleManager.shared.LightTheme["textColor"], for: .normal)
+            }
+        } else {
+            for but in DigitButtons {
+                but.backgroundColor = StyleManager.shared.DarkTheme["backgroundColor"]
+                but.setTitleColor(StyleManager.shared.DarkTheme["textColor"], for: .normal)
+            }
+            for but in UtilityButtons {
+                but.backgroundColor = StyleManager.shared.DarkTheme["backgroundColor"]
+                but.setTitleColor(StyleManager.shared.DarkTheme["textColor"], for: .normal)
+            }
+        }
     }
     
 }
