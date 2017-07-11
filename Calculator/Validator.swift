@@ -188,7 +188,6 @@ class Validator {
             buffer = buffer + " ("
             Brain.shared.countLeftBrackets += 1
         }
-
     }
     
     static func validateRightBracket() {
