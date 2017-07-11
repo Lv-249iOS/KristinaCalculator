@@ -13,7 +13,7 @@ class StyleManager {
     
     let lightTheme = [
         "backgroundColor": UIColor.init(colorLiteralRed: 0.952, green: 0.946, blue: 0.934, alpha: 1),
-        "textColor": UIColor.black,
+        "textColor": UIColor.init(colorLiteralRed: 0.273, green: 0.135, blue: 0.092, alpha: 1),
         "buttonColor": UIColor.init(colorLiteralRed: 0.974, green: 0.969, blue: 0.957, alpha: 1),
         "equal": UIColor.init(colorLiteralRed: 0.964, green: 0.652, blue: 0.350, alpha: 1)
     ]

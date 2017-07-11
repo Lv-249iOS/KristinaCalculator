@@ -23,26 +23,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="250" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYX-kg-fOf">
-                                <rect key="frame" x="16" y="20" width="94" height="63"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Bq-gM-S5X">
-                                <rect key="frame" x="185" y="36" width="51" height="31"/>
+                                <rect key="frame" x="185" y="34.5" width="51" height="31"/>
                                 <connections>
                                     <action selector="changeTheme:" destination="C2C-ay-R1x" eventType="valueChanged" id="qjp-NW-C57"/>
                                 </connections>
                             </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYX-kg-fOf">
+                                <rect key="frame" x="16" y="40" width="94" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="9Bq-gM-S5X" firstAttribute="top" secondItem="Fxm-uU-n60" secondAttribute="bottom" constant="16" id="8AG-ig-S1Y"/>
-                            <constraint firstItem="IYX-kg-fOf" firstAttribute="centerY" secondItem="9Bq-gM-S5X" secondAttribute="centerY" id="CSq-yM-UYL"/>
-                            <constraint firstItem="IYX-kg-fOf" firstAttribute="top" secondItem="Fxm-uU-n60" secondAttribute="bottom" id="Htf-FM-nkB"/>
-                            <constraint firstItem="IYX-kg-fOf" firstAttribute="leading" secondItem="qZW-Nl-JgY" secondAttribute="leadingMargin" id="bjT-UW-YFT"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="9Bq-gM-S5X" secondAttribute="trailing" id="jJR-sB-5CX"/>
-                            <constraint firstItem="IYX-kg-fOf" firstAttribute="top" secondItem="Fxm-uU-n60" secondAttribute="bottom" id="qJD-en-fLF"/>
+                            <constraint firstItem="IYX-kg-fOf" firstAttribute="centerY" secondItem="qZW-Nl-JgY" secondAttribute="centerY" id="CQm-GG-gJh"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="IYX-kg-fOf" secondAttribute="leading" id="V7I-z6-5Qe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9Bq-gM-S5X" secondAttribute="trailing" id="gZc-SK-Dmb"/>
+                            <constraint firstItem="IYX-kg-fOf" firstAttribute="centerY" secondItem="9Bq-gM-S5X" secondAttribute="centerY" id="x5Y-LA-Pem"/>
                         </constraints>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="250" height="100"/>

@@ -26,12 +26,17 @@ class Validator {
         return buffer.characters.last == ")" || buffer.characters.last! >= "0" && buffer.characters.last! <= "9"
     }
     
+    private static func isEmpty() -> Bool {
+        return buffer == nil || buffer == "0"
+    }
     
     static func validateNum(_ num: Int) {
-        if buffer == nil || buffer == "0" {
+        if isEmpty() {
             buffer = String(num)
         } else if buffer.characters.last == "." || buffer.characters.last! >= "0" && buffer.characters.last! <= "9" ||
             (buffer.characters.count == 1 && (buffer.characters.last == "+" || buffer.characters.last == "-"))  {
+            buffer = buffer + "\(num)"
+        } else if buffer.substring(from: buffer.index(buffer.endIndex, offsetBy: -3)) == "( -" {
             buffer = buffer + "\(num)"
         } else {
             buffer = buffer + " \(num)"
@@ -40,7 +45,7 @@ class Validator {
     }
     
     static func validatePls() {
-        if buffer == nil || buffer == "0" || buffer.characters.count == 1 && buffer.characters.last == "-" {
+        if isEmpty() || buffer.characters.count == 1 && buffer.characters.last == "-" {
             buffer = "+"
         } else if ifTypeWithSpace() {
             buffer = buffer + " +"
@@ -51,9 +56,9 @@ class Validator {
     }
     
     static func validateMns() {
-        if buffer == nil || buffer == "0" || buffer.characters.count == 1 && buffer.characters.last == "+" {
+        if isEmpty() || buffer.characters.count == 1 && buffer.characters.last == "+" {
             buffer = "-"
-        } else if ifTypeWithSpace() {
+        } else if ifTypeWithSpace() || buffer.characters.last == "(" {
             buffer = buffer + " -"
         } else if buffer.characters.last != "(" {
             buffer.characters.removeLast()
@@ -62,7 +67,7 @@ class Validator {
     }
     
     static func validateDot() {
-        if buffer == nil || buffer == "0" {
+        if isEmpty() {
             buffer = "0."
             isDotTap = true
         } else if buffer.characters.last != "." && isDotTap == false {
@@ -111,7 +116,7 @@ class Validator {
     }
     
     static func validateSqrt() {
-        if buffer == nil || buffer == "0" {
+        if isEmpty() {
             buffer = "√"
         } else if ifTypeWithSpace() {
             buffer = buffer + " × √"
@@ -121,7 +126,7 @@ class Validator {
     }
     
     static func validateLog() {
-        if buffer == nil || buffer == "0" {
+        if isEmpty() {
             buffer = "ln ("
         } else if ifTypeWithSpace() {
             buffer = buffer + " × ln ("
@@ -132,7 +137,7 @@ class Validator {
     }
     
     static func validateSin() {
-        if buffer == nil || buffer == "0" {
+        if isEmpty() {
             buffer = "sin ("
         } else if ifTypeWithSpace() {
             buffer = buffer + " × sin ("
@@ -144,7 +149,7 @@ class Validator {
     }
     
     static func validateCos() {
-        if buffer == nil || buffer == "0" {
+        if isEmpty() {
             buffer = "cos ("
         } else if ifTypeWithSpace() {
             buffer = buffer + " × cos ("
@@ -155,17 +160,24 @@ class Validator {
     }
     
     static func validatePi() {
-        if buffer == nil || buffer == "0" {
+        if isEmpty() {
             buffer = "\(Double.pi)"
+            isDotTap = true
         } else if ifTypeWithSpace() {
             buffer = buffer + " × \(Double.pi)"
-        } else if buffer.characters.last != "." {
+            isDotTap = true
+        }  else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" ||
+            buffer.characters.count == 1 && buffer.characters.last == "-" ||
+            buffer.substring(from: buffer.index(buffer.endIndex, offsetBy: -3)) == "( -" {
+            buffer = buffer + "\(Double.pi)"
+        } else if buffer.characters.last != "." && isDotTap == false {
             buffer = buffer + " \(Double.pi)"
+            isDotTap = true
         }
     }
     
     static func validateLeftBracket() {
-        if buffer == nil || buffer == "0" {
+        if isEmpty() {
             buffer = "("
             Brain.shared.countLeftBrackets += 1
         } else if ifTypeWithSpace() {
@@ -194,7 +206,7 @@ class Validator {
     }
     
     static func isAllowedPressEqual() -> Bool {
-        if buffer == nil || buffer == "" || buffer == "0" || (buffer.characters.count == 1 && !(buffer.characters.last! >= "0" && buffer.characters.last! <= "9")) {
+        if isEmpty() || buffer == "" || (buffer.characters.count == 1 && !(buffer.characters.last! >= "0" && buffer.characters.last! <= "9")) {
             return false
         } else {
             return true

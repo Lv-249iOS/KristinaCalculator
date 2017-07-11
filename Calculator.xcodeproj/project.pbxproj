@@ -92,7 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				0E14D79B1F03C49200A239EA /* Controllers */,
-				0E9002C81F03C34B0016977B /* Models */,
+				0E9002C81F03C34B0016977B /* Model */,
 				0E9002AE1F03C2D00016977B /* AppDelegate.swift */,
 				0E9002B21F03C2D00016977B /* Main.storyboard */,
 				0E9002B51F03C2D00016977B /* Assets.xcassets */,
@@ -104,7 +104,7 @@
 			path = Calculator;
 			sourceTree = "<group>";
 		};
-		0E9002C81F03C34B0016977B /* Models */ = {
+		0E9002C81F03C34B0016977B /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				0E9002C01F03C2F90016977B /* Protocols.swift */,
@@ -113,7 +113,7 @@
 				0E9002C61F03C3420016977B /* OutputAdapter.swift */,
 				0E81C10D1F0B9F93006CCD23 /* Validator.swift */,
 			);
-			name = Models;
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
