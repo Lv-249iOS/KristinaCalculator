@@ -12,13 +12,13 @@ class KeypadController: UIViewController {
     var onNumTap: ((_ num: Int)->())?
     var onUtilityTap: ((_ symbol: Int)->())?
     
+    var popUpAdditionKeypad: AdditionKeypadController!
+    var sideAdditionkeypad: KeypadPlusController!
+    
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var arrowButton: UIButton!
     @IBOutlet weak var equalButton: UIButton!
     @IBOutlet weak var keypadPlus: UIStackView!
-    
-    var popUpAdditionKeypad: AdditionKeypadController!
-    var sideAdditionkeypad: KeypadPlusController!
     
     @IBAction func onNumericTap(button: UIButton) {
         onNumTap?(button.tag)
@@ -57,21 +57,23 @@ class KeypadController: UIViewController {
         super.viewDidLoad()
         UIDevice.current.orientation.isLandscape ? isHiddenKeypadPlus(false) : isHiddenKeypadPlus(true)
         NotificationCenter.default.addObserver(self, selector: #selector(changeTheme), name: CHANGE_STYLE_COLOR, object: nil)
+        NotificationCenter.default.addObserver(sideAdditionkeypad, selector: #selector(sideAdditionkeypad.changeTheme), name: CHANGE_STYLE_COLOR, object: nil)
+
     }
     
     func changeTheme() {
         if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
             for but in buttons {
-                but.backgroundColor = StyleManager.shared.lightTheme["buttonColor"]
-                but.setTitleColor(StyleManager.shared.lightTheme["textColor"], for: .normal)
-            }
-            equalButton.backgroundColor = StyleManager.shared.lightTheme["equal"]
-        } else {
-            for but in buttons {
                 but.backgroundColor = StyleManager.shared.darkTheme["buttonColor"]
                 but.setTitleColor(StyleManager.shared.darkTheme["textColor"], for: .normal)
             }
             equalButton.backgroundColor = StyleManager.shared.darkTheme["equal"]
+        } else {
+            for but in buttons {
+                but.backgroundColor = StyleManager.shared.lightTheme["buttonColor"]
+                but.setTitleColor(StyleManager.shared.lightTheme["textColor"], for: .normal)
+            }
+            equalButton.backgroundColor = StyleManager.shared.lightTheme["equal"]
         }
     }
     

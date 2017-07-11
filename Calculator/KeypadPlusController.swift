@@ -17,11 +17,6 @@ class KeypadPlusController: UIViewController {
         onButtonTap?(sender)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(changeTheme), name: CHANGE_STYLE_COLOR, object: nil)
-    }
-    
     func changeTheme() {
         if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
             for but in keypadPlus {

@@ -15,6 +15,20 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
     
     let inputAdapter = IntputAdapter.shared
     
+    func onNumericTap(num: Int) {
+        inputAdapter.enterNum(num)
+    }
+    
+    func onUtilityTap(symbol: Int) {
+        let op = Operation(rawValue: symbol)
+        inputAdapter.enterUtility(op!)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        UserDefaults.standard.setValue(true, forKey: "themeSwitcher")
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "InfoPresentedControllerSegue", let controller = segue.destination as? InfoPresentedController {
             display = controller
@@ -37,20 +51,6 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
             designSettings.popoverPresentationController?.sourceRect = CGRect(x: ((sender as? UIButton)?.bounds.midX)!, y: ((sender as? UIButton)?.bounds.midY)!, width: 0, height: 0)
             designSettings.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        UserDefaults.standard.setValue(true, forKey: "themeSwitcher")
-    }
-    
-    func onNumericTap(num: Int) {
-        inputAdapter.enterNum(num)
-    }
-    
-    func onUtilityTap(symbol: Int) {
-        let op = Operation(rawValue: symbol)
-        inputAdapter.enterUtility(op!)
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
