@@ -15,11 +15,16 @@ class SettingsController: UIViewController {
     
     @IBAction func changeTheme(_ sender: UISwitch) {
         UserDefaults.standard.setValue(themeSwitcher.isOn, forKey: "themeSwitcher")
-        NotificationCenter.default.post(name: CHANGE_STYLE_COLOR, object: nil)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        themeSwitcher.setOn((UserDefaults.standard.value(forKey: "themeSwitcher") as? Bool)!, animated: false)
+        
+        if let state = UserDefaults.standard.value(forKey: "themeSwitcher") {
+            themeSwitcher.isOn = (state as? Bool)!
+        } else {
+            UserDefaults.standard.setValue(true, forKey: "themeSwitcher")
+            themeSwitcher.isOn = (UserDefaults.standard.value(forKey: "themeSwitcher") as? Bool)!
+        }
     }
 }

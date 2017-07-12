@@ -34,17 +34,19 @@ class InfoPresentedController: UIViewController {
         output.resultDisplay = { [weak self] result in
             self?.presentResult(result)
         }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(changeTheme), name: CHANGE_STYLE_COLOR, object: nil)
+
+        changeTheme()
     }
     
     func changeTheme() {
         if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
+            scrollView.backgroundColor = StyleManager.shared.darkTheme["backgroundColor"]
             displayLabel.backgroundColor = StyleManager.shared.darkTheme["backgroundColor"]
             historyLabel.backgroundColor = StyleManager.shared.darkTheme["backgroundColor"]
             displayLabel.textColor = StyleManager.shared.darkTheme["textColor"]
             historyLabel.textColor = StyleManager.shared.darkTheme["textColor"]
         } else {
+                        scrollView.backgroundColor = StyleManager.shared.lightTheme["backgroundColor"]
             displayLabel.backgroundColor = StyleManager.shared.lightTheme["backgroundColor"]
             historyLabel.backgroundColor = StyleManager.shared.lightTheme["backgroundColor"]
             displayLabel.textColor = StyleManager.shared.lightTheme["textColor"]

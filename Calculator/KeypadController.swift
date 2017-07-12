@@ -57,8 +57,7 @@ class KeypadController: UIViewController {
         super.viewDidLoad()
         UIDevice.current.orientation.isLandscape ? isHiddenKeypadPlus(false) : isHiddenKeypadPlus(true)
         NotificationCenter.default.addObserver(self, selector: #selector(changeTheme), name: CHANGE_STYLE_COLOR, object: nil)
-        NotificationCenter.default.addObserver(sideAdditionkeypad, selector: #selector(sideAdditionkeypad.changeTheme), name: CHANGE_STYLE_COLOR, object: nil)
-
+        changeTheme()
     }
     
     func changeTheme() {

@@ -11,7 +11,6 @@ import UIKit
 class MainLayoutController: UIViewController, UIPopoverPresentationControllerDelegate {
     var display: InfoPresentedController!
     var keypad: KeypadController!
-    var designSettings: SettingsController!
     
     let inputAdapter = IntputAdapter.shared
     
@@ -22,11 +21,6 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
     func onUtilityTap(symbol: Int) {
         let op = Operation(rawValue: symbol)
         inputAdapter.enterUtility(op!)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        UserDefaults.standard.setValue(true, forKey: "themeSwitcher")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -43,17 +37,6 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
             keypad.onUtilityTap = { [weak self] symbol in
                 self?.onUtilityTap(symbol: symbol)
             }
-            
-        } else if segue.identifier == "SettingsPopOverSegue", let controller = segue.destination as? SettingsController {
-            designSettings = controller
-            
-            designSettings.popoverPresentationController?.delegate = self
-            designSettings.popoverPresentationController?.sourceRect = CGRect(x: ((sender as? UIButton)?.bounds.midX)!, y: ((sender as? UIButton)?.bounds.midY)!, width: 0, height: 0)
-            designSettings.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
         }
-    }
-    
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.none
     }
 }
