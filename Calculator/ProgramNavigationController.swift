@@ -7,14 +7,19 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ProgramNavigationController: UIViewController {
     
     @IBOutlet weak var imageBackground: UIImageView!
+    var sound = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setTheme()
+        SoundOnOff()
         NotificationCenter.default.addObserver(self, selector: #selector(setTheme), name: kChangeStyleColor, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SoundOnOff), name: kChangeSoundState, object: nil)
     }
     
     func setTheme() {
@@ -25,5 +30,9 @@ class ProgramNavigationController: UIViewController {
              self.view.backgroundColor = StyleManager.shared.lightTheme["backgroundColor"]
             imageBackground.image = #imageLiteral(resourceName: "summerDay")
         }
+    }
+
+    func SoundOnOff() {
+        sound = UserDefaults.standard.value(forKey: "soundSwitcher") as! Bool
     }
 }

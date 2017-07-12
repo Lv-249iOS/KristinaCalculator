@@ -19,10 +19,10 @@ class StyleManager {
     ]
     
     let darkTheme = [
-        "backgroundColor": UIColor(colorLiteralRed: 0.133, green: 0.133, blue: 0.200, alpha: 1),
-        "buttonColor": UIColor(colorLiteralRed: 0.173, green: 0.180, blue: 0.251, alpha: 1),
+        "backgroundColor": UIColor(colorLiteralRed: 0.000, green: 0.047, blue: 0.073, alpha: 1),
+        "buttonColor": UIColor(colorLiteralRed: 0.000, green: 0.083, blue: 0.128, alpha: 1),
         "textColor": UIColor.white,
-        "equal": UIColor(colorLiteralRed: 0.943, green: 0.182, blue: 0.361, alpha: 1)
+        "equal": UIColor(colorLiteralRed: 0.623, green: 0.802, blue: 0.917, alpha: 1)
     ]
         
 }

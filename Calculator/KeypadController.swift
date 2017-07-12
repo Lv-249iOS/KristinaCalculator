@@ -15,6 +15,7 @@ class KeypadController: UIViewController {
     
     var popUpAdditionKeypad: AdditionKeypadController!
     var sideAdditionkeypad: KeypadPlusController!
+    var sound = false
     
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var arrowButton: UIButton!
@@ -23,12 +24,16 @@ class KeypadController: UIViewController {
     
     @IBAction func onNumericTap(button: UIButton) {
         onNumTap?(button.tag)
-        AudioServicesPlaySystemSound(1016)
+        if sound {
+            AudioServicesPlaySystemSound(1016)
+        }
     }
     
     @IBAction func onUtilityTap(button: UIButton) {
         onUtilityTap?(button.tag)
-        AudioServicesPlaySystemSound(1016)
+        if sound {
+            AudioServicesPlaySystemSound(1016)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -59,6 +64,7 @@ class KeypadController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UIDevice.current.orientation.isLandscape ? isHiddenKeypadPlus(false) : isHiddenKeypadPlus(true)
+        sound = (UserDefaults.standard.value(forKey: "soundSwitcher") as? Bool)!
         setTheme()
     }
     

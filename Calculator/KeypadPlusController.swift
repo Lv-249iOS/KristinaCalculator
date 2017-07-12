@@ -17,13 +17,17 @@ class KeypadPlusController: UIViewController {
     @IBAction func buttonTap(_ sender: UIButton) {
         onButtonTap?(sender)
     }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setTheme()
+    }
     
     func setTheme() {
         if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
             for but in keypadPlus {
                 but.backgroundColor = StyleManager.shared.darkTheme["buttonColor"]
                 but.setTitleColor(StyleManager.shared.darkTheme["textColor"], for: .normal)
-                //AudioServicesPlaySystemSound(1016)
             }
         } else {
             for but in keypadPlus {
@@ -31,10 +35,5 @@ class KeypadPlusController: UIViewController {
                 but.setTitleColor(StyleManager.shared.lightTheme["textColor"], for: .normal)
             }
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setTheme()
     }
 }
