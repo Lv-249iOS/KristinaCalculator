@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E80FF391F165B1A0069B891 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E80FF381F165B1A0069B891 /* RoundButton.swift */; };
 		0E81C10E1F0B9F93006CCD23 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E81C10D1F0B9F93006CCD23 /* Validator.swift */; };
 		0E8382AF1F0F66290062DCA2 /* KeypadPlusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8382AE1F0F66290062DCA2 /* KeypadPlusController.swift */; };
 		0E9002AF1F03C2D00016977B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002AE1F03C2D00016977B /* AppDelegate.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E80FF381F165B1A0069B891 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		0E81C10D1F0B9F93006CCD23 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Validator.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0E8382AE1F0F66290062DCA2 /* KeypadPlusController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeypadPlusController.swift; sourceTree = "<group>"; };
 		0E9002AB1F03C2CF0016977B /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +100,7 @@
 				0E9002C81F03C34B0016977B /* Model */,
 				0E9002AE1F03C2D00016977B /* AppDelegate.swift */,
 				0EB2DB661F13872400D0BB71 /* Constants.swift */,
+				0E80FF381F165B1A0069B891 /* RoundButton.swift */,
 				0EB2DB681F138EB800D0BB71 /* StyleManager.swift */,
 				0E9002B21F03C2D00016977B /* Main.storyboard */,
 				0E9002B51F03C2D00016977B /* Assets.xcassets */,
@@ -191,6 +194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E80FF391F165B1A0069B891 /* RoundButton.swift in Sources */,
 				0EBC5A4A1F10F64B00498602 /* SettingsController.swift in Sources */,
 				0E9002C11F03C2F90016977B /* Protocols.swift in Sources */,
 				0E8382AF1F0F66290062DCA2 /* KeypadPlusController.swift in Sources */,
