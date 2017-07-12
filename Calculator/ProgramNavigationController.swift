@@ -10,6 +10,7 @@ import UIKit
 
 class ProgramNavigationController: UIViewController {
     
+    @IBOutlet weak var imageBackground: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         setTheme()
@@ -19,8 +20,10 @@ class ProgramNavigationController: UIViewController {
     func setTheme() {
         if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
             self.view.backgroundColor = StyleManager.shared.darkTheme["backgroundColor"]
+            imageBackground.image = #imageLiteral(resourceName: "winterNight")
         } else {
              self.view.backgroundColor = StyleManager.shared.lightTheme["backgroundColor"]
+            imageBackground.image = #imageLiteral(resourceName: "summerDay")
         }
     }
 }
