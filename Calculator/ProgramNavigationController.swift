@@ -12,6 +12,7 @@ import AVFoundation
 class ProgramNavigationController: UIViewController {
     
     @IBOutlet weak var imageBackground: UIImageView!
+
     var sound = false
     
     override func viewDidLoad() {
@@ -26,6 +27,7 @@ class ProgramNavigationController: UIViewController {
         if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
             self.view.backgroundColor = StyleManager.shared.darkTheme["backgroundColor"]
             imageBackground.image = #imageLiteral(resourceName: "winterNight")
+            
         } else {
              self.view.backgroundColor = StyleManager.shared.lightTheme["backgroundColor"]
             imageBackground.image = #imageLiteral(resourceName: "summerDay")

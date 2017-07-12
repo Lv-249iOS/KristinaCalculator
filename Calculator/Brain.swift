@@ -36,16 +36,16 @@ class Brain: Model {
     }
     
     func enterEquation(equation: String) {
-        var temp: String = ""
-        var counter: Int = countRightBrackets
+        var missingBrackets: String = ""
+        var counter = countRightBrackets
         
         while countLeftBrackets > counter {
-            temp = temp + " )"
+            missingBrackets = missingBrackets + " )"
             counter += 1
         }
         
         self.history = equation
-        self.equation = equation + temp
+        self.equation = equation + missingBrackets
         process()
     }
     
@@ -65,6 +65,7 @@ class Brain: Model {
         equation = String(format: "%g", calculateResult())
         output.presentResult(result: equation)
         output.presentHistory(history: "")
+        
         return equation
     }
 
@@ -115,7 +116,7 @@ class Brain: Model {
                 }
             }
         }
-        
+
         return Double(stack.removeLast())!
     }
 
@@ -147,7 +148,6 @@ class Brain: Model {
                         break
                     }
                     stack += [tok]
-                    
                 } else { 
                     rpn += [tok]
                     
