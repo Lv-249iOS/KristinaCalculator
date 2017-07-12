@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class KeypadController: UIViewController {
     var onNumTap: ((_ num: Int)->())?
@@ -22,10 +23,12 @@ class KeypadController: UIViewController {
     
     @IBAction func onNumericTap(button: UIButton) {
         onNumTap?(button.tag)
+        AudioServicesPlaySystemSound(1016)
     }
     
     @IBAction func onUtilityTap(button: UIButton) {
         onUtilityTap?(button.tag)
+        AudioServicesPlaySystemSound(1016)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -56,11 +59,10 @@ class KeypadController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UIDevice.current.orientation.isLandscape ? isHiddenKeypadPlus(false) : isHiddenKeypadPlus(true)
-        NotificationCenter.default.addObserver(self, selector: #selector(changeTheme), name: CHANGE_STYLE_COLOR, object: nil)
-        changeTheme()
+        setTheme()
     }
     
-    func changeTheme() {
+    func setTheme() {
         if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
             for but in buttons {
                 but.backgroundColor = StyleManager.shared.darkTheme["buttonColor"]
@@ -75,5 +77,4 @@ class KeypadController: UIViewController {
             equalButton.backgroundColor = StyleManager.shared.lightTheme["equal"]
         }
     }
-    
 }

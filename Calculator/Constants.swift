@@ -9,4 +9,4 @@
 import Foundation
 
 
-let CHANGE_STYLE_COLOR = NSNotification.Name("ChangeStyleColor")
+let kChangeStyleColor = NSNotification.Name("ChangeStyleColor")

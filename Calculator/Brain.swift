@@ -50,13 +50,13 @@ class Brain: Model {
     }
     
     func presentHistory(currentInput: String?) {
-        output.presentHistory(history: currentInput ?? "History")
+        output.presentHistory(history: currentInput ?? "")
     }
     
     func clear() {
         resetProperties()
         equation = nil
-        output.presentHistory(history: "history")
+        output.presentHistory(history: "")
         output.presentResult(result: "0")
     }
     
@@ -74,7 +74,7 @@ class Brain: Model {
         output.presentResult(result: String(format: "%g", calculateResult()))
     }
     
-    // split String to [String]
+    /// split String to [String]
     func parseInfix(_ equationStr: String) -> [String] {
         let tokens = equationStr.characters.split{ $0 == " " }.map(String.init)
         return tokens
@@ -139,11 +139,10 @@ class Brain: Model {
             default:
                 if let operand1 = operation[tok] {
                     for op in stack.reversed() {
-                        if let operand2 = operation[op] {
-                            if !(operand1.prec > operand2.prec || (operand1.prec == operand2.prec && operand1.rAssoc)) {
-                                rpn += [stack.removeLast()]
-                                continue
-                            }
+                        if let operand2 = operation[op],
+                            !(operand1.prec > operand2.prec || (operand1.prec == operand2.prec && operand1.rAssoc)) {
+                            rpn += [stack.removeLast()]
+                            continue
                         }
                         break
                     }

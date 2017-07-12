@@ -9,12 +9,18 @@
 import UIKit
 
 class ProgramNavigationController: UIViewController {
-
-    var calculatorController: MainLayoutController!
-    var settingsController: SettingsController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setTheme()
+        NotificationCenter.default.addObserver(self, selector: #selector(setTheme), name: kChangeStyleColor, object: nil)
+    }
+    
+    func setTheme() {
+        if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
+            self.view.backgroundColor = StyleManager.shared.darkTheme["backgroundColor"]
+        } else {
+             self.view.backgroundColor = StyleManager.shared.lightTheme["backgroundColor"]
+        }
     }
 }

@@ -35,10 +35,10 @@ class InfoPresentedController: UIViewController {
             self?.presentResult(result)
         }
 
-        changeTheme()
+        setTheme()
     }
     
-    func changeTheme() {
+    func setTheme() {
         if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
             scrollView.backgroundColor = StyleManager.shared.darkTheme["backgroundColor"]
             displayLabel.backgroundColor = StyleManager.shared.darkTheme["backgroundColor"]

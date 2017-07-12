@@ -6,8 +6,6 @@
 //  Copyright © 2017 Kristina Del Rio Albrechet. All rights reserved.
 //
 
-
-
 import Foundation
 
 class Validator {
@@ -168,7 +166,7 @@ class Validator {
             isDotTap = true
         }  else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" ||
             buffer.characters.count == 1 && buffer.characters.last == "-" ||
-            buffer.substring(from: buffer.index(buffer.endIndex, offsetBy: -3)) == "( -" {
+            buffer.substring(from: buffer.index(buffer.endIndex, offsetBy: -3)) == "( -" { // don't work with size < 3
             buffer = buffer + "\(Double.pi)"
         } else if buffer.characters.last != "." && isDotTap == false {
             buffer = buffer + " \(Double.pi)"

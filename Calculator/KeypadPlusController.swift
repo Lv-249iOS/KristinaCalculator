@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class KeypadPlusController: UIViewController {
     var onButtonTap: ((_ sender: UIButton)->())?
     
@@ -17,11 +18,12 @@ class KeypadPlusController: UIViewController {
         onButtonTap?(sender)
     }
     
-    func changeTheme() {
+    func setTheme() {
         if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
             for but in keypadPlus {
                 but.backgroundColor = StyleManager.shared.darkTheme["buttonColor"]
                 but.setTitleColor(StyleManager.shared.darkTheme["textColor"], for: .normal)
+                //AudioServicesPlaySystemSound(1016)
             }
         } else {
             for but in keypadPlus {
@@ -33,6 +35,6 @@ class KeypadPlusController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        changeTheme()
+        setTheme()
     }
 }

@@ -39,4 +39,22 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
             }
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(false)
+        inputAdapter.enterUtility(.clear)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setTheme()
+    }
+    
+    func setTheme() {
+        if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
+            self.view.backgroundColor = StyleManager.shared.darkTheme["backgroundColor"]
+        } else {
+            self.view.backgroundColor = StyleManager.shared.lightTheme["backgroundColor"]
+        }
+    }
 }
