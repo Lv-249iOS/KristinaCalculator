@@ -26,17 +26,18 @@ class ProgramNavigationController: UIViewController {
 
         setTheme()
         SoundOnOff()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(setTheme), name: kChangeStyleColor, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SoundOnOff), name: kChangeSoundState, object: nil)
     }
     
     func setTheme() {
         if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
-            self.view.backgroundColor = StyleManager.shared.darkTheme["backgroundColor"]
+            view.backgroundColor = StyleManager.shared.darkTheme["backgroundColor"]
             imageBackground.image = #imageLiteral(resourceName: "winterNight")
             
         } else {
-             self.view.backgroundColor = StyleManager.shared.lightTheme["backgroundColor"]
+            view.backgroundColor = StyleManager.shared.lightTheme["backgroundColor"]
             imageBackground.image = #imageLiteral(resourceName: "summerDay")
         }
     }

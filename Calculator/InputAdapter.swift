@@ -19,18 +19,30 @@ class IntputAdapter: InputProtocol {
     
     func enterUtility(_ symbol: Operation) {
         switch symbol {
-        case .pls: Validator.validatePls()
-        case .mns: Validator.validateMns()
-        case .mul: Validator.validateMul()
-        case .div: Validator.validateDiv()
-        case .pow: Validator.validatePow()
-        case .dot: Validator.validateDot()
-        case .log: Validator.validateLog()
-        case .sin: Validator.validateSin()
-        case .cos: Validator.validateCos()
-        case .sqrt: Validator.validateSqrt()
-        case .leftBracket: Validator.validateLeftBracket()
-        case .rightBracket: Validator.validateRightBracket()
+        case .pls:
+            Validator.validatePls()
+        case .mns:
+            Validator.validateMns()
+        case .mul:
+            Validator.validateMul()
+        case .div:
+            Validator.validateDiv()
+        case .pow:
+            Validator.validatePow()
+        case .dot:
+            Validator.validateDot()
+        case .log:
+            Validator.validateLog()
+        case .sin:
+            Validator.validateSin()
+        case .cos:
+            Validator.validateCos()
+        case .sqrt:
+            Validator.validateSqrt()
+        case .leftBracket:
+            Validator.validateLeftBracket()
+        case .rightBracket:
+            Validator.validateRightBracket()
         case .pi:
             Validator.validatePi()
             brain.enterEquation(equation: Validator.Buffer)
@@ -38,8 +50,11 @@ class IntputAdapter: InputProtocol {
             Validator.Buffer = nil
             brain.clear()
         case .equal:
-            Validator.isAllowedPressEqual() ? (Validator.Buffer = brain.equal()) : (/* do nothing */)
-        default: break
+            if Validator.isAllowedPressEqual() {
+                Validator.Buffer = brain.equal()
+            }
+        default:
+            break
         }
 
         if .equal != symbol {

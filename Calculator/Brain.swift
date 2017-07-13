@@ -17,19 +17,7 @@ class Brain: Model {
 
     var countLeftBrackets: Int = 0
     var countRightBrackets: Int = 0
-    
-    let operation = [
-        "^": (prec: 4, rAssoc: true),
-        "√": (prec: 5, rAssoc: true),
-        "×": (prec: 3, rAssoc: false),
-        "÷": (prec: 3, rAssoc: false),
-        "+": (prec: 2, rAssoc: false),
-        "-": (prec: 2, rAssoc: false),
-        "ln": (prec: 4, rAssoc: true),
-        "sin": (prec: 5, rAssoc: true),
-        "cos": (prec: 5, rAssoc: true),
-    ]
-    
+
     func resetProperties() {
         countLeftBrackets = 0
         countRightBrackets = 0
@@ -93,23 +81,34 @@ class Brain: Model {
                 let operand = Double((stack.removeLast()))
                 
                 switch tok {
-                case "sin": stack += [String(sin(operand!))]
-                case "cos": stack += [String(cos(operand!))]
-                case "ln": stack += [String(log(operand!))]
-                case "√": stack += [String(sqrt(operand!))]
-                default: break
+                case "sin":
+                    stack += [String(sin(operand!))]
+                case "cos":
+                    stack += [String(cos(operand!))]
+                case "ln":
+                    stack += [String(log(operand!))]
+                case "√":
+                    stack += [String(sqrt(operand!))]
+                default:
+                    break
                 }
                 
             } else {
                 if stack.count > 1 {
                     if let secondOperand = Double(stack.removeLast()), let firstOperand = Double(stack.removeLast()) {
                         switch tok {
-                        case "+": stack += [String(firstOperand + secondOperand)]
-                        case "-": stack += [String(firstOperand - secondOperand)]
-                        case "÷": stack += [String(firstOperand / secondOperand)]
-                        case "×": stack += [String(firstOperand * secondOperand)]
-                        case "^": stack += [String(pow(firstOperand,secondOperand))]
-                        default: break
+                        case "+":
+                            stack += [String(firstOperand + secondOperand)]
+                        case "-":
+                            stack += [String(firstOperand - secondOperand)]
+                        case "÷":
+                            stack += [String(firstOperand / secondOperand)]
+                        case "×":
+                            stack += [String(firstOperand * secondOperand)]
+                        case "^":
+                            stack += [String(pow(firstOperand,secondOperand))]
+                        default:
+                            break
                         }
                     }
                 } else {
@@ -126,6 +125,18 @@ class Brain: Model {
         var rpn : [String] = [] // buffer for entire equation in RPN
         var stack : [String] = [] // buffer for operation
 
+        let operationPrec: Dictionary<String, Int> = [
+            "^": 4,
+            "√" : 5,
+            "×" : 3,
+            "÷" : 3,
+            "+" : 2,
+            "-" : 2,
+            "ln" : 4,
+            "sin" : 5,
+            "cos" : 5,
+        ]
+
         for tok in tokens {
             switch tok {
             case "(":
@@ -140,10 +151,9 @@ class Brain: Model {
                     }
                 }
             default:
-                if let operand1 = operation[tok] {
+                if let operand1 = operationPrec[tok] {
                     for op in stack.reversed() {
-                        if let operand2 = operation[op],
-                            !(operand1.prec > operand2.prec || (operand1.prec == operand2.prec && operand1.rAssoc)) {
+                        if let operand2 = operationPrec[op], !(operand1 > operand2) {
                             rpn += [stack.removeLast()]
                             continue
                         }
@@ -152,7 +162,6 @@ class Brain: Model {
                     stack += [tok]
                 } else { 
                     rpn += [tok]
-                    
                 }
             }
         }

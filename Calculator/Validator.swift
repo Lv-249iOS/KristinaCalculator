@@ -10,6 +10,7 @@ import Foundation
 
 class Validator {
     private static var buffer: String! = "0"
+    
     static var Buffer: String! {
         set {
             newValue != "-inf" && newValue != "inf" && newValue != "nan" ? (self.buffer = newValue) : (self.buffer = nil)
@@ -19,18 +20,10 @@ class Validator {
         }
     }
     
-    private static func ifTypeWithSpace() -> Bool {
-        return buffer.characters.last == ")" || buffer.characters.last! >= "0" && buffer.characters.last! <= "9"
-    }
-    
-    private static func isEmpty() -> Bool {
-        return buffer == nil || buffer == "0" || buffer == ""
-    }
-    
     static func validateNum(_ num: Int) {
         if isEmpty() {
             buffer = String(num)
-        } else if buffer.characters.last == "." || buffer.characters.last! >= "0" && buffer.characters.last! <= "9" ||
+        } else if buffer.characters.last == "." || isLastInputDigit() ||
             (buffer.characters.count == 1 && (buffer.characters.last == "+" || buffer.characters.last == "-"))  {
             buffer = buffer + "\(num)"
         } else if buffer.characters.count >= 3, buffer.substring(from: buffer.index(buffer.endIndex, offsetBy: -3)) == "( -" {
@@ -66,7 +59,7 @@ class Validator {
         if isEmpty() {
             buffer = "0."
         } else if buffer.characters.last != "." {
-            if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
+            if isLastInputDigit() {
                 buffer! += "."
             } else if buffer.characters.last == "(" {
                 buffer = buffer + " 0."
@@ -157,7 +150,7 @@ class Validator {
             buffer = "\(Double.pi)"
         } else if ifTypeWithSpace() {
             buffer = buffer + " × \(Double.pi)"
-        }  else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" ||
+        }  else if isLastInputDigit() ||
             buffer.characters.count == 1 && buffer.characters.last == "-" ||
             (buffer.characters.count >= 3 && buffer.substring(from: buffer.index(buffer.endIndex, offsetBy: -3)) == "( -") {
             buffer = buffer + "\(Double.pi)"
@@ -181,7 +174,7 @@ class Validator {
     
     static func validateRightBracket() {
         if Brain.shared.countLeftBrackets != 0 {
-            if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" ||
+            if isLastInputDigit() ||
                 (buffer.characters.last == ")" && Brain.shared.countLeftBrackets > Brain.shared.countRightBrackets) {
                 buffer = buffer + " )"
                 Brain.shared.countRightBrackets += 1
@@ -194,10 +187,23 @@ class Validator {
     }
     
     static func isAllowedPressEqual() -> Bool {
-        if isEmpty() || (buffer.characters.count == 1 && !(buffer.characters.last! >= "0" && buffer.characters.last! <= "9")) {
+        if isEmpty() || (buffer.characters.count == 1 && !isLastInputDigit()) {
             return false
         } else {
             return true
         }
+    }
+    
+    
+    private static func ifTypeWithSpace() -> Bool {
+        return buffer.characters.last == ")" || buffer.characters.last! >= "0" && buffer.characters.last! <= "9"
+    }
+    
+    private static func isLastInputDigit() -> Bool {
+        return buffer.characters.last! >= "0" && buffer.characters.last! <= "9"
+    }
+    
+    private static func isEmpty() -> Bool {
+        return buffer == nil || buffer == "0" || buffer == ""
     }
 }

@@ -34,6 +34,7 @@ class SettingsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(setTheme), name: kChangeStyleColor, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SoundOnOff), name: kChangeSoundState, object: nil)
         
@@ -47,11 +48,13 @@ class SettingsController: UIViewController {
     func setTheme() {
         if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
             view.backgroundColor = StyleManager.shared.darkTheme["backgroundColor"]
+            
             for label in Labels {
                 label.textColor = StyleManager.shared.darkTheme["textColor"]
             }
         } else {
             view.backgroundColor = StyleManager.shared.lightTheme["backgroundColor"]
+            
             for label in Labels {
                 label.textColor = StyleManager.shared.lightTheme["textColor"]
             }
