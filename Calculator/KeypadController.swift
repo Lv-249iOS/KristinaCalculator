@@ -71,13 +71,21 @@ class KeypadController: UIViewController {
     func setTheme() {
         if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
             for but in buttons {
-                but.backgroundColor = StyleManager.shared.darkTheme["buttonColor"]
+                if but.tag >= 0 && but.tag <= 10 || but.tag == 10015 { // but.tag 10 is arrow
+                    but.backgroundColor = StyleManager.shared.darkTheme["buttonColor"]
+                } else {
+                    (but.backgroundColor = StyleManager.shared.darkTheme["UtilitybuttonColor"])
+                }
                 but.setTitleColor(StyleManager.shared.darkTheme["textColor"], for: .normal)
             }
             equalButton.backgroundColor = StyleManager.shared.darkTheme["equal"]
         } else {
             for but in buttons {
-                but.backgroundColor = StyleManager.shared.lightTheme["buttonColor"]
+                if but.tag >= 0 && but.tag <= 10 || but.tag == 10015 { // but.tag 10 is arrow
+                    but.backgroundColor = StyleManager.shared.lightTheme["buttonColor"]
+                } else {
+                    but.backgroundColor = StyleManager.shared.lightTheme["UtilitybuttonColor"]
+                }
                 but.setTitleColor(StyleManager.shared.lightTheme["textColor"], for: .normal)
             }
             equalButton.backgroundColor = StyleManager.shared.lightTheme["equal"]
