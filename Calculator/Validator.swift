@@ -11,6 +11,7 @@ import Foundation
 class Validator {
     private static var buffer: String! = "0"
     
+    /// This property that store validated equation
     static var Buffer: String! {
         set {
             newValue != "-inf" && newValue != "inf" && newValue != "nan" ? (self.buffer = newValue) : (self.buffer = nil)
@@ -20,6 +21,7 @@ class Validator {
         }
     }
     
+    /// This method checks num and bring it in the right format
     static func validateNum(_ num: Int) {
         if isEmpty() {
             buffer = String(num)
@@ -33,6 +35,7 @@ class Validator {
         }
     }
     
+    /// This method checks plus and adds it in buffer equation if it possible
     static func validatePls() {
         if isEmpty() || buffer.characters.count == 1 && buffer.characters.last == "-" {
             buffer = "+"
@@ -44,6 +47,7 @@ class Validator {
         }
     }
     
+    /// This method checks minus and adds it in buffer equation if it possible
     static func validateMns() {
         if isEmpty() || buffer.characters.count == 1 && buffer.characters.last == "+" {
             buffer = "-"
@@ -55,6 +59,7 @@ class Validator {
         }
     }
     
+    /// This method checks dot and adds it in buffer equation if it possible
     static func validateDot() {
         if isEmpty() {
             buffer = "0."
@@ -68,6 +73,7 @@ class Validator {
 
     }
     
+    /// This method checks multiply and adds it in buffer equation if it possible
     static func validateMul() {
         if buffer != nil && buffer.characters.count >= 1 {
             if ifTypeWithSpace() || buffer.characters.last == "." {
@@ -79,6 +85,7 @@ class Validator {
         }
     }
     
+    /// This method checks divition and adds it in buffer equation if it possible
     static func validateDiv() {
         if buffer != nil && buffer.characters.count >= 1 {
             if ifTypeWithSpace() {
@@ -90,6 +97,7 @@ class Validator {
         }
     }
     
+    /// This method checks POW and adds it in buffer equation if it possible
     static func validatePow() {
         if buffer != nil && buffer != "0" && buffer.characters.count >= 1 {
             if ifTypeWithSpace() || buffer.characters.last == "." {
@@ -101,6 +109,7 @@ class Validator {
         }
     }
     
+    /// This method checks SQRT and adds it in buffer equation if it possible
     static func validateSqrt() {
         if isEmpty() {
             buffer = "√"
@@ -111,6 +120,7 @@ class Validator {
         }
     }
     
+    /// This method checks LN and adds it in buffer equation if it possible
     static func validateLog() {
         if isEmpty() {
             buffer = "ln ("
@@ -122,6 +132,7 @@ class Validator {
         Brain.shared.countLeftBrackets += 1
     }
     
+    /// This method checks SIN and adds it in buffer equation if it possible
     static func validateSin() {
         if isEmpty() {
             buffer = "sin ("
@@ -134,6 +145,7 @@ class Validator {
         Brain.shared.countLeftBrackets += 1
     }
     
+    /// This method checks COS and adds it in buffer equation if it possible
     static func validateCos() {
         if isEmpty() {
             buffer = "cos ("
@@ -145,6 +157,7 @@ class Validator {
         Brain.shared.countLeftBrackets += 1
     }
     
+    /// This method checks Double.pi and adds it in buffer equation if it possible
     static func validatePi() {
         if isEmpty() {
             buffer = "\(Double.pi)"
@@ -159,6 +172,7 @@ class Validator {
         }
     }
     
+    /// This method checks Left Bracket and adds it in buffer equation if it possible
     static func validateLeftBracket() {
         if isEmpty() {
             buffer = "("
@@ -172,6 +186,7 @@ class Validator {
         }
     }
     
+    /// This method checks Right Bracket and adds it in buffer equation if it possible
     static func validateRightBracket() {
         if Brain.shared.countLeftBrackets != 0 {
             if isLastInputDigit() ||
@@ -186,6 +201,7 @@ class Validator {
         }
     }
     
+    /// This method checks if allowed press equal
     static func isAllowedPressEqual() -> Bool {
         if isEmpty() || (buffer.characters.count == 1 && !isLastInputDigit()) {
             return false
@@ -194,15 +210,17 @@ class Validator {
         }
     }
     
-    
+    /// Boolean method that return true if last input is digit or right brackets
     private static func ifTypeWithSpace() -> Bool {
-        return buffer.characters.last == ")" || buffer.characters.last! >= "0" && buffer.characters.last! <= "9"
+        return buffer.characters.last == ")" || isLastInputDigit()
     }
     
+    /// Boolean method that check symbol if it is digit
     private static func isLastInputDigit() -> Bool {
         return buffer.characters.last! >= "0" && buffer.characters.last! <= "9"
     }
     
+    /// Boolean method that check buffer if it empty
     private static func isEmpty() -> Bool {
         return buffer == nil || buffer == "0" || buffer == ""
     }

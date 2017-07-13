@@ -8,7 +8,8 @@
 
 import UIKit
 
-class StyleManager {
+/// Contain dictionaries with settings for different styles of application UI
+struct StyleManager {
     static var shared = StyleManager()
     
     let lightTheme = [
@@ -25,6 +26,5 @@ class StyleManager {
         "UtilitybuttonColor": UIColor(colorLiteralRed: 0.000, green: 0.215, blue: 0.331, alpha: 1),
         "textColor": UIColor.white,
         "equal": UIColor(colorLiteralRed: 0.623, green: 0.802, blue: 0.917, alpha: 1)
-    ]
-        
+    ]        
 }

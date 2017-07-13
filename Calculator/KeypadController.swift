@@ -20,19 +20,18 @@ class KeypadController: UIViewController {
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var arrowButton: UIButton!
     @IBOutlet weak var equalButton: UIButton!
-    @IBOutlet weak var keypadPlus: UIStackView!
     
     @IBAction func onNumericTap(button: UIButton) {
         onNumTap?(button.tag)
         if sound {
-            AudioServicesPlaySystemSound(arc4random_uniform(16) + 1020)
+            AudioServicesPlaySystemSound(1104)
         }
     }
     
     @IBAction func onUtilityTap(button: UIButton) {
         onUtilityTap?(button.tag)
         if sound {
-            AudioServicesPlaySystemSound(arc4random_uniform(18) + 1100)
+            AudioServicesPlaySystemSound(1104)
         }
     }
     
@@ -53,17 +52,12 @@ class KeypadController: UIViewController {
     }
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        UIDevice.current.orientation.isLandscape ? isHiddenKeypadPlus(false) : isHiddenKeypadPlus(true)
-    }
-    
-    private func isHiddenKeypadPlus(_ state: Bool) {
-        keypadPlus?.isHidden = state
-        arrowButton?.isEnabled = state
+        UIDevice.current.orientation.isLandscape ? (arrowButton.isEnabled = false) : (arrowButton.isEnabled = true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIDevice.current.orientation.isLandscape ? isHiddenKeypadPlus(false) : isHiddenKeypadPlus(true)
+        UIDevice.current.orientation.isLandscape ? (arrowButton.isEnabled = false) : (arrowButton.isEnabled = true)
         sound = (UserDefaults.standard.value(forKey: "soundSwitcher") as? Bool)!
         setTheme()
     }

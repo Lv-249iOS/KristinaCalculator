@@ -8,6 +8,5 @@
 
 import Foundation
 
-
 let kChangeStyleColor = NSNotification.Name("ChangeStyleColor")
 let kChangeSoundState = NSNotification.Name("ChangeSoundState")

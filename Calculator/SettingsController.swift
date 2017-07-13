@@ -13,6 +13,7 @@ class SettingsController: UIViewController {
     @IBOutlet weak var themeSwitcher: UISwitch!
     @IBOutlet weak var soundSwitcher: UISwitch!
     @IBOutlet var Labels: [UILabel]!
+    @IBOutlet weak var banana: UIImageView!
     
     var sound = false
     

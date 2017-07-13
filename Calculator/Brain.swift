@@ -13,7 +13,7 @@ class Brain: Model {
 
     let output = OutputAdapter.shared
     var equation: String!
-    var history: String!
+    var history: String?
 
     var countLeftBrackets: Int = 0
     var countRightBrackets: Int = 0
@@ -23,7 +23,8 @@ class Brain: Model {
         countRightBrackets = 0
     }
     
-    func enterEquation(equation: String) {
+    /// This method adds missed right brackets if it needs it
+    func addMissedRightBrackets(_ equation: String) -> String {
         var missingBrackets: String = ""
         var counter = countRightBrackets
         
@@ -32,15 +33,22 @@ class Brain: Model {
             counter += 1
         }
         
+        return equation + missingBrackets
+    }
+    
+    /// set equation string and deliveer it to calculation
+    func enterEquation(equation: String) {
         self.history = equation
-        self.equation = equation + missingBrackets
+        self.equation = addMissedRightBrackets(equation)
         process()
     }
     
+    /// transfer the whole custom equation to OutputAdapter
     func presentHistory(currentInput: String?) {
         output.presentHistory(history: currentInput ?? "")
     }
     
+    /// clear last inputed equation and all information relaited to
     func clear() {
         resetProperties()
         equation = nil
@@ -48,6 +56,7 @@ class Brain: Model {
         output.presentResult(result: "0")
     }
     
+    /// This method return result and reset equation to nil
     func equal() -> String {
         resetProperties()
         equation = String(format: "%g", calculateResult())
@@ -57,18 +66,19 @@ class Brain: Model {
         return equation
     }
 
-    // calc equation and present history
+    /// This method presents history and results
     func process() {
         output.presentResult(result: String(format: "%g", calculateResult()))
-        output.presentHistory(history: history)
+        presentHistory(currentInput: history)
     }
     
-    /// split String to [String]
+    /// This method splits equation on tokens separated by blank space
     func parseInfix(_ equationStr: String) -> [String] {
         let tokens = equationStr.characters.split{ $0 == " " }.map(String.init)
         return tokens
     }
     
+    /// This method calculates equation with reversed poland notation
     func calculateResult() -> Double {
         let rpnStr = reverseToPolandNotation(tokens: parseInfix(equation)) // reverse to RPN
         var stack : [String] = [] // buffer for digit
@@ -78,19 +88,19 @@ class Brain: Model {
                 stack += [tok]
                 
             } else if !stack.isEmpty && (tok == "sin" || tok == "cos" || tok == "ln" || tok == "√") {
-                let operand = Double((stack.removeLast()))
-                
-                switch tok {
-                case "sin":
-                    stack += [String(sin(operand!))]
-                case "cos":
-                    stack += [String(cos(operand!))]
-                case "ln":
-                    stack += [String(log(operand!))]
-                case "√":
-                    stack += [String(sqrt(operand!))]
-                default:
-                    break
+                if let operand = Double((stack.removeLast())) {
+                    switch tok {
+                    case "sin":
+                        stack += [String(sin(operand))]
+                    case "cos":
+                        stack += [String(cos(operand))]
+                    case "ln":
+                        stack += [String(log(operand))]
+                    case "√":
+                        stack += [String(sqrt(operand))]
+                    default:
+                        break
+                    }
                 }
                 
             } else {
@@ -121,10 +131,13 @@ class Brain: Model {
         return Double(stack.removeLast())!
     }
 
+    
+    /// This method reverses equation to poland notation
     func reverseToPolandNotation(tokens: [String]) -> [String] {
-        var rpn : [String] = [] // buffer for entire equation in RPN
+        var rpn : [String]   = [] // buffer for entire equation in RPN
         var stack : [String] = [] // buffer for operation
 
+        // dictionary with precedence of operation
         let operationPrec: Dictionary<String, Int> = [
             "^": 4,
             "√" : 5,
@@ -136,7 +149,8 @@ class Brain: Model {
             "sin" : 5,
             "cos" : 5,
         ]
-
+        
+        // loop take 1 element and put on the right place and drop brackets 
         for tok in tokens {
             switch tok {
             case "(":
@@ -147,8 +161,7 @@ class Brain: Model {
                     if op == "(" {
                         break
                     } else {
-                        rpn += [op]
-                    }
+                        rpn += [op] }
                 }
             default:
                 if let operand1 = operationPrec[tok] {
