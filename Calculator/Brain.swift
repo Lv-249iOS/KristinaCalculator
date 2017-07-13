@@ -60,6 +60,11 @@ class Brain: Model {
     func equal() -> String {
         resetProperties()
         equation = String(format: "%g", calculateResult())
+        
+        if equation == "-0" {
+            equation = "0"
+        }
+        
         output.presentResult(result: equation)
         output.presentHistory(history: "")
         
@@ -68,7 +73,12 @@ class Brain: Model {
 
     /// This method presents history and results
     func process() {
-        output.presentResult(result: String(format: "%g", calculateResult()))
+        let result = calculateResult()
+        if result != -0.0 {
+            output.presentResult(result: String(format: "%g", result))
+        } else {
+            output.presentResult(result: String(format: "%g", 0))
+        }
         presentHistory(currentInput: history)
     }
     
