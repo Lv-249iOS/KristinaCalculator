@@ -20,7 +20,7 @@ class SettingsController: UIViewController {
         UserDefaults.standard.setValue(themeSwitcher.isOn, forKey: "themeSwitcher")
         NotificationCenter.default.post(name: kChangeStyleColor, object: nil)
         if sound {
-            AudioServicesPlaySystemSound(1016)
+            AudioServicesPlaySystemSound(1022)
         }
     }
     
@@ -28,7 +28,7 @@ class SettingsController: UIViewController {
         UserDefaults.standard.setValue(soundSwitcher.isOn, forKey: "soundSwitcher")
         NotificationCenter.default.post(name: kChangeSoundState, object: nil)
         if sound {
-            AudioServicesPlaySystemSound(1016)
+            AudioServicesPlaySystemSound(1022)
         }
     }
     

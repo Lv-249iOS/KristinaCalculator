@@ -10,7 +10,6 @@ import Foundation
 
 class Validator {
     private static var buffer: String! = "0"
-    static var isDotTap = false
     static var Buffer: String! {
         set {
             newValue != "-inf" && newValue != "inf" && newValue != "nan" ? (self.buffer = newValue) : (self.buffer = nil)
@@ -25,7 +24,7 @@ class Validator {
     }
     
     private static func isEmpty() -> Bool {
-        return buffer == nil || buffer == "0"
+        return buffer == nil || buffer == "0" || buffer == ""
     }
     
     static func validateNum(_ num: Int) {
@@ -38,14 +37,13 @@ class Validator {
             buffer = buffer + "\(num)"
         } else {
             buffer = buffer + " \(num)"
-            isDotTap = false
         }
     }
     
     static func validatePls() {
         if isEmpty() || buffer.characters.count == 1 && buffer.characters.last == "-" {
             buffer = "+"
-        } else if ifTypeWithSpace() {
+        } else if ifTypeWithSpace() || buffer.characters.last == "." {
             buffer = buffer + " +"
         } else if buffer.characters.last != "(" {
             buffer.characters.removeLast()
@@ -67,14 +65,11 @@ class Validator {
     static func validateDot() {
         if isEmpty() {
             buffer = "0."
-            isDotTap = true
-        } else if buffer.characters.last != "." && isDotTap == false {
+        } else if buffer.characters.last != "." {
             if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" {
                 buffer! += "."
-                isDotTap = true
             } else if buffer.characters.last == "(" {
                 buffer = buffer + " 0."
-                isDotTap = true
             }
         }
 
@@ -82,7 +77,7 @@ class Validator {
     
     static func validateMul() {
         if buffer != nil && buffer.characters.count >= 1 {
-            if ifTypeWithSpace() {
+            if ifTypeWithSpace() || buffer.characters.last == "." {
                 buffer = buffer + " ×"
             } else if buffer.characters.last != "(" && buffer != "+" && buffer != "-" {
                 buffer.characters.removeLast()
@@ -104,7 +99,7 @@ class Validator {
     
     static func validatePow() {
         if buffer != nil && buffer != "0" && buffer.characters.count >= 1 {
-            if ifTypeWithSpace() {
+            if ifTypeWithSpace() || buffer.characters.last == "." {
                 buffer = buffer + " ^"
             } else if buffer.characters.last != "(" {
                 buffer.characters.removeLast()
@@ -160,17 +155,14 @@ class Validator {
     static func validatePi() {
         if isEmpty() {
             buffer = "\(Double.pi)"
-            isDotTap = true
         } else if ifTypeWithSpace() {
             buffer = buffer + " × \(Double.pi)"
-            isDotTap = true
         }  else if buffer.characters.last! >= "0" && buffer.characters.last! <= "9" ||
             buffer.characters.count == 1 && buffer.characters.last == "-" ||
             (buffer.characters.count >= 3 && buffer.substring(from: buffer.index(buffer.endIndex, offsetBy: -3)) == "( -") {
             buffer = buffer + "\(Double.pi)"
-        } else if buffer.characters.last != "." && isDotTap == false {
+        } else if buffer.characters.last != "." {
             buffer = buffer + " \(Double.pi)"
-            isDotTap = true
         }
     }
     
@@ -181,7 +173,6 @@ class Validator {
         } else if ifTypeWithSpace() {
             buffer = buffer + " × ("
             Brain.shared.countLeftBrackets += 1
-            isDotTap = false 
         } else {
             buffer = buffer + " ("
             Brain.shared.countLeftBrackets += 1
@@ -203,7 +194,7 @@ class Validator {
     }
     
     static func isAllowedPressEqual() -> Bool {
-        if isEmpty() || buffer == "" || (buffer.characters.count == 1 && !(buffer.characters.last! >= "0" && buffer.characters.last! <= "9")) {
+        if isEmpty() || (buffer.characters.count == 1 && !(buffer.characters.last! >= "0" && buffer.characters.last! <= "9")) {
             return false
         } else {
             return true

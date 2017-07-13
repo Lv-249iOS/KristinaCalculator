@@ -25,14 +25,14 @@ class KeypadController: UIViewController {
     @IBAction func onNumericTap(button: UIButton) {
         onNumTap?(button.tag)
         if sound {
-            AudioServicesPlaySystemSound(1016)
+            AudioServicesPlaySystemSound(arc4random_uniform(16) + 1020)
         }
     }
     
     @IBAction func onUtilityTap(button: UIButton) {
         onUtilityTap?(button.tag)
         if sound {
-            AudioServicesPlaySystemSound(1016)
+            AudioServicesPlaySystemSound(arc4random_uniform(18) + 1100)
         }
     }
     

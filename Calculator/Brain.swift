@@ -71,8 +71,8 @@ class Brain: Model {
 
     // calc equation and present history
     func process() {
-        output.presentHistory(history: history)
         output.presentResult(result: String(format: "%g", calculateResult()))
+        output.presentHistory(history: history)
     }
     
     /// split String to [String]
@@ -86,11 +86,11 @@ class Brain: Model {
         var stack : [String] = [] // buffer for digit
         
         for tok in rpnStr {
-            if Double(tok) != nil {
+            if Double(tok) != nil  {
                 stack += [tok]
                 
-            } else if tok == "sin" || tok == "cos" || tok == "ln" || tok == "√" {
-                let operand = Double(stack.removeLast())
+            } else if !stack.isEmpty && (tok == "sin" || tok == "cos" || tok == "ln" || tok == "√") {
+                let operand = Double((stack.removeLast()))
                 
                 switch tok {
                 case "sin": stack += [String(sin(operand!))]
@@ -98,25 +98,27 @@ class Brain: Model {
                 case "ln": stack += [String(log(operand!))]
                 case "√": stack += [String(sqrt(operand!))]
                 default: break
-                    
                 }
                 
             } else {
-                let secondOperand = Double(stack.removeLast())
-                let firstOperand = Double(stack.removeLast())
-                
-                switch tok {
-                case "+": stack += [String(firstOperand! + secondOperand!)]
-                case "-": stack += [String(firstOperand! - secondOperand!)]
-                case "÷": stack += [String(firstOperand! / secondOperand!)]
-                case "×": stack += [String(firstOperand! * secondOperand!)]
-                case "^": stack += [String(pow(firstOperand!,secondOperand!))]
-                default: break
-                    
+                if stack.count > 1 {
+                    if let secondOperand = Double(stack.removeLast()), let firstOperand = Double(stack.removeLast()) {
+                        switch tok {
+                        case "+": stack += [String(firstOperand + secondOperand)]
+                        case "-": stack += [String(firstOperand - secondOperand)]
+                        case "÷": stack += [String(firstOperand / secondOperand)]
+                        case "×": stack += [String(firstOperand * secondOperand)]
+                        case "^": stack += [String(pow(firstOperand,secondOperand))]
+                        default: break
+                        }
+                    }
+                } else {
+                    history = "ERROR"
+                    return 0.0
                 }
             }
         }
-
+        
         return Double(stack.removeLast())!
     }
 
