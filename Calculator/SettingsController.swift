@@ -20,25 +20,19 @@ class SettingsController: UIViewController {
     @IBAction func changeStateOfAnimation(_ sender: Any) {
         UserDefaults.standard.setValue(animationSwitcher.isOn, forKey: "animationSwitcher")
         NotificationCenter.default.post(name: kChangeAnimationState, object: nil)
-        if sound {
-            AudioServicesPlaySystemSound(1022)
-        }
+        buttonPressedSound()
     }
 
     @IBAction func changeTheme(_ sender: UISwitch) {
         UserDefaults.standard.setValue(themeSwitcher.isOn, forKey: "themeSwitcher")
         NotificationCenter.default.post(name: kChangeStyleColor, object: nil)
-        if sound {
-            AudioServicesPlaySystemSound(1022)
-        }
+        buttonPressedSound()
     }
     
     @IBAction func changeStateOfSound(_ sender: UISwitch) {
         UserDefaults.standard.setValue(soundSwitcher.isOn, forKey: "soundSwitcher")
         NotificationCenter.default.post(name: kChangeSoundState, object: nil)
-        if sound {
-            AudioServicesPlaySystemSound(1022)
-        }
+        buttonPressedSound()
     }
     
     override func viewDidLoad() {
@@ -68,6 +62,12 @@ class SettingsController: UIViewController {
             for label in Labels {
                 label.textColor = StyleManager.shared.lightTheme["textColor"]
             }
+        }
+    }
+    
+    func buttonPressedSound() {
+        if sound {
+            AudioServicesPlaySystemSound(1022)
         }
     }
     

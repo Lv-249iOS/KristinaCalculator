@@ -23,16 +23,16 @@ class KeypadController: UIViewController {
     
     @IBAction func onNumericTap(button: UIButton) {
         onNumTap?(button.tag)
-        if sound {
-            AudioServicesPlaySystemSound(1104)
-        }
+        buttonPressedSound()
     }
     
     @IBAction func onUtilityTap(button: UIButton) {
         onUtilityTap?(button.tag)
-        if sound {
-            AudioServicesPlaySystemSound(1104)
-        }
+        buttonPressedSound()
+    }
+    
+    @IBAction func buttonTap(_ sender: UIButton) {
+        buttonPressedSound()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -85,6 +85,12 @@ class KeypadController: UIViewController {
                 but.setTitleColor(StyleManager.shared.lightTheme["textColor"], for: .normal)
             }
             equalButton.backgroundColor = StyleManager.shared.lightTheme["equal"]
+        }
+    }
+    
+    func buttonPressedSound() {
+        if sound {
+            AudioServicesPlaySystemSound(1022)
         }
     }
 }

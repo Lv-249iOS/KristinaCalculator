@@ -14,6 +14,12 @@ class ProgramNavigationController: UIViewController {
     var sound = false
     var emitter: CAEmitterLayer!
     
+    @IBAction func buttonsTap(_ sender: UIButton) {
+        if sound {
+            AudioServicesPlaySystemSound(1104)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
