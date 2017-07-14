@@ -12,6 +12,7 @@ import AVFoundation
 class ProgramNavigationController: UIViewController {
     @IBOutlet weak var imageBackground: UIImageView!
     var sound = false
+    var emitter: CAEmitterLayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +24,31 @@ class ProgramNavigationController: UIViewController {
         if UserDefaults.standard.value(forKey: "soundSwitcher") == nil {
             UserDefaults.standard.setValue(true, forKey: "soundSwitcher")
         }
+        
+        if UserDefaults.standard.value(forKey: "animationSwitcher") == nil {
+            UserDefaults.standard.setValue(true, forKey: "animationSwitcher")
+        }
 
         setTheme()
-        SoundOnOff()
+        soundOnOff()
+        setImageEmitter()
         
         NotificationCenter.default.addObserver(self, selector: #selector(setTheme), name: kChangeStyleColor, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(SoundOnOff), name: kChangeSoundState, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(soundOnOff), name: kChangeSoundState, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setImageEmitter), name: kChangeAnimationState, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setImageEmitter), name: kChangeStyleColor, object: nil)
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        if emitter != nil {
+            if UIDevice.current.orientation.isLandscape {
+                emitter.emitterSize = CGSize(width: view.frame.height, height: 2)
+                emitter.emitterPosition = CGPoint(x: view.frame.height / 2, y: 0)
+            } else {
+                emitter.emitterSize = CGSize(width: view.frame.width, height: 2)
+                emitter.emitterPosition = CGPoint(x: view.frame.width / 2, y: 0)
+            }
+        }
     }
     
     func setTheme() {
@@ -42,7 +62,33 @@ class ProgramNavigationController: UIViewController {
         }
     }
 
-    func SoundOnOff() {
+    func soundOnOff() {
         sound = UserDefaults.standard.value(forKey: "soundSwitcher") as! Bool
+    }
+    
+    
+    func setImageEmitter() {
+        if UserDefaults.standard.value(forKey: "animationSwitcher") as! Bool {
+            setThemeImageEmitter()
+            view.layer.addSublayer(emitter!)
+        } else {
+            emitter?.removeFromSuperlayer()
+            emitter = nil
+        }
+    }
+    
+    func setThemeImageEmitter() {
+        emitter?.removeFromSuperlayer()
+        
+        if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
+            ImageEmitter.styleSettings = StyleManager.shared.snowEmitter
+            emitter = ImageEmitter.get(with: StyleManager.shared.snowEmitter["emitterImage"] as! UIImage)
+        } else {
+            ImageEmitter.styleSettings = StyleManager.shared.bubblesEmitter
+            emitter = ImageEmitter.get(with: StyleManager.shared.bubblesEmitter["emitterImage"] as! UIImage)
+        }
+        
+        emitter.emitterPosition = CGPoint(x: view.frame.width / 2, y: 0)
+        emitter.emitterSize = CGSize(width: view.frame.width, height: 2)
     }
 }

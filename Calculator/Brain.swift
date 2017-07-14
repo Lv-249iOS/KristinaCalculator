@@ -74,11 +74,8 @@ class Brain: Model {
     /// This method presents history and results
     func process() {
         let result = calculateResult()
-        if result != -0.0 {
-            output.presentResult(result: String(format: "%g", result))
-        } else {
-            output.presentResult(result: String(format: "%g", 0))
-        }
+        
+        result != -0.0 ? (output.presentResult(result: String(format: "%g", result))) : (output.presentResult(result: String(format: "%g", 0)))
         presentHistory(currentInput: history)
     }
     

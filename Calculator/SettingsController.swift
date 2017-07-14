@@ -10,13 +10,21 @@ import UIKit
 import AVFoundation
 
 class SettingsController: UIViewController {
+    @IBOutlet weak var animationSwitcher: UISwitch!
     @IBOutlet weak var themeSwitcher: UISwitch!
     @IBOutlet weak var soundSwitcher: UISwitch!
-    @IBOutlet var Labels: [UILabel]!
-    @IBOutlet weak var banana: UIImageView!
     
+    @IBOutlet var Labels: [UILabel]!
     var sound = false
     
+    @IBAction func changeStateOfAnimation(_ sender: Any) {
+        UserDefaults.standard.setValue(animationSwitcher.isOn, forKey: "animationSwitcher")
+        NotificationCenter.default.post(name: kChangeAnimationState, object: nil)
+        if sound {
+            AudioServicesPlaySystemSound(1022)
+        }
+    }
+
     @IBAction func changeTheme(_ sender: UISwitch) {
         UserDefaults.standard.setValue(themeSwitcher.isOn, forKey: "themeSwitcher")
         NotificationCenter.default.post(name: kChangeStyleColor, object: nil)
@@ -37,13 +45,14 @@ class SettingsController: UIViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(setTheme), name: kChangeStyleColor, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(SoundOnOff), name: kChangeSoundState, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(soundOnOff), name: kChangeSoundState, object: nil)
         
         themeSwitcher.isOn = (UserDefaults.standard.value(forKey: "themeSwitcher") as? Bool)!
         soundSwitcher.isOn = (UserDefaults.standard.value(forKey: "soundSwitcher") as? Bool)!
+        animationSwitcher.isOn = (UserDefaults.standard.value(forKey: "animationSwitcher") as? Bool)!
         
         setTheme()
-        SoundOnOff()
+        soundOnOff()
     }
     
     func setTheme() {
@@ -62,7 +71,7 @@ class SettingsController: UIViewController {
         }
     }
     
-    func SoundOnOff() {
+    func soundOnOff() {
         sound = UserDefaults.standard.value(forKey: "soundSwitcher") as! Bool
     }
 }
