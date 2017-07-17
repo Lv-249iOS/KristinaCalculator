@@ -12,6 +12,7 @@ import Foundation
 let kChangeStyleColor = NSNotification.Name("ChangeStyleColor")
 let kChangeSoundState = NSNotification.Name("ChangeSoundState")
 let kChangeAnimationState = NSNotification.Name("ChangeAnimation")
+let kChangeFont = NSNotification.Name("ChangeFont")
 
 // Alias for singleton of StyleManager
 let style = StyleManager.shared

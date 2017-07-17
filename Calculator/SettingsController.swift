@@ -10,10 +10,11 @@ import UIKit
 import AVFoundation
 
 /// Class conrtols settings of sound, themes and animation 
-class SettingsController: UIViewController {
+class SettingsController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var animationSwitcher: UISwitch!
     @IBOutlet weak var themeSwitcher: UISwitch!
     @IBOutlet weak var soundSwitcher: UISwitch!
+    @IBOutlet weak var fontPickerView: UIPickerView!
     
     @IBOutlet var Labels: [UILabel]!
     var isSound = false
@@ -46,21 +47,50 @@ class SettingsController: UIViewController {
         }
     }
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(setTheme), name: kChangeStyleColor, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setSoundOnOff), name: kChangeSoundState, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setFont), name: kChangeFont, object: nil)
         
         themeSwitcher.isOn = (UserDefaults.standard.value(forKey: "themeSwitcher") as? Bool)!
         soundSwitcher.isOn = (UserDefaults.standard.value(forKey: "soundSwitcher") as? Bool)!
         animationSwitcher.isOn = (UserDefaults.standard.value(forKey: "animationSwitcher") as? Bool)!
+        fontPickerView.selectRow(UIFont.familyNames.index(of: UserDefaults.standard.value(forKey: "appFont") as! String)!, inComponent: 0, animated: false)
         
+        setFont()
         setTheme()
         setSoundOnOff()
     }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return UIFont.familyNames.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return UIFont.familyNames[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        UserDefaults.standard.setValue(UIFont.familyNames[row], forKey: "appFont")
+        NotificationCenter.default.post(name: kChangeFont, object: nil)
+    }
+    
+    func setFont() {
+        for label in Labels {
+            label.font = UIFont(name: style.currentFont, size: 20.0)
+        }
+    }
 
     func setTheme() {
+        // set color for pickerView
         view.backgroundColor = style.currentStyle["backgroundColor"]
         for label in Labels {
             label.textColor = style.currentStyle["textColor"]

@@ -21,12 +21,19 @@ class KeypadPlusController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTheme()
+        setFont()
     }
     
     func setTheme() {
         for but in keypadPlus {
             but.backgroundColor = style.currentStyle["UtilitybuttonColor"]
             but.setTitleColor(style.currentStyle["textColor"], for: .normal)
+        }
+    }
+    
+    func setFont() {
+        for but in keypadPlus {
+            but.titleLabel?.font = UIFont(name: style.currentFont, size: 40.0)
         }
     }
 }

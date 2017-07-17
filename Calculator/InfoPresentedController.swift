@@ -35,7 +35,8 @@ class InfoPresentedController: UIViewController {
         output.resultDisplay = { [weak self] result in
             self?.presentResult(result)
         }
-
+        
+        setFont()
         setTheme()
     }
     
@@ -45,5 +46,10 @@ class InfoPresentedController: UIViewController {
         scrollView.backgroundColor = style.currentStyle["backgroundColor"]
         displayLabel.textColor = style.currentStyle["textColor"]
         historyLabel.textColor = style.currentStyle["textColor"]
+    }
+    
+    func setFont() {
+        displayLabel.font = UIFont(name: style.currentFont, size: 35.0)
+        historyLabel.font = UIFont(name: style.currentFont, size: 25.0)
     }
 }

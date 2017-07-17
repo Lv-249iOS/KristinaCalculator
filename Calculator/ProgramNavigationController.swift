@@ -12,6 +12,8 @@ import AVFoundation
 /// Main HOME screen controller that navigates between settings scene and calcutator scene
 class ProgramNavigationController: UIViewController {
     @IBOutlet weak var imageBackground: UIImageView!
+    @IBOutlet var buttons: [RoundButton]!
+    
     var emitter: CAEmitterLayer!
     var isSound = false
     
@@ -34,12 +36,18 @@ class ProgramNavigationController: UIViewController {
         if UserDefaults.standard.value(forKey: "animationSwitcher") == nil {
             UserDefaults.standard.setValue(true, forKey: "animationSwitcher")
         }
+
+        if UserDefaults.standard.object(forKey: "appFont") == nil {
+            UserDefaults.standard.setValue("PingFang HK", forKey: "appFont")
+        }
         
         setTheme()
+        setFont()
         setSoundOnOff()
         setImageEmitter()
         
         NotificationCenter.default.addObserver(self, selector: #selector(setTheme), name: kChangeStyleColor, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setFont), name: kChangeFont, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setSoundOnOff), name: kChangeSoundState, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setImageEmitter), name: kChangeAnimationState, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setImageEmitter), name: kChangeStyleColor, object: nil)
@@ -55,6 +63,13 @@ class ProgramNavigationController: UIViewController {
                 emitter.emitterSize = CGSize(width: view.frame.width, height: 2)
                 emitter.emitterPosition = CGPoint(x: view.frame.width / 2, y: 0)
             }
+        }
+    }
+    
+    // set font for buttons on view
+    func setFont() {
+        for but in buttons {
+            but.titleLabel?.font = UIFont.init(name: style.currentFont, size: 30.0)
         }
     }
     

@@ -69,4 +69,8 @@ struct StyleManager {
     var currentEmitter: [String: Any] {
         return UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool ? snowEmitter : bubblesEmitter
     }
+    
+    var currentFont: String {
+        return UserDefaults.standard.value(forKey: "appFont") as! String
+    }
 }

@@ -61,6 +61,7 @@ class KeypadController: UIViewController {
         UIDevice.current.orientation.isLandscape ? (arrowButton.isEnabled = false) : (arrowButton.isEnabled = true)
         sound = (UserDefaults.standard.value(forKey: "soundSwitcher") as? Bool)!
         setTheme()
+        setFont()
     }
 
     func setTheme() {
@@ -74,6 +75,13 @@ class KeypadController: UIViewController {
             } else {
                 but.backgroundColor = style.currentStyle["UtilitybuttonColor"]
             }
+        }
+    }
+    
+    func setFont() {
+        equalButton.titleLabel?.font = UIFont(name: style.currentFont, size: 40.0)
+        for but in buttons {
+            but.titleLabel?.font = UIFont(name: style.currentFont, size: 40.0)
         }
     }
     
