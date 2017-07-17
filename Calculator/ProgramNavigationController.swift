@@ -36,11 +36,11 @@ class ProgramNavigationController: UIViewController {
         }
 
         setTheme()
-        soundOnOff()
+        setSoundOnOff()
         setImageEmitter()
         
         NotificationCenter.default.addObserver(self, selector: #selector(setTheme), name: kChangeStyleColor, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(soundOnOff), name: kChangeSoundState, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setSoundOnOff), name: kChangeSoundState, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setImageEmitter), name: kChangeAnimationState, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setImageEmitter), name: kChangeStyleColor, object: nil)
     }
@@ -68,7 +68,7 @@ class ProgramNavigationController: UIViewController {
         }
     }
 
-    func soundOnOff() {
+    func setSoundOnOff() {
         sound = UserDefaults.standard.value(forKey: "soundSwitcher") as! Bool
     }
     

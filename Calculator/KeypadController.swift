@@ -90,7 +90,7 @@ class KeypadController: UIViewController {
     
     func buttonPressedSound() {
         if sound {
-            AudioServicesPlaySystemSound(1022)
+            AudioServicesPlaySystemSound(1104)
         }
     }
 }

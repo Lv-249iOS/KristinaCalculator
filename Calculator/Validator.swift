@@ -14,10 +14,10 @@ class Validator {
     /// This property that store validated equation
     static var Buffer: String! {
         set {
-            newValue != "-inf" && newValue != "inf" && newValue != "nan" ? (self.buffer = newValue) : (self.buffer = nil)
+            newValue != "-inf" && newValue != "inf" && newValue != "nan" ? (buffer = newValue) : (buffer = nil)
         }
         get {
-            return self.buffer
+            return buffer
         }
     }
     
@@ -70,7 +70,6 @@ class Validator {
                 buffer = buffer + " 0."
             }
         }
-
     }
     
     /// This method checks multiply and adds it in buffer equation if it possible
@@ -176,14 +175,12 @@ class Validator {
     static func validateLeftBracket() {
         if isEmpty() {
             buffer = "("
-            Brain.shared.countLeftBrackets += 1
         } else if ifTypeWithSpace() {
             buffer = buffer + " × ("
-            Brain.shared.countLeftBrackets += 1
         } else {
             buffer = buffer + " ("
-            Brain.shared.countLeftBrackets += 1
         }
+        Brain.shared.countLeftBrackets += 1
     }
     
     /// This method checks Right Bracket and adds it in buffer equation if it possible
@@ -203,11 +200,7 @@ class Validator {
     
     /// This method checks if allowed press equal
     static func isAllowedPressEqual() -> Bool {
-        if isEmpty() || (buffer.characters.count == 1 && !isLastInputDigit()) {
-            return false
-        } else {
-            return true
-        }
+        return isEmpty() || (buffer.characters.count == 1 && !isLastInputDigit())
     }
     
     /// Boolean method that return true if last input is digit or right brackets
