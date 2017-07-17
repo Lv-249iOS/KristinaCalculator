@@ -45,4 +45,21 @@ struct StyleManager {
         "scale": CGFloat(0.1),
         "scaleRange": CGFloat(0.09),
     ]
+    
+    var currentStyle: [String: UIColor] {
+        return UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool ? StyleManager.shared.darkTheme : StyleManager.shared.lightTheme
+    }
+    
+    var currentHomeImage: UIImage {
+        return UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool ? #imageLiteral(resourceName: "winterNight") : #imageLiteral(resourceName: "summerDay")
+    }
+    
+    var currentImageForEmitting: UIImage {
+        return UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool ? (snowEmitter["emitterImage"] as! UIImage) : (bubblesEmitter["emitterImage"] as! UIImage)
+    }
+    
+    var currentEmitter: [String: Any] {
+        return UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool ? snowEmitter : bubblesEmitter
+    }
+    
 }

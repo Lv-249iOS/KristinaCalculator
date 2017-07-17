@@ -51,10 +51,6 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func setTheme() {
-        if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
-            view.backgroundColor = StyleManager.shared.darkTheme["backgroundColor"]
-        } else {
-            view.backgroundColor = StyleManager.shared.lightTheme["backgroundColor"]
-        }
+        view.backgroundColor = StyleManager.shared.currentStyle["backgroundColor"]
     }
 }

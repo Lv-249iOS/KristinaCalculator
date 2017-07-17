@@ -61,30 +61,16 @@ class KeypadController: UIViewController {
         sound = (UserDefaults.standard.value(forKey: "soundSwitcher") as? Bool)!
         setTheme()
     }
-    
+
     func setTheme() {
-        if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
-            for but in buttons {
-                if but.tag >= 0 && but.tag <= 10 || but.tag == 10015 { // but.tag 10 is arrow ; tag 10015 is dot
-                    but.backgroundColor = StyleManager.shared.darkTheme["buttonColor"]
-                } else {
-                    (but.backgroundColor = StyleManager.shared.darkTheme["UtilitybuttonColor"])
-                }
-                
-                but.setTitleColor(StyleManager.shared.darkTheme["textColor"], for: .normal)
+        equalButton.backgroundColor = style.currentStyle["equal"]
+        for but in buttons {
+            if but.tag >= 0 && but.tag <= 10 || but.tag == 10015 { // but.tag 10 is arrow ; tag 10015 is dot
+                but.backgroundColor = style.currentStyle["buttonColor"]
+            } else {
+                but.backgroundColor = style.currentStyle["UtilitybuttonColor"]
             }
-            equalButton.backgroundColor = StyleManager.shared.darkTheme["equal"]
-        } else {
-            for but in buttons {
-                if but.tag >= 0 && but.tag <= 10 || but.tag == 10015 { // but.tag 10 is arrow ; tag 10015 is dot
-                    but.backgroundColor = StyleManager.shared.lightTheme["buttonColor"]
-                } else {
-                    but.backgroundColor = StyleManager.shared.lightTheme["UtilitybuttonColor"]
-                }
-                
-                but.setTitleColor(StyleManager.shared.lightTheme["textColor"], for: .normal)
-            }
-            equalButton.backgroundColor = StyleManager.shared.lightTheme["equal"]
+            but.setTitleColor(style.currentStyle["textColor"], for: .normal)
         }
     }
     

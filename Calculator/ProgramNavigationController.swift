@@ -11,13 +11,11 @@ import AVFoundation
 
 class ProgramNavigationController: UIViewController {
     @IBOutlet weak var imageBackground: UIImageView!
-    var sound = false
+    var isSound = false
     var emitter: CAEmitterLayer!
     
     @IBAction func buttonsTap(_ sender: UIButton) {
-        if sound {
-            AudioServicesPlaySystemSound(1104)
-        }
+        isSound ? AudioServicesPlaySystemSound(1104) : (/* keep silance */)
     }
     
     override func viewDidLoad() {
@@ -58,20 +56,13 @@ class ProgramNavigationController: UIViewController {
     }
     
     func setTheme() {
-        if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
-            view.backgroundColor = StyleManager.shared.darkTheme["backgroundColor"]
-            imageBackground.image = #imageLiteral(resourceName: "winterNight")
-            
-        } else {
-            view.backgroundColor = StyleManager.shared.lightTheme["backgroundColor"]
-            imageBackground.image = #imageLiteral(resourceName: "summerDay")
-        }
+        view.backgroundColor = style.currentStyle["backgroundColor"]
+        imageBackground.image = style.currentHomeImage
     }
 
     func setSoundOnOff() {
-        sound = UserDefaults.standard.value(forKey: "soundSwitcher") as! Bool
+        isSound = UserDefaults.standard.value(forKey: "soundSwitcher") as! Bool
     }
-    
     
     func setImageEmitter() {
         if UserDefaults.standard.value(forKey: "animationSwitcher") as! Bool {
@@ -86,14 +77,8 @@ class ProgramNavigationController: UIViewController {
     func setThemeImageEmitter() {
         emitter?.removeFromSuperlayer()
         
-        if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
-            ImageEmitter.styleSettings = StyleManager.shared.snowEmitter
-            emitter = ImageEmitter.get(with: StyleManager.shared.snowEmitter["emitterImage"] as! UIImage)
-        } else {
-            ImageEmitter.styleSettings = StyleManager.shared.bubblesEmitter
-            emitter = ImageEmitter.get(with: StyleManager.shared.bubblesEmitter["emitterImage"] as! UIImage)
-        }
-        
+        ImageEmitter.styleSettings = style.currentEmitter
+        emitter = ImageEmitter.get(with: style.currentImageForEmitting)
         emitter.emitterPosition = CGPoint(x: view.frame.width / 2, y: 0)
         emitter.emitterSize = CGSize(width: view.frame.width, height: 2)
     }

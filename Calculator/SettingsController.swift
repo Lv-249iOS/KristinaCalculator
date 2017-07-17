@@ -15,7 +15,7 @@ class SettingsController: UIViewController {
     @IBOutlet weak var soundSwitcher: UISwitch!
     
     @IBOutlet var Labels: [UILabel]!
-    var sound = false
+    var isSound = false
     
     @IBAction func changeStateOfAnimation(_ sender: Any) {
         UserDefaults.standard.setValue(animationSwitcher.isOn, forKey: "animationSwitcher")
@@ -39,39 +39,30 @@ class SettingsController: UIViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(setTheme), name: kChangeStyleColor, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(soundOnOff), name: kChangeSoundState, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setSoundOnOff), name: kChangeSoundState, object: nil)
         
         themeSwitcher.isOn = (UserDefaults.standard.value(forKey: "themeSwitcher") as? Bool)!
         soundSwitcher.isOn = (UserDefaults.standard.value(forKey: "soundSwitcher") as? Bool)!
         animationSwitcher.isOn = (UserDefaults.standard.value(forKey: "animationSwitcher") as? Bool)!
         
         setTheme()
-        soundOnOff()
+        setSoundOnOff()
     }
     
     func setTheme() {
-        if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
-            view.backgroundColor = StyleManager.shared.darkTheme["backgroundColor"]
-            
-            for label in Labels {
-                label.textColor = StyleManager.shared.darkTheme["textColor"]
-            }
-        } else {
-            view.backgroundColor = StyleManager.shared.lightTheme["backgroundColor"]
-            
-            for label in Labels {
-                label.textColor = StyleManager.shared.lightTheme["textColor"]
-            }
+        view.backgroundColor = style.currentStyle["backgroundColor"]
+        for label in Labels {
+            label.textColor = style.currentStyle["textColor"]
         }
     }
     
     func buttonPressedSound() {
-        if sound {
+        if isSound {
             AudioServicesPlaySystemSound(1022)
         }
     }
     
-    func soundOnOff() {
-        sound = UserDefaults.standard.value(forKey: "soundSwitcher") as! Bool
+    func setSoundOnOff() {
+        isSound = UserDefaults.standard.value(forKey: "soundSwitcher") as! Bool
     }
 }
