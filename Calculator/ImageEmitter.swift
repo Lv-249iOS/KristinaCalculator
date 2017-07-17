@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// This class create CAEmitterCell emitter for falling images on the superview like a sublayer
 class ImageEmitter {
     static var styleSettings: [String : Any]!
     

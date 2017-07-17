@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 
+/// Class controls the whole keypad and functionality
 class KeypadController: UIViewController {
     var onNumTap: ((_ num: Int)->())?
     var onUtilityTap: ((_ symbol: Int)->())?
@@ -65,12 +66,14 @@ class KeypadController: UIViewController {
     func setTheme() {
         equalButton.backgroundColor = style.currentStyle["equal"]
         for but in buttons {
-            if but.tag >= 0 && but.tag <= 10 || but.tag == 10015 { // but.tag 10 is arrow ; tag 10015 is dot
+            but.setTitleColor(style.currentStyle["textColor"], for: .normal)
+            
+            // but.tag 10 is arrow ; tag 10015 is dot
+            if but.tag >= 0 && but.tag <= 10 || but.tag == 10015 {
                 but.backgroundColor = style.currentStyle["buttonColor"]
             } else {
                 but.backgroundColor = style.currentStyle["UtilitybuttonColor"]
             }
-            but.setTitleColor(style.currentStyle["textColor"], for: .normal)
         }
     }
     

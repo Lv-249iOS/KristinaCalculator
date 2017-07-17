@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 
+/// Class conrtols settings of sound, themes and animation 
 class SettingsController: UIViewController {
     @IBOutlet weak var animationSwitcher: UISwitch!
     @IBOutlet weak var themeSwitcher: UISwitch!
@@ -17,22 +18,32 @@ class SettingsController: UIViewController {
     @IBOutlet var Labels: [UILabel]!
     var isSound = false
     
+    /// On/Off animation
     @IBAction func changeStateOfAnimation(_ sender: Any) {
         UserDefaults.standard.setValue(animationSwitcher.isOn, forKey: "animationSwitcher")
         NotificationCenter.default.post(name: kChangeAnimationState, object: nil)
         buttonPressedSound()
     }
 
+    /// switch between light and dark theme
     @IBAction func changeTheme(_ sender: UISwitch) {
         UserDefaults.standard.setValue(themeSwitcher.isOn, forKey: "themeSwitcher")
         NotificationCenter.default.post(name: kChangeStyleColor, object: nil)
         buttonPressedSound()
     }
     
+    /// On/Off sound of click on buttons
     @IBAction func changeStateOfSound(_ sender: UISwitch) {
         UserDefaults.standard.setValue(soundSwitcher.isOn, forKey: "soundSwitcher")
         NotificationCenter.default.post(name: kChangeSoundState, object: nil)
         buttonPressedSound()
+    }
+    
+    // If sound ON makes sound
+    func buttonPressedSound() {
+        if isSound {
+            AudioServicesPlaySystemSound(1022)
+        }
     }
     
     override func viewDidLoad() {
@@ -48,20 +59,14 @@ class SettingsController: UIViewController {
         setTheme()
         setSoundOnOff()
     }
-    
+
     func setTheme() {
         view.backgroundColor = style.currentStyle["backgroundColor"]
         for label in Labels {
             label.textColor = style.currentStyle["textColor"]
         }
     }
-    
-    func buttonPressedSound() {
-        if isSound {
-            AudioServicesPlaySystemSound(1022)
-        }
-    }
-    
+
     func setSoundOnOff() {
         isSound = UserDefaults.standard.value(forKey: "soundSwitcher") as! Bool
     }

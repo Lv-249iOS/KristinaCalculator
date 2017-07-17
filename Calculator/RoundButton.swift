@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// This class make round/circle UIButtons
 @IBDesignable
 class RoundButton: UIButton {
     

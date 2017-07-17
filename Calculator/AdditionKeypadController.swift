@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Class controls keypadPlus popUp in wChR SizeClasse
 class AdditionKeypadController: UIViewController {
     var onSymbolTap: ((_ button: UIButton)->())?
     var keypadPlus: KeypadPlusController!

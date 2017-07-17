@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Class controls presentation of history and result of calculation
 class InfoPresentedController: UIViewController {
     @IBOutlet var displayLabel: UILabel!
     @IBOutlet var historyLabel: UILabel!
@@ -39,9 +40,9 @@ class InfoPresentedController: UIViewController {
     }
     
     func setTheme() {
-        scrollView.backgroundColor = style.currentStyle["backgroundColor"]
         displayLabel.backgroundColor = style.currentStyle["backgroundColor"]
         historyLabel.backgroundColor = style.currentStyle["backgroundColor"]
+        scrollView.backgroundColor = style.currentStyle["backgroundColor"]
         displayLabel.textColor = style.currentStyle["textColor"]
         historyLabel.textColor = style.currentStyle["textColor"]
     }

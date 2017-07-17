@@ -9,10 +9,11 @@
 import UIKit
 import AVFoundation
 
+/// Main HOME screen controller that navigates between settings scene and calcutator scene
 class ProgramNavigationController: UIViewController {
     @IBOutlet weak var imageBackground: UIImageView!
-    var isSound = false
     var emitter: CAEmitterLayer!
+    var isSound = false
     
     @IBAction func buttonsTap(_ sender: UIButton) {
         isSound ? AudioServicesPlaySystemSound(1104) : (/* keep silance */)
@@ -21,6 +22,7 @@ class ProgramNavigationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set settings in the first launch of program on the devices
         if UserDefaults.standard.value(forKey: "themeSwitcher") == nil {
             UserDefaults.standard.setValue(true, forKey: "themeSwitcher")
         }
@@ -32,7 +34,7 @@ class ProgramNavigationController: UIViewController {
         if UserDefaults.standard.value(forKey: "animationSwitcher") == nil {
             UserDefaults.standard.setValue(true, forKey: "animationSwitcher")
         }
-
+        
         setTheme()
         setSoundOnOff()
         setImageEmitter()
@@ -43,6 +45,7 @@ class ProgramNavigationController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(setImageEmitter), name: kChangeStyleColor, object: nil)
     }
     
+    // if willTransition change size anf position of animation
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         if emitter != nil {
             if UIDevice.current.orientation.isLandscape {
@@ -55,15 +58,18 @@ class ProgramNavigationController: UIViewController {
         }
     }
     
+    // set theme for home screen
     func setTheme() {
         view.backgroundColor = style.currentStyle["backgroundColor"]
         imageBackground.image = style.currentHomeImage
     }
 
+    // Set sound state
     func setSoundOnOff() {
         isSound = UserDefaults.standard.value(forKey: "soundSwitcher") as! Bool
     }
     
+    // Set emitter of imagee on the home screen
     func setImageEmitter() {
         if UserDefaults.standard.value(forKey: "animationSwitcher") as! Bool {
             setThemeImageEmitter()
@@ -74,9 +80,10 @@ class ProgramNavigationController: UIViewController {
         }
     }
     
+    // Set all the settings of emitter such as size, birthrate and so on
     func setThemeImageEmitter() {
         emitter?.removeFromSuperlayer()
-        
+
         ImageEmitter.styleSettings = style.currentEmitter
         emitter = ImageEmitter.get(with: style.currentImageForEmitting)
         emitter.emitterPosition = CGPoint(x: view.frame.width / 2, y: 0)

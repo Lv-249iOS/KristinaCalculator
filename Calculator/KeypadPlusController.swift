@@ -8,7 +8,7 @@
 
 import UIKit
 
-
+/// Class controles addition keypad and binds functionality via closure
 class KeypadPlusController: UIViewController {
     var onButtonTap: ((_ sender: UIButton)->())?
     
