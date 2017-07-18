@@ -8,11 +8,15 @@
 
 import UIKit
 
-class KeypadController: UIViewController, UIPopoverPresentationControllerDelegate {
+class KeypadController: UIViewController {
     var onNumTap: ((_ num: Int)->())?
     var onUtilityTap: ((_ symbol: Int)->())?
-    var onServiceTap: ((_ keyNum: Int)->())?
-    var additionKeypad: AdditionKeypadController!
+    
+    @IBOutlet weak var arrowButton: UIButton!
+    @IBOutlet weak var keypadPlus: UIStackView!
+    
+    var popUpAdditionKeypad: AdditionKeypadController!
+    var sideAdditionkeypad: KeypadPlusController!
     
     @IBAction func onNumericTap(button: UIButton) {
         onNumTap?(button.tag)
@@ -24,19 +28,32 @@ class KeypadController: UIViewController, UIPopoverPresentationControllerDelegat
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AdditionKeypadSegue", let controller = segue.destination as? AdditionKeypadController {
-            additionKeypad = controller
-            additionKeypad.popoverPresentationController?.delegate = self
+            popUpAdditionKeypad = controller
             
-            additionKeypad.popoverPresentationController?.sourceRect = CGRect(x: ((sender as? UIButton)?.bounds.midX)!, y: ((sender as? UIButton)?.bounds.midY)!, width: 0, height: 0)
-            additionKeypad.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.left
+            popUpAdditionKeypad.onSymbolTap = { [weak self] button in
+                self?.onUtilityTap(button: button)
+            }
+        } else if segue.identifier == "KeypadPlusForLandscapeSegue", let controller = segue.destination as? KeypadPlusController {
+            sideAdditionkeypad = controller
             
-            additionKeypad.onSymbolTap = { [weak self] button in
+            sideAdditionkeypad.onButtonTap = { [weak self] button in
                 self?.onUtilityTap(button: button)
             }
         }
     }
     
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.none
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        UIDevice.current.orientation.isLandscape ? isHiddenKeypadPlus(false) : isHiddenKeypadPlus(true)
     }
+    
+    private func isHiddenKeypadPlus(_ state: Bool) {
+        keypadPlus?.isHidden = state
+        arrowButton?.isEnabled = state
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        UIDevice.current.orientation.isLandscape ? isHiddenKeypadPlus(false) : isHiddenKeypadPlus(true)
+    }
+    
 }
