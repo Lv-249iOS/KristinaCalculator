@@ -18,7 +18,7 @@ class ProgramNavigationController: UIViewController {
     var isSound = false
     
     @IBAction func buttonsTap(_ sender: UIButton) {
-        isSound ? AudioServicesPlaySystemSound(1104) : (/* keep silance */)
+        isSound ? AudioServicesPlaySystemSound(1104) : (/* keep silence */)
     }
     
     override func viewDidLoad() {

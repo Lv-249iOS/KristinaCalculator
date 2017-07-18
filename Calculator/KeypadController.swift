@@ -34,11 +34,6 @@ class KeypadController: UIViewController {
         buttonPressedSound()
     }
     
-    // tap on arrow
-    @IBAction func buttonTap(_ sender: UIButton) {
-        buttonPressedSound()
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AdditionKeypadSegue", let controller = segue.destination as? AdditionKeypadController {
             popUpAdditionKeypad = controller
