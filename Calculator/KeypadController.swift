@@ -7,25 +7,31 @@
 //
 
 import UIKit
+import AVFoundation
 
+/// Class controls the whole keypad and functionality
 class KeypadController: UIViewController {
     var onNumTap: ((_ num: Int)->())?
     var onUtilityTap: ((_ symbol: Int)->())?
     
     var popUpAdditionKeypad: AdditionKeypadController!
     var sideAdditionkeypad: KeypadPlusController!
+    var sound = false
     
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var arrowButton: UIButton!
     @IBOutlet weak var equalButton: UIButton!
-    @IBOutlet weak var keypadPlus: UIStackView!
     
+    // Catch all digit tap
     @IBAction func onNumericTap(button: UIButton) {
         onNumTap?(button.tag)
+        buttonPressedSound()
     }
     
+    // Catch tap on all the symbols in the calculator
     @IBAction func onUtilityTap(button: UIButton) {
         onUtilityTap?(button.tag)
+        buttonPressedSound()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -44,37 +50,48 @@ class KeypadController: UIViewController {
         }
     }
     
+    // Enable arrow buttons for differnt position of screen
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        UIDevice.current.orientation.isLandscape ? isHiddenKeypadPlus(false) : isHiddenKeypadPlus(true)
-    }
-    
-    private func isHiddenKeypadPlus(_ state: Bool) {
-        keypadPlus?.isHidden = state
-        arrowButton?.isEnabled = state
+        UIDevice.current.orientation.isLandscape ? (arrowButton.isEnabled = false) : (arrowButton.isEnabled = true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIDevice.current.orientation.isLandscape ? isHiddenKeypadPlus(false) : isHiddenKeypadPlus(true)
-        NotificationCenter.default.addObserver(self, selector: #selector(changeTheme), name: CHANGE_STYLE_COLOR, object: nil)
-        NotificationCenter.default.addObserver(sideAdditionkeypad, selector: #selector(sideAdditionkeypad.changeTheme), name: CHANGE_STYLE_COLOR, object: nil)
-
+        
+        UIDevice.current.orientation.isLandscape ? (arrowButton.isEnabled = false) : (arrowButton.isEnabled = true)
+        sound = (UserDefaults.standard.value(forKey: "soundSwitcher") as? Bool)!
+        
+        setTheme()
+        setFont()
     }
-    
-    func changeTheme() {
-        if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
-            for but in buttons {
-                but.backgroundColor = StyleManager.shared.darkTheme["buttonColor"]
-                but.setTitleColor(StyleManager.shared.darkTheme["textColor"], for: .normal)
+
+    /// Set color theme for buttons and background
+    func setTheme() {
+        equalButton.backgroundColor = style.currentStyle["equal"]
+        for but in buttons {
+            but.setTitleColor(style.currentStyle["textColor"], for: .normal)
+            
+            // but.tag 10 is arrow ; tag 10015 is dot
+            if but.tag >= 0 && but.tag <= 10 || but.tag == 10015 {
+                but.backgroundColor = style.currentStyle["buttonColor"]
+            } else {
+                but.backgroundColor = style.currentStyle["UtilitybuttonColor"]
             }
-            equalButton.backgroundColor = StyleManager.shared.darkTheme["equal"]
-        } else {
-            for but in buttons {
-                but.backgroundColor = StyleManager.shared.lightTheme["buttonColor"]
-                but.setTitleColor(StyleManager.shared.lightTheme["textColor"], for: .normal)
-            }
-            equalButton.backgroundColor = StyleManager.shared.lightTheme["equal"]
         }
     }
     
+    /// Set font for digit on the buttons
+    func setFont() {
+        equalButton.titleLabel?.font = UIFont(name: style.currentFont, size: 40.0)
+        for but in buttons {
+            but.titleLabel?.font = UIFont(name: style.currentFont, size: 40.0)
+        }
+    }
+    
+    /// Make sound if it's turning on
+    func buttonPressedSound() {
+        if sound {
+            AudioServicesPlaySystemSound(1104)
+        }
+    }
 }

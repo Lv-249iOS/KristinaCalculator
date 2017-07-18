@@ -8,10 +8,10 @@
 
 import UIKit
 
+/// Class contains and manages KeypadController and InfoPresentedController
 class MainLayoutController: UIViewController, UIPopoverPresentationControllerDelegate {
     var display: InfoPresentedController!
     var keypad: KeypadController!
-    var designSettings: SettingsController!
     
     let inputAdapter = IntputAdapter.shared
     
@@ -20,13 +20,9 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func onUtilityTap(symbol: Int) {
-        let op = Operation(rawValue: symbol)
-        inputAdapter.enterUtility(op!)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        UserDefaults.standard.setValue(true, forKey: "themeSwitcher")
+        if let op = Operation(rawValue: symbol) {
+            inputAdapter.enterUtility(op)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -43,17 +39,22 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
             keypad.onUtilityTap = { [weak self] symbol in
                 self?.onUtilityTap(symbol: symbol)
             }
-            
-        } else if segue.identifier == "SettingsPopOverSegue", let controller = segue.destination as? SettingsController {
-            designSettings = controller
-            
-            designSettings.popoverPresentationController?.delegate = self
-            designSettings.popoverPresentationController?.sourceRect = CGRect(x: ((sender as? UIButton)?.bounds.midX)!, y: ((sender as? UIButton)?.bounds.midY)!, width: 0, height: 0)
-            designSettings.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
         }
     }
     
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.none
+    // When you back to Home screen method clean history
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(false)
+        inputAdapter.enterUtility(.clear)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setTheme()
+    }
+    
+    /// Set color theme for main layout scene
+    func setTheme() {
+        view.backgroundColor = StyleManager.shared.currentStyle["backgroundColor"]
     }
 }

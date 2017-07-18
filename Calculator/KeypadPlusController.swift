@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Class controles addition keypad and binds functionality via closure
 class KeypadPlusController: UIViewController {
     var onButtonTap: ((_ sender: UIButton)->())?
     
@@ -16,18 +17,25 @@ class KeypadPlusController: UIViewController {
     @IBAction func buttonTap(_ sender: UIButton) {
         onButtonTap?(sender)
     }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setTheme()
+        setFont()
+    }
     
-    func changeTheme() {
-        if UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool {
-            for but in keypadPlus {
-                but.backgroundColor = StyleManager.shared.darkTheme["buttonColor"]
-                but.setTitleColor(StyleManager.shared.darkTheme["textColor"], for: .normal)
-            }
-        } else {
-            for but in keypadPlus {
-                but.backgroundColor = StyleManager.shared.lightTheme["buttonColor"]
-                but.setTitleColor(StyleManager.shared.lightTheme["textColor"], for: .normal)
-            }
+    /// Set theme on the controller
+    func setTheme() {
+        for but in keypadPlus {
+            but.backgroundColor = style.currentStyle["UtilitybuttonColor"]
+            but.setTitleColor(style.currentStyle["textColor"], for: .normal)
+        }
+    }
+    
+    /// Set font for buttons on KeypadPlus
+    func setFont() {
+        for but in keypadPlus {
+            but.titleLabel?.font = UIFont(name: style.currentFont, size: 40.0)
         }
     }
 }
