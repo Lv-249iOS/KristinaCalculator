@@ -20,8 +20,9 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func onUtilityTap(symbol: Int) {
-        let op = Operation(rawValue: symbol)
-        inputAdapter.enterUtility(op!)
+        if let op = Operation(rawValue: symbol) {
+            inputAdapter.enterUtility(op)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -41,6 +42,7 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
         }
     }
     
+    // When you back to Home screen method clean history
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         inputAdapter.enterUtility(.clear)
@@ -51,6 +53,7 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
         setTheme()
     }
     
+    /// Set color theme for main layout scene
     func setTheme() {
         view.backgroundColor = StyleManager.shared.currentStyle["backgroundColor"]
     }

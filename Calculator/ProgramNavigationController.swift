@@ -53,7 +53,7 @@ class ProgramNavigationController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(setImageEmitter), name: kChangeStyleColor, object: nil)
     }
     
-    // if willTransition change size anf position of animation
+    // Change size anf position of animated emitter
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         if emitter != nil {
             if UIDevice.current.orientation.isLandscape {
@@ -66,25 +66,25 @@ class ProgramNavigationController: UIViewController {
         }
     }
     
-    // set font for buttons on view
+    /// Set font for buttons on view
     func setFont() {
         for but in buttons {
             but.titleLabel?.font = UIFont.init(name: style.currentFont, size: 30.0)
         }
     }
     
-    // set theme for home screen
+    /// Set theme for home screen
     func setTheme() {
         view.backgroundColor = style.currentStyle["backgroundColor"]
         imageBackground.image = style.currentHomeImage
     }
 
-    // Set sound state
+    /// Set sound state
     func setSoundOnOff() {
         isSound = UserDefaults.standard.value(forKey: "soundSwitcher") as! Bool
     }
     
-    // Set emitter of imagee on the home screen
+    /// Set emitter of imagee on the home screen
     func setImageEmitter() {
         if UserDefaults.standard.value(forKey: "animationSwitcher") as! Bool {
             setThemeImageEmitter()
@@ -95,7 +95,7 @@ class ProgramNavigationController: UIViewController {
         }
     }
     
-    // Set all the settings of emitter such as size, birthrate and so on
+    /// Set all the settings of emitter such as size, birthrate and so on
     func setThemeImageEmitter() {
         emitter?.removeFromSuperlayer()
 

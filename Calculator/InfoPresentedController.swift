@@ -20,8 +20,11 @@ class InfoPresentedController: UIViewController {
         displayLabel.text = result
     }
     
+    /// Present histoy on the labal
     func presentHistory(_ history: String) {
         historyLabel.text = history
+        
+        // reset position of scroll in the end of the screen
         scrollView.scrollRectToVisible(historyLabel.bounds, animated: true)
     }
     
@@ -40,6 +43,7 @@ class InfoPresentedController: UIViewController {
         setTheme()
     }
     
+    /// Set color theme
     func setTheme() {
         displayLabel.backgroundColor = style.currentStyle["backgroundColor"]
         historyLabel.backgroundColor = style.currentStyle["backgroundColor"]
@@ -48,6 +52,7 @@ class InfoPresentedController: UIViewController {
         historyLabel.textColor = style.currentStyle["textColor"]
     }
     
+    /// Set font for infoPresentedController
     func setFont() {
         displayLabel.font = UIFont(name: style.currentFont, size: 35.0)
         historyLabel.font = UIFont(name: style.currentFont, size: 25.0)

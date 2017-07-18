@@ -22,16 +22,19 @@ class KeypadController: UIViewController {
     @IBOutlet weak var arrowButton: UIButton!
     @IBOutlet weak var equalButton: UIButton!
     
+    // Catch all digit tap
     @IBAction func onNumericTap(button: UIButton) {
         onNumTap?(button.tag)
         buttonPressedSound()
     }
     
+    // Catch tap on all the symbols in the calculator
     @IBAction func onUtilityTap(button: UIButton) {
         onUtilityTap?(button.tag)
         buttonPressedSound()
     }
     
+    // tap on arrow
     @IBAction func buttonTap(_ sender: UIButton) {
         buttonPressedSound()
     }
@@ -52,18 +55,22 @@ class KeypadController: UIViewController {
         }
     }
     
+    // Enable arrow buttons for differnt position of screen
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         UIDevice.current.orientation.isLandscape ? (arrowButton.isEnabled = false) : (arrowButton.isEnabled = true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         UIDevice.current.orientation.isLandscape ? (arrowButton.isEnabled = false) : (arrowButton.isEnabled = true)
         sound = (UserDefaults.standard.value(forKey: "soundSwitcher") as? Bool)!
+        
         setTheme()
         setFont()
     }
 
+    /// Set color theme for buttons and background
     func setTheme() {
         equalButton.backgroundColor = style.currentStyle["equal"]
         for but in buttons {
@@ -78,6 +85,7 @@ class KeypadController: UIViewController {
         }
     }
     
+    /// Set font for digit on the buttons
     func setFont() {
         equalButton.titleLabel?.font = UIFont(name: style.currentFont, size: 40.0)
         for but in buttons {
@@ -85,6 +93,7 @@ class KeypadController: UIViewController {
         }
     }
     
+    /// Make sound if it's turning on
     func buttonPressedSound() {
         if sound {
             AudioServicesPlaySystemSound(1104)
