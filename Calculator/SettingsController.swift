@@ -47,12 +47,11 @@ class SettingsController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         }
     }
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(setTheme), name: kChangeStyleColor, object: nil)
+        NotificationCenter.default.addObserver(fontPickerView, selector: #selector(fontPickerView.reloadAllComponents), name: kChangeStyleColor, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setSoundOnOff), name: kChangeSoundState, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setFont), name: kChangeFont, object: nil)
         
@@ -66,6 +65,7 @@ class SettingsController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         setSoundOnOff()
     }
     
+    /// from UIPickerViewDataSource protocol
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -74,8 +74,8 @@ class SettingsController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         return UIFont.familyNames.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return UIFont.familyNames[row]
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        return NSAttributedString(string: UIFont.familyNames[row], attributes: [NSForegroundColorAttributeName: style.currentStyle["textColor"]!])
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
