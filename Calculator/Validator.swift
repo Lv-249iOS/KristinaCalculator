@@ -200,7 +200,7 @@ class Validator {
     
     /// This method checks if allowed press equal
     static func isAllowedPressEqual() -> Bool {
-        return isEmpty() || (buffer.characters.count == 1 && !isLastInputDigit())
+        return !(isEmpty() || (buffer.characters.count == 1 && !isLastInputDigit()))
     }
     
     /// Boolean method that return true if last input is digit or right brackets
