@@ -30,12 +30,12 @@ class Brain: Model {
         "ln": (prec: 4, rAssoc: true),
     ]
     
-    func ResetProperties() {
+    func resetProperties() {
         countLeftBrackets = 0
         countRightBrackets = 0
     }
     
-    func EnterEquation(equation: String) {
+    func enterEquation(equation: String) {
         var temp: String = ""
         var counter: Int = countRightBrackets
         
@@ -54,15 +54,15 @@ class Brain: Model {
     }
     
     func clear() {
-        ResetProperties()
+        resetProperties()
         equation = nil
         output.presentHistory(history: "history")
         output.presentResult(result: "0")
     }
     
     func equal() -> String {
-        ResetProperties()
-        equation = String(format: "%g", CalculateResult())
+        resetProperties()
+        equation = String(format: "%g", calculateResult())
         output.presentResult(result: equation)
         output.presentHistory(history: "")
         return equation
@@ -71,7 +71,7 @@ class Brain: Model {
     // calc equation and present history
     func process() {
         output.presentHistory(history: history)
-        output.presentResult(result: String(format: "%g", CalculateResult()))
+        output.presentResult(result: String(format: "%g", calculateResult()))
     }
     
     // split String to [String]
@@ -80,8 +80,8 @@ class Brain: Model {
         return tokens
     }
     
-    func CalculateResult() -> Double {
-        let rpnStr = ReverseToPolandNotation(tokens: parseInfix(equation)) // reverse to RPN
+    func calculateResult() -> Double {
+        let rpnStr = reverseToPolandNotation(tokens: parseInfix(equation)) // reverse to RPN
         var stack : [String] = [] // buffer for digit
         
         for tok in rpnStr {
@@ -97,6 +97,7 @@ class Brain: Model {
                 case "ln": stack += [String(log(operand!))]
                 case "√": stack += [String(sqrt(operand!))]
                 default: break
+                    
                 }
                 
             } else {
@@ -110,6 +111,7 @@ class Brain: Model {
                 case "×": stack += [String(firstOperand! * secondOperand!)]
                 case "^": stack += [String(pow(firstOperand!,secondOperand!))]
                 default: break
+                    
                 }
             }
         }
@@ -117,7 +119,7 @@ class Brain: Model {
         return Double(stack.removeLast())!
     }
 
-    func ReverseToPolandNotation(tokens: [String]) -> [String] {
+    func reverseToPolandNotation(tokens: [String]) -> [String] {
         var rpn : [String] = [] // buffer for entire equation in RPN
         var stack : [String] = [] // buffer for operation
 

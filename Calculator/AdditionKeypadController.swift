@@ -29,4 +29,9 @@ class AdditionKeypadController: UIViewController {
             }
         }
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        keypadPlus.changeTheme()
+    }
 }

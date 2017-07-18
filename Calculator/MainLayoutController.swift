@@ -15,7 +15,19 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
     
     let inputAdapter = IntputAdapter.shared
     
-    var switchThemeToLight: Bool!
+    func onNumericTap(num: Int) {
+        inputAdapter.enterNum(num)
+    }
+    
+    func onUtilityTap(symbol: Int) {
+        let op = Operation(rawValue: symbol)
+        inputAdapter.enterUtility(op!)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        UserDefaults.standard.setValue(true, forKey: "themeSwitcher")
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "InfoPresentedControllerSegue", let controller = segue.destination as? InfoPresentedController {
@@ -31,6 +43,7 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
             keypad.onUtilityTap = { [weak self] symbol in
                 self?.onUtilityTap(symbol: symbol)
             }
+            
         } else if segue.identifier == "SettingsPopOverSegue", let controller = segue.destination as? SettingsController {
             designSettings = controller
             
@@ -40,19 +53,7 @@ class MainLayoutController: UIViewController, UIPopoverPresentationControllerDel
         }
     }
     
-    func onNumericTap(num: Int) {
-        inputAdapter.enterNum(num)
-    }
-    
-    func onUtilityTap(symbol: Int) {
-        let op = Operation(rawValue: symbol)
-        inputAdapter.enterUtility(op!)
-    }
-    
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
-    
-    
-    
 }

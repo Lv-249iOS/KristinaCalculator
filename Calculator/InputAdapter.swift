@@ -14,7 +14,7 @@ class IntputAdapter: InputProtocol {
     
     func enterNum(_ number: Int) {
         Validator.validateNum(number)
-        brain.EnterEquation(equation: Validator.Buffer)
+        brain.enterEquation(equation: Validator.Buffer)
     }
     
     func enterUtility(_ symbol: Operation) {
@@ -33,7 +33,7 @@ class IntputAdapter: InputProtocol {
         case .rightBracket: Validator.validateRightBracket()
         case .pi:
             Validator.validatePi()
-            brain.EnterEquation(equation: Validator.Buffer)
+            brain.enterEquation(equation: Validator.Buffer)
         case .clear:
             Validator.Buffer = nil
             Validator.isDotTap = false
