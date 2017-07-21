@@ -35,7 +35,7 @@ class KeypadPlusController: UIViewController {
     /// Set font for buttons on KeypadPlus
     func setFont() {
         for but in keypadPlus {
-            but.titleLabel?.font = UIFont(name: style.currentFont, size: 40.0)
+            but.titleLabel?.font = UIFont(name: style.currentFont, size: 30.0)
         }
     }
 }

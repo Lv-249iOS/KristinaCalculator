@@ -69,7 +69,7 @@ class ProgramNavigationController: UIViewController {
     /// Set font for buttons on view
     func setFont() {
         for but in buttons {
-            but.titleLabel?.font = UIFont.init(name: style.currentFont, size: 30.0)
+            but.titleLabel?.font = UIFont.init(name: style.currentFont, size: 20)
         }
     }
     
