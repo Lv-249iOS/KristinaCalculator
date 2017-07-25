@@ -9,6 +9,7 @@
 import Foundation
 
 class Brain: Model {
+    
     static let shared = Brain()
 
     let output = OutputAdapter.shared

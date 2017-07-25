@@ -10,6 +10,7 @@ import UIKit
 
 /// Class controls presentation of history and result of calculation
 class InfoPresentedController: UIViewController {
+    
     @IBOutlet var displayLabel: UILabel!
     @IBOutlet var historyLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!

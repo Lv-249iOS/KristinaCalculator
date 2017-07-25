@@ -11,6 +11,7 @@ import AVFoundation
 
 /// Class controls the whole keypad and functionality
 class KeypadController: UIViewController {
+    
     var onNumTap: ((_ num: Int)->())?
     var onUtilityTap: ((_ symbol: Int)->())?
     

@@ -9,6 +9,7 @@
 import Foundation
 
 class Validator {
+    
     private static var buffer: String! = "0"
     
     /// This property that store validated equation

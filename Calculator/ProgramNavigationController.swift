@@ -11,6 +11,7 @@ import AVFoundation
 
 /// Main HOME screen controller that navigates between settings scene and calcutator scene
 class ProgramNavigationController: UIViewController {
+    
     @IBOutlet weak var imageBackground: UIImageView!
     @IBOutlet var buttons: [RoundButton]!
     
@@ -99,7 +100,6 @@ class ProgramNavigationController: UIViewController {
     func setThemeImageEmitter() {
         emitter?.removeFromSuperlayer()
 
-        ImageEmitter.styleSettings = style.currentEmitter
         emitter = ImageEmitter.get(with: style.currentImageForEmitting)
         emitter.emitterPosition = CGPoint(x: view.frame.width / 2, y: 0)
         emitter.emitterSize = CGSize(width: view.frame.width, height: 2)

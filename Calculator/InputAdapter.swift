@@ -9,6 +9,7 @@
 import Foundation
 
 class IntputAdapter: InputProtocol {
+    
     static let shared = IntputAdapter()
     let brain = Brain.shared
     

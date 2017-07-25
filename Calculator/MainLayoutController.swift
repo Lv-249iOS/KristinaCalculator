@@ -10,6 +10,7 @@ import UIKit
 
 /// Class contains and manages KeypadController and InfoPresentedController
 class MainLayoutController: UIViewController {
+    
     var display: InfoPresentedController!
     var keypad: KeypadController!
     
