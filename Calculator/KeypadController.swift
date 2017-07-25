@@ -11,6 +11,7 @@ import AVFoundation
 
 /// Class controls the whole keypad and functionality
 class KeypadController: UIViewController {
+    
     var onNumTap: ((_ num: Int)->())?
     var onUtilityTap: ((_ symbol: Int)->())?
     
@@ -82,9 +83,9 @@ class KeypadController: UIViewController {
     
     /// Set font for digit on the buttons
     func setFont() {
-        equalButton.titleLabel?.font = UIFont(name: style.currentFont, size: 40.0)
+        equalButton.titleLabel?.font = UIFont(name: style.currentFont, size: 30.0)
         for but in buttons {
-            but.titleLabel?.font = UIFont(name: style.currentFont, size: 40.0)
+            but.titleLabel?.font = UIFont(name: style.currentFont, size: 30.0)
         }
     }
     

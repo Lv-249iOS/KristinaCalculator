@@ -9,6 +9,7 @@
 import Foundation
 
 class OutputAdapter: OutputProtocol {
+    
     static let shared = OutputAdapter()
 
     var resultDisplay: ((String)->())?
