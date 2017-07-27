@@ -66,7 +66,6 @@ class KeypadController: UIViewController {
         setFont()
     }
 
-    /// Set color theme for buttons and background
     func setTheme() {
         equalButton.backgroundColor = style.currentStyle["equal"]
         for but in buttons {
@@ -81,7 +80,6 @@ class KeypadController: UIViewController {
         }
     }
     
-    /// Set font for digit on the buttons
     func setFont() {
         equalButton.titleLabel?.font = UIFont(name: style.currentFont, size: 30.0)
         for but in buttons {
@@ -89,7 +87,6 @@ class KeypadController: UIViewController {
         }
     }
     
-    /// Make sound if it's turning on
     func buttonPressedSound() {
         if sound {
             AudioServicesPlaySystemSound(1104)

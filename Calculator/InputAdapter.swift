@@ -13,13 +13,11 @@ class IntputAdapter: InputProtocol {
     static let shared = IntputAdapter()
     let brain = Brain.shared
     
-    /// This method transfers digit to equation
     func enterNum(_ number: Int) {
         Validator.validateNum(number)
         brain.enterEquation(equation: Validator.Buffer)
     }
     
-    /// This method transfer utility symbols to equation
     func enterUtility(_ symbol: Operation) {
         switch symbol {
         case .pls:

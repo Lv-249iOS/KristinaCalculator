@@ -15,12 +15,10 @@ class OutputAdapter: OutputProtocol {
     var resultDisplay: ((String)->())?
     var historyDisplay: ((String)->())?
     
-    /// This methods presents result of equation
     func presentResult(result: String) {
         resultDisplay?(result)
     }
     
-    /// This methods presents history of input
     func presentHistory(history: String) {
         historyDisplay?(history)
     }

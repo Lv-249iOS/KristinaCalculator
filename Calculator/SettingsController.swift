@@ -20,21 +20,18 @@ class SettingsController: UIViewController {
     @IBOutlet var Labels: [UILabel]!
     var isSound = false
     
-    /// On/Off animation
     @IBAction func changeStateOfAnimation(_ sender: Any) {
         UserDefaults.standard.setValue(animationSwitcher.isOn, forKey: "animationSwitcher")
         NotificationCenter.default.post(name: kChangeAnimationState, object: nil)
         buttonPressedSound()
     }
 
-    /// switch between light and dark theme
     @IBAction func changeTheme(_ sender: UISwitch) {
         UserDefaults.standard.setValue(themeSwitcher.isOn, forKey: "themeSwitcher")
         NotificationCenter.default.post(name: kChangeStyleColor, object: nil)
         buttonPressedSound()
     }
     
-    /// On/Off sound of click on buttons
     @IBAction func changeStateOfSound(_ sender: UISwitch) {
         UserDefaults.standard.setValue(soundSwitcher.isOn, forKey: "soundSwitcher")
         NotificationCenter.default.post(name: kChangeSoundState, object: nil)
@@ -49,31 +46,41 @@ class SettingsController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(setSoundOnOff), name: kChangeSoundState, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setFont), name: kChangeFont, object: nil)
         
-        themeSwitcher.isOn = (UserDefaults.standard.value(forKey: "themeSwitcher") as? Bool)!
-        soundSwitcher.isOn = (UserDefaults.standard.value(forKey: "soundSwitcher") as? Bool)!
-        animationSwitcher.isOn = (UserDefaults.standard.value(forKey: "animationSwitcher") as? Bool)!
-        fontPickerView.selectRow(UIFont.familyNames.index(of: UserDefaults.standard.value(forKey: "appFont") as! String)!, inComponent: 0, animated: false)
+        themeSwitcher.isOn = setStateOfSwitcherFromUserDefaults(key: "themeSwitcher")
+        soundSwitcher.isOn = setStateOfSwitcherFromUserDefaults(key: "soundSwitcher")
+        animationSwitcher.isOn = setStateOfSwitcherFromUserDefaults(key: "animationSwitcher")
+        fontPickerView.selectRow(getFontDefaultIndex(key: "appFont"), inComponent: 0, animated: false)
         
         setFont()
         setTheme()
         setSoundOnOff()
     }
     
-    /// If sound ON makes sound
+    func setStateOfSwitcherFromUserDefaults(key: String) -> Bool {
+        guard let state = UserDefaults.standard.value(forKey: key) as? Bool else { return true }
+        return state
+    }
+    
+    func getFontDefaultIndex(key: String) -> Int {
+        if let fontName = UserDefaults.standard.value(forKey: key) as? String, let index = UIFont.familyNames.index(of: fontName) {
+            return index
+        } else {
+            return 1
+        }
+    }
+    
     func buttonPressedSound() {
         if isSound {
             AudioServicesPlaySystemSound(1022)
         }
     }
     
-    /// Set current selected font
     func setFont() {
         for label in Labels {
             label.font = UIFont(name: style.currentFont, size: 20.0)
         }
     }
     
-    /// Set current color theme
     func setTheme() {
         view.backgroundColor = style.currentStyle["backgroundColor"]
         for label in Labels {
@@ -81,7 +88,6 @@ class SettingsController: UIViewController {
         }
     }
 
-    /// Set state of sound in this contoller
     func setSoundOnOff() {
         isSound = UserDefaults.standard.value(forKey: "soundSwitcher") as! Bool
     }

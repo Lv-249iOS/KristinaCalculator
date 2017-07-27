@@ -21,7 +21,7 @@ class ImageEmitter {
         return emitter
     }
     
-    /// This mrthod return CAEmitterCell for addition on layer
+    /// This method return CAEmitterCell for addition on layer
     static func generateEmitterCells(with image: UIImage) -> [CAEmitterCell] {
         var cells = [CAEmitterCell]()
         

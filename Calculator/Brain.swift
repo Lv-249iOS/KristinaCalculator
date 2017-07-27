@@ -24,7 +24,6 @@ class Brain: Model {
         countRightBrackets = 0
     }
     
-    /// This method adds missed right brackets if it needs it
     func addMissedRightBrackets(_ equation: String) -> String {
         var missingBrackets: String = ""
         var counter = countRightBrackets
@@ -37,19 +36,16 @@ class Brain: Model {
         return equation + missingBrackets
     }
     
-    /// set equation string and deliveer it to calculation
     func enterEquation(equation: String) {
         self.history = equation
         self.equation = addMissedRightBrackets(equation)
         process()
     }
     
-    /// transfer the whole custom equation to OutputAdapter
     func presentHistory(currentInput: String?) {
         output.presentHistory(history: currentInput ?? "")
     }
     
-    /// clear last inputed equation and all information relaited to
     func clear() {
         resetProperties()
         equation = nil
@@ -57,7 +53,6 @@ class Brain: Model {
         output.presentResult(result: "0")
     }
     
-    /// This method return result and reset equation to nil
     func equal() -> String {
         resetProperties()
         equation = String(format: "%g", calculateResult())
@@ -72,7 +67,6 @@ class Brain: Model {
         return equation
     }
 
-    /// This method presents history and results
     func process() {
         let result = calculateResult()
         
@@ -80,13 +74,11 @@ class Brain: Model {
         presentHistory(currentInput: history)
     }
     
-    /// This method splits equation on tokens separated by blank space
     func parseInfix(_ equationStr: String) -> [String] {
         let tokens = equationStr.characters.split{ $0 == " " }.map(String.init)
         return tokens
     }
     
-    /// This method calculates equation with reversed poland notation
     func calculateResult() -> Double {
         let rpnStr = reverseToPolandNotation(tokens: parseInfix(equation)) // reverse to RPN
         var stack : [String] = [] // buffer for digit
@@ -140,7 +132,6 @@ class Brain: Model {
     }
 
     
-    /// This method reverses equation to poland notation
     func reverseToPolandNotation(tokens: [String]) -> [String] {
         var rpn : [String]   = [] // buffer for entire equation in RPN
         var stack : [String] = [] // buffer for operation

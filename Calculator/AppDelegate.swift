@@ -16,6 +16,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Set settings in the first launch of program on the devices
+        if UserDefaults.standard.value(forKey: "themeSwitcher") == nil {
+            UserDefaults.standard.setValue(true, forKey: "themeSwitcher")
+        }
+        
+        if UserDefaults.standard.value(forKey: "soundSwitcher") == nil {
+            UserDefaults.standard.setValue(true, forKey: "soundSwitcher")
+        }
+        
+        if UserDefaults.standard.value(forKey: "animationSwitcher") == nil {
+            UserDefaults.standard.setValue(true, forKey: "animationSwitcher")
+        }
+        
+        if UserDefaults.standard.object(forKey: "appFont") == nil {
+            UserDefaults.standard.setValue("PingFang HK", forKey: "appFont")
+        }
+        
         return true
     }
 

@@ -54,7 +54,6 @@ class MainLayoutController: UIViewController {
         setTheme()
     }
     
-    /// Set color theme for main layout scene
     func setTheme() {
         view.backgroundColor = StyleManager.shared.currentStyle["backgroundColor"]
     }

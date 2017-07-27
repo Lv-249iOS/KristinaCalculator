@@ -25,7 +25,6 @@ class KeypadPlusController: UIViewController {
         setFont()
     }
     
-    /// Set theme on the controller
     func setTheme() {
         for but in keypadPlus {
             but.backgroundColor = style.currentStyle["UtilitybuttonColor"]
@@ -33,7 +32,6 @@ class KeypadPlusController: UIViewController {
         }
     }
     
-    /// Set font for buttons on KeypadPlus
     func setFont() {
         for but in keypadPlus {
             but.titleLabel?.font = UIFont(name: style.currentFont, size: 30.0)
