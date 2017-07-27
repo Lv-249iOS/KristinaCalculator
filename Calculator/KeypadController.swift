@@ -60,28 +60,26 @@ class KeypadController: UIViewController {
         super.viewDidLoad()
         
         UIDevice.current.orientation.isLandscape ? (arrowButton.isEnabled = false) : (arrowButton.isEnabled = true)
-        sound = (UserDefaults.standard.value(forKey: "soundSwitcher") as? Bool)!
+        sound = (UserDefaults.standard.value(forKey: KeyForUserDefaults.soundSwitcher.rawValue) as? Bool)!
         
         setTheme()
         setFont()
     }
 
-    /// Set color theme for buttons and background
     func setTheme() {
-        equalButton.backgroundColor = style.currentStyle["equal"]
+        equalButton.backgroundColor = style.currentStyle[ElementsOfTheme.equal]
         for but in buttons {
-            but.setTitleColor(style.currentStyle["textColor"], for: .normal)
+            but.setTitleColor(style.currentStyle[ElementsOfTheme.textColor], for: .normal)
             
             // but.tag 10 is arrow ; tag 10015 is dot
             if but.tag >= 0 && but.tag <= 10 || but.tag == 10015 {
-                but.backgroundColor = style.currentStyle["buttonColor"]
+                but.backgroundColor = style.currentStyle[ElementsOfTheme.buttonColor]
             } else {
-                but.backgroundColor = style.currentStyle["UtilitybuttonColor"]
+                but.backgroundColor = style.currentStyle[ElementsOfTheme.utilitybuttonColor]
             }
         }
     }
     
-    /// Set font for digit on the buttons
     func setFont() {
         equalButton.titleLabel?.font = UIFont(name: style.currentFont, size: 30.0)
         for but in buttons {
@@ -89,7 +87,6 @@ class KeypadController: UIViewController {
         }
     }
     
-    /// Make sound if it's turning on
     func buttonPressedSound() {
         if sound {
             AudioServicesPlaySystemSound(1104)

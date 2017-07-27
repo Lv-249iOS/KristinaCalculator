@@ -20,23 +20,20 @@ class SettingsController: UIViewController {
     @IBOutlet var Labels: [UILabel]!
     var isSound = false
     
-    /// On/Off animation
     @IBAction func changeStateOfAnimation(_ sender: Any) {
-        UserDefaults.standard.setValue(animationSwitcher.isOn, forKey: "animationSwitcher")
+        UserDefaults.standard.setValue(animationSwitcher.isOn, forKey: KeyForUserDefaults.animationSwitcher.rawValue)
         NotificationCenter.default.post(name: kChangeAnimationState, object: nil)
         buttonPressedSound()
     }
 
-    /// switch between light and dark theme
     @IBAction func changeTheme(_ sender: UISwitch) {
-        UserDefaults.standard.setValue(themeSwitcher.isOn, forKey: "themeSwitcher")
+        UserDefaults.standard.setValue(themeSwitcher.isOn, forKey: KeyForUserDefaults.themeSwitcher.rawValue)
         NotificationCenter.default.post(name: kChangeStyleColor, object: nil)
         buttonPressedSound()
     }
     
-    /// On/Off sound of click on buttons
     @IBAction func changeStateOfSound(_ sender: UISwitch) {
-        UserDefaults.standard.setValue(soundSwitcher.isOn, forKey: "soundSwitcher")
+        UserDefaults.standard.setValue(soundSwitcher.isOn, forKey: KeyForUserDefaults.soundSwitcher.rawValue)
         NotificationCenter.default.post(name: kChangeSoundState, object: nil)
         buttonPressedSound()
     }
@@ -49,41 +46,50 @@ class SettingsController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(setSoundOnOff), name: kChangeSoundState, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setFont), name: kChangeFont, object: nil)
         
-        themeSwitcher.isOn = (UserDefaults.standard.value(forKey: "themeSwitcher") as? Bool)!
-        soundSwitcher.isOn = (UserDefaults.standard.value(forKey: "soundSwitcher") as? Bool)!
-        animationSwitcher.isOn = (UserDefaults.standard.value(forKey: "animationSwitcher") as? Bool)!
-        fontPickerView.selectRow(UIFont.familyNames.index(of: UserDefaults.standard.value(forKey: "appFont") as! String)!, inComponent: 0, animated: false)
+        themeSwitcher.isOn = setStateOfSwitcherFromUserDefaults(key: KeyForUserDefaults.themeSwitcher.rawValue)
+        soundSwitcher.isOn = setStateOfSwitcherFromUserDefaults(key: KeyForUserDefaults.soundSwitcher.rawValue)
+        animationSwitcher.isOn = setStateOfSwitcherFromUserDefaults(key: KeyForUserDefaults.animationSwitcher.rawValue)
+        fontPickerView.selectRow(getFontDefaultIndex(key: KeyForUserDefaults.appFont.rawValue), inComponent: 0, animated: false)
         
         setFont()
         setTheme()
         setSoundOnOff()
     }
     
-    /// If sound ON makes sound
+    func setStateOfSwitcherFromUserDefaults(key: String) -> Bool {
+        guard let state = UserDefaults.standard.value(forKey: key) as? Bool else { return true }
+        return state
+    }
+    
+    func getFontDefaultIndex(key: String) -> Int {
+        if let fontName = UserDefaults.standard.value(forKey: key) as? String, let index = UIFont.familyNames.index(of: fontName) {
+            return index
+        } else {
+            return 1
+        }
+    }
+    
     func buttonPressedSound() {
         if isSound {
             AudioServicesPlaySystemSound(1022)
         }
     }
     
-    /// Set current selected font
     func setFont() {
         for label in Labels {
             label.font = UIFont(name: style.currentFont, size: 20.0)
         }
     }
     
-    /// Set current color theme
     func setTheme() {
-        view.backgroundColor = style.currentStyle["backgroundColor"]
+        view.backgroundColor = style.currentStyle[ElementsOfTheme.backgroundColor]
         for label in Labels {
-            label.textColor = style.currentStyle["textColor"]
+            label.textColor = style.currentStyle[ElementsOfTheme.textColor]
         }
     }
 
-    /// Set state of sound in this contoller
     func setSoundOnOff() {
-        isSound = UserDefaults.standard.value(forKey: "soundSwitcher") as! Bool
+        isSound = UserDefaults.standard.value(forKey: KeyForUserDefaults.soundSwitcher.rawValue) as? Bool ?? true
     }
 }
 
@@ -101,12 +107,12 @@ extension SettingsController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     /// Return view of each row in PickerView (UIPickerViewDelegate protocol)
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: UIFont.familyNames[row], attributes: [NSForegroundColorAttributeName: style.currentStyle["textColor"]!])
+        return NSAttributedString(string: UIFont.familyNames[row], attributes: [NSForegroundColorAttributeName: style.currentStyle[ElementsOfTheme.textColor] ?? .white])
     }
     
     /// Called when some row is selected
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        UserDefaults.standard.setValue(UIFont.familyNames[row], forKey: "appFont")
+        UserDefaults.standard.setValue(UIFont.familyNames[row], forKey: KeyForUserDefaults.appFont.rawValue)
         NotificationCenter.default.post(name: kChangeFont, object: nil)
     }
 }

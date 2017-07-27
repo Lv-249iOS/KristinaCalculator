@@ -14,15 +14,13 @@ class MainLayoutController: UIViewController {
     var display: InfoPresentedController!
     var keypad: KeypadController!
     
-    let inputAdapter = IntputAdapter.shared
-    
     func onNumericTap(num: Int) {
-        inputAdapter.enterNum(num)
+        input.enterNum(num)
     }
     
     func onUtilityTap(symbol: Int) {
         if let op = Operation(rawValue: symbol) {
-            inputAdapter.enterUtility(op)
+            input.enterUtility(op)
         }
     }
     
@@ -46,7 +44,7 @@ class MainLayoutController: UIViewController {
     // When you back to Home screen method clean history
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
-        inputAdapter.enterUtility(.clear)
+        input.enterUtility(.clear)
     }
     
     override func viewDidLoad() {
@@ -54,8 +52,7 @@ class MainLayoutController: UIViewController {
         setTheme()
     }
     
-    /// Set color theme for main layout scene
     func setTheme() {
-        view.backgroundColor = StyleManager.shared.currentStyle["backgroundColor"]
+        view.backgroundColor = StyleManager.shared.currentStyle[ElementsOfTheme.backgroundColor]
     }
 }

@@ -11,15 +11,16 @@ import Foundation
 class IntputAdapter: InputProtocol {
     
     static let shared = IntputAdapter()
-    let brain = Brain.shared
     
-    /// This method transfers digit to equation
+    var countLeftBrackets: Int = 0
+    var countRightBrackets: Int = 0
+    
     func enterNum(_ number: Int) {
         Validator.validateNum(number)
+        brain.missedBrackets = missedRightBrackets()
         brain.enterEquation(equation: Validator.Buffer)
     }
     
-    /// This method transfer utility symbols to equation
     func enterUtility(_ symbol: Operation) {
         switch symbol {
         case .pls:
@@ -50,9 +51,11 @@ class IntputAdapter: InputProtocol {
             Validator.validatePi()
             brain.enterEquation(equation: Validator.Buffer)
         case .clear:
+            resetProperties()
             Validator.Buffer = nil
             brain.clear()
         case .equal:
+            resetProperties()
             if Validator.isAllowedPressEqual() {
                 Validator.Buffer = brain.equal()
             }
@@ -63,7 +66,25 @@ class IntputAdapter: InputProtocol {
         if .equal != symbol {
             brain.presentHistory(currentInput: Validator.Buffer)
         }
-    }    
+    }
+    
+    func resetProperties() {
+
+        countLeftBrackets = 0
+        countRightBrackets = 0
+    }
+    
+    func missedRightBrackets() -> String {
+        var missingBrackets: String = ""
+        var counter = countRightBrackets
+        
+        while countLeftBrackets > counter {
+            missingBrackets = missingBrackets + " )"
+            counter += 1
+        }
+        
+        return missingBrackets
+    }
 }
 
 

@@ -16,3 +16,46 @@ let kChangeFont = NSNotification.Name("ChangeFont")
 
 // Alias for singleton of StyleManager
 let style = StyleManager.shared
+let input = IntputAdapter.shared
+let output = OutputAdapter.shared
+let brain = Brain.shared
+
+
+enum MathOperation: String {
+    case sin  = "sin"
+    case sqrt = "√"
+    case pow  = "^"
+    case mul  = "×"
+    case div  = "÷"
+    case pls  = "+"
+    case mns  = "-"
+    case ln   = "ln"
+    case cos  = "cos"
+    case bracketL = "("
+    case bracketR = ")"
+}
+
+enum ElementForEmitter: String {
+    case emitterImage = "emitterImage"
+    case birthRate = "birthRate"
+    case lifetime = "lifetime"
+    case velocity = "velocity"
+    case scale = "scale"
+    case scaleRange = "scaleRange"
+}
+
+enum KeyForUserDefaults: String {
+    case soundSwitcher = "soundSwitcher"
+    case themeSwitcher = "themeSwitcher"
+    case animationSwitcher = "animationSwitcher"
+    case appFont = "appFont"
+
+}
+
+enum ElementsOfTheme: String {
+    case backgroundColor = "backgroundColor"
+    case textColor = "textColor"
+    case buttonColor = "buttonColor"
+    case utilitybuttonColor = "utilitybuttonColor"
+    case equal = "equal"
+}
