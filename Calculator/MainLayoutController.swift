@@ -55,6 +55,6 @@ class MainLayoutController: UIViewController {
     }
     
     func setTheme() {
-        view.backgroundColor = StyleManager.shared.currentStyle["backgroundColor"]
+        view.backgroundColor = StyleManager.shared.currentStyle[ElementsOfTheme.backgroundColor]
     }
 }

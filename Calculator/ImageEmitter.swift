@@ -28,11 +28,11 @@ class ImageEmitter {
         let cell = CAEmitterCell()
         cell.contents = image.cgImage
         
-        cell.scale = style.currentEmitter["scale"] as? CGFloat ?? 0.1
-        cell.lifetime = style.currentEmitter["lifetime"] as? Float ?? 10
-        cell.velocity = style.currentEmitter["velocity"] as? CGFloat ?? 30
-        cell.birthRate = style.currentEmitter["birthRate"] as? Float ?? 1
-        cell.scaleRange = style.currentEmitter["scaleRange"] as? CGFloat ?? 0.08
+        cell.scale = style.currentEmitter[ElementForEmitter.scale] as? CGFloat ?? 0.1
+        cell.lifetime = style.currentEmitter[ElementForEmitter.lifetime] as? Float ?? 10
+        cell.velocity = style.currentEmitter[ElementForEmitter.velocity] as? CGFloat ?? 30
+        cell.birthRate = style.currentEmitter[ElementForEmitter.birthRate] as? Float ?? 1
+        cell.scaleRange = style.currentEmitter[ElementForEmitter.scaleRange] as? CGFloat ?? 0.08
         cell.emissionRange = CGFloat(45 * (Double.pi/180))
         cell.emissionLongitude = CGFloat(180 * (Double.pi/180))
         

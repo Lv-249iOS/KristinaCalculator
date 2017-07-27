@@ -21,19 +21,19 @@ class SettingsController: UIViewController {
     var isSound = false
     
     @IBAction func changeStateOfAnimation(_ sender: Any) {
-        UserDefaults.standard.setValue(animationSwitcher.isOn, forKey: "animationSwitcher")
+        UserDefaults.standard.setValue(animationSwitcher.isOn, forKey: KeyForUserDefaults.animationSwitcher.rawValue)
         NotificationCenter.default.post(name: kChangeAnimationState, object: nil)
         buttonPressedSound()
     }
 
     @IBAction func changeTheme(_ sender: UISwitch) {
-        UserDefaults.standard.setValue(themeSwitcher.isOn, forKey: "themeSwitcher")
+        UserDefaults.standard.setValue(themeSwitcher.isOn, forKey: KeyForUserDefaults.themeSwitcher.rawValue)
         NotificationCenter.default.post(name: kChangeStyleColor, object: nil)
         buttonPressedSound()
     }
     
     @IBAction func changeStateOfSound(_ sender: UISwitch) {
-        UserDefaults.standard.setValue(soundSwitcher.isOn, forKey: "soundSwitcher")
+        UserDefaults.standard.setValue(soundSwitcher.isOn, forKey: KeyForUserDefaults.soundSwitcher.rawValue)
         NotificationCenter.default.post(name: kChangeSoundState, object: nil)
         buttonPressedSound()
     }
@@ -46,10 +46,10 @@ class SettingsController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(setSoundOnOff), name: kChangeSoundState, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setFont), name: kChangeFont, object: nil)
         
-        themeSwitcher.isOn = setStateOfSwitcherFromUserDefaults(key: "themeSwitcher")
-        soundSwitcher.isOn = setStateOfSwitcherFromUserDefaults(key: "soundSwitcher")
-        animationSwitcher.isOn = setStateOfSwitcherFromUserDefaults(key: "animationSwitcher")
-        fontPickerView.selectRow(getFontDefaultIndex(key: "appFont"), inComponent: 0, animated: false)
+        themeSwitcher.isOn = setStateOfSwitcherFromUserDefaults(key: KeyForUserDefaults.themeSwitcher.rawValue)
+        soundSwitcher.isOn = setStateOfSwitcherFromUserDefaults(key: KeyForUserDefaults.soundSwitcher.rawValue)
+        animationSwitcher.isOn = setStateOfSwitcherFromUserDefaults(key: KeyForUserDefaults.animationSwitcher.rawValue)
+        fontPickerView.selectRow(getFontDefaultIndex(key: KeyForUserDefaults.appFont.rawValue), inComponent: 0, animated: false)
         
         setFont()
         setTheme()
@@ -82,14 +82,14 @@ class SettingsController: UIViewController {
     }
     
     func setTheme() {
-        view.backgroundColor = style.currentStyle["backgroundColor"]
+        view.backgroundColor = style.currentStyle[ElementsOfTheme.backgroundColor]
         for label in Labels {
-            label.textColor = style.currentStyle["textColor"]
+            label.textColor = style.currentStyle[ElementsOfTheme.textColor]
         }
     }
 
     func setSoundOnOff() {
-        isSound = UserDefaults.standard.value(forKey: "soundSwitcher") as! Bool
+        isSound = UserDefaults.standard.value(forKey: KeyForUserDefaults.soundSwitcher.rawValue) as? Bool ?? true
     }
 }
 
@@ -107,12 +107,12 @@ extension SettingsController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     /// Return view of each row in PickerView (UIPickerViewDelegate protocol)
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: UIFont.familyNames[row], attributes: [NSForegroundColorAttributeName: style.currentStyle["textColor"]!])
+        return NSAttributedString(string: UIFont.familyNames[row], attributes: [NSForegroundColorAttributeName: style.currentStyle[ElementsOfTheme.textColor]!])
     }
     
     /// Called when some row is selected
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        UserDefaults.standard.setValue(UIFont.familyNames[row], forKey: "appFont")
+        UserDefaults.standard.setValue(UIFont.familyNames[row], forKey: KeyForUserDefaults.appFont.rawValue)
         NotificationCenter.default.post(name: kChangeFont, object: nil)
     }
 }

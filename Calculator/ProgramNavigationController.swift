@@ -56,16 +56,16 @@ class ProgramNavigationController: UIViewController {
     }
     
     func setTheme() {
-        view.backgroundColor = style.currentStyle["backgroundColor"]
+        view.backgroundColor = style.currentStyle[ElementsOfTheme.backgroundColor]
         imageBackground.image = style.currentHomeImage
     }
 
     func setSoundOnOff() {
-        isSound = UserDefaults.standard.value(forKey: "soundSwitcher") as? Bool ?? true
+        isSound = UserDefaults.standard.value(forKey: KeyForUserDefaults.soundSwitcher.rawValue) as? Bool ?? true
     }
     
     func setImageEmitter() {
-        if UserDefaults.standard.value(forKey: "animationSwitcher") as! Bool {
+        if UserDefaults.standard.value(forKey: KeyForUserDefaults.animationSwitcher.rawValue) as! Bool {
             setThemeImageEmitter()
             view.layer.addSublayer(emitter ?? CAEmitterLayer())
         } else {

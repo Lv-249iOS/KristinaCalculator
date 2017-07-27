@@ -16,64 +16,67 @@ struct StyleManager {
     
     /// Light color set for app
     let lightTheme = [
-        "backgroundColor": UIColor(colorLiteralRed: 0.952, green: 0.946, blue: 0.934, alpha: 1),
-        "textColor": UIColor(colorLiteralRed: 0.273, green: 0.135, blue: 0.092, alpha: 1),
-        "buttonColor": UIColor(colorLiteralRed: 0.974, green: 0.969, blue: 0.957, alpha: 1),
-        "UtilitybuttonColor": UIColor(colorLiteralRed: 0.867, green: 0.864, blue: 0.855, alpha: 1),
-        "equal": UIColor(colorLiteralRed: 0.964, green: 0.652, blue: 0.350, alpha: 1),
+        ElementsOfTheme.backgroundColor: UIColor(colorLiteralRed: 0.952, green: 0.946, blue: 0.934, alpha: 1),
+        ElementsOfTheme.textColor: UIColor(colorLiteralRed: 0.273, green: 0.135, blue: 0.092, alpha: 1),
+        ElementsOfTheme.buttonColor: UIColor(colorLiteralRed: 0.974, green: 0.969, blue: 0.957, alpha: 1),
+        ElementsOfTheme.utilitybuttonColor: UIColor(colorLiteralRed: 0.867, green: 0.864, blue: 0.855, alpha: 1),
+        ElementsOfTheme.equal: UIColor(colorLiteralRed: 0.964, green: 0.652, blue: 0.350, alpha: 1),
     ]
     
     /// Dark color set for app
     let darkTheme = [
-        "backgroundColor": UIColor(colorLiteralRed: 0.000, green: 0.047, blue: 0.073, alpha: 1),
-        "buttonColor": UIColor(colorLiteralRed: 0.000, green: 0.083, blue: 0.128, alpha: 1),
-        "UtilitybuttonColor": UIColor(colorLiteralRed: 0.000, green: 0.215, blue: 0.331, alpha: 1),
-        "textColor": UIColor.white,
-        "equal": UIColor(colorLiteralRed: 0.623, green: 0.802, blue: 0.917, alpha: 1)
+        ElementsOfTheme.backgroundColor: UIColor(colorLiteralRed: 0.000, green: 0.047, blue: 0.073, alpha: 1),
+        ElementsOfTheme.buttonColor: UIColor(colorLiteralRed: 0.000, green: 0.083, blue: 0.128, alpha: 1),
+        ElementsOfTheme.utilitybuttonColor: UIColor(colorLiteralRed: 0.000, green: 0.215, blue: 0.331, alpha: 1),
+        ElementsOfTheme.textColor: UIColor.white,
+        ElementsOfTheme.equal: UIColor(colorLiteralRed: 0.623, green: 0.802, blue: 0.917, alpha: 1)
     ]
     
     /// Set of settings for emitter in DarkTheme
-    let snowEmitter: [String: Any] = [
-        "emitterImage": #imageLiteral(resourceName: "snow"),
-        "birthRate": Float(4),
-        "lifetime": Float(17),
-        "velocity": CGFloat(30),
-        "scale": CGFloat(0.2),
-        "scaleRange": CGFloat(0.06),
+    let snowEmitter: [ElementForEmitter: Any] = [
+        ElementForEmitter.emitterImage: #imageLiteral(resourceName: "snow"),
+        ElementForEmitter.birthRate: Float(4),
+        ElementForEmitter.lifetime: Float(17),
+        ElementForEmitter.velocity: CGFloat(30),
+        ElementForEmitter.scale: CGFloat(0.2),
+        ElementForEmitter.scaleRange: CGFloat(0.06),
     ]
     
     /// Set of settings for emitter in LightTheme
-    let bubblesEmitter: [String: Any] = [
-        "emitterImage": #imageLiteral(resourceName: "Bubbles"),
-        "birthRate": Float(1.33),
-        "lifetime": Float(15),
-        "velocity": CGFloat(40),
-        "scale": CGFloat(0.1),
-        "scaleRange": CGFloat(0.09),
+    let bubblesEmitter: [ElementForEmitter: Any] = [
+        ElementForEmitter.emitterImage: #imageLiteral(resourceName: "Bubbles"),
+        ElementForEmitter.birthRate: Float(1.33),
+        ElementForEmitter.lifetime: Float(15),
+        ElementForEmitter.velocity: CGFloat(40),
+        ElementForEmitter.scale: CGFloat(0.1),
+        ElementForEmitter.scaleRange: CGFloat(0.09),
     ]
     
+    /////////////////////// !!!!!!!!!!!!!!!!!
+
+    
     /// Return current color style
-    var currentStyle: [String: UIColor] {
-        return UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool ? darkTheme : lightTheme
+    var currentStyle: [ElementsOfTheme: UIColor] {
+        return UserDefaults.standard.value(forKey: KeyForUserDefaults.themeSwitcher.rawValue) as! Bool ? darkTheme : lightTheme
     }
     
     /// Return current image for home screen
     var currentHomeImage: UIImage {
-        return UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool ? #imageLiteral(resourceName: "winterNight") : #imageLiteral(resourceName: "summerDay")
+        return UserDefaults.standard.value(forKey: KeyForUserDefaults.themeSwitcher.rawValue) as! Bool ? #imageLiteral(resourceName: "winterNight") : #imageLiteral(resourceName: "summerDay")
     }
     
     /// Return current image for emitting
     var currentImageForEmitting: UIImage {
-        return UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool ? (snowEmitter["emitterImage"] as! UIImage) : (bubblesEmitter["emitterImage"] as! UIImage)
+        return UserDefaults.standard.value(forKey: KeyForUserDefaults.themeSwitcher.rawValue) as! Bool ? (snowEmitter[ElementForEmitter.emitterImage] as! UIImage) : (bubblesEmitter[ElementForEmitter.emitterImage] as! UIImage)
     }
     
     /// Return current settings for emitter
-    var currentEmitter: [String: Any] {
-        return UserDefaults.standard.value(forKey: "themeSwitcher") as! Bool ? snowEmitter : bubblesEmitter
+    var currentEmitter: [ElementForEmitter: Any] {
+        return UserDefaults.standard.value(forKey: KeyForUserDefaults.themeSwitcher.rawValue) as! Bool ? snowEmitter : bubblesEmitter
     }
     
     /// Return current font in app
     var currentFont: String {
-        return UserDefaults.standard.value(forKey: "appFont") as! String
+        return UserDefaults.standard.value(forKey: KeyForUserDefaults.appFont.rawValue) as! String
     }
 }

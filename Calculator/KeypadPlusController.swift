@@ -27,8 +27,8 @@ class KeypadPlusController: UIViewController {
     
     func setTheme() {
         for but in keypadPlus {
-            but.backgroundColor = style.currentStyle["UtilitybuttonColor"]
-            but.setTitleColor(style.currentStyle["textColor"], for: .normal)
+            but.backgroundColor = style.currentStyle[ElementsOfTheme.utilitybuttonColor]
+            but.setTitleColor(style.currentStyle[ElementsOfTheme.textColor], for: .normal)
         }
     }
     

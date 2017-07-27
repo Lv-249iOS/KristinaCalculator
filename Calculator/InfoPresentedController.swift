@@ -42,11 +42,11 @@ class InfoPresentedController: UIViewController {
     }
     
     func setTheme() {
-        displayLabel.backgroundColor = style.currentStyle["backgroundColor"]
-        historyLabel.backgroundColor = style.currentStyle["backgroundColor"]
-        scrollView.backgroundColor = style.currentStyle["backgroundColor"]
-        displayLabel.textColor = style.currentStyle["textColor"]
-        historyLabel.textColor = style.currentStyle["textColor"]
+        displayLabel.backgroundColor = style.currentStyle[ElementsOfTheme.backgroundColor]
+        historyLabel.backgroundColor = style.currentStyle[ElementsOfTheme.backgroundColor]
+        scrollView.backgroundColor = style.currentStyle[ElementsOfTheme.backgroundColor]
+        displayLabel.textColor = style.currentStyle[ElementsOfTheme.textColor]
+        historyLabel.textColor = style.currentStyle[ElementsOfTheme.textColor]
     }
     
     func setFont() {
