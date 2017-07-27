@@ -33,6 +33,7 @@ class ImageEmitter {
         cell.velocity = style.currentEmitter[ElementForEmitter.velocity] as? CGFloat ?? 30
         cell.birthRate = style.currentEmitter[ElementForEmitter.birthRate] as? Float ?? 1
         cell.scaleRange = style.currentEmitter[ElementForEmitter.scaleRange] as? CGFloat ?? 0.08
+        
         cell.emissionRange = CGFloat(45 * (Double.pi/180))
         cell.emissionLongitude = CGFloat(180 * (Double.pi/180))
         

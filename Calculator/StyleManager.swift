@@ -51,32 +51,44 @@ struct StyleManager {
         ElementForEmitter.scale: CGFloat(0.1),
         ElementForEmitter.scaleRange: CGFloat(0.09),
     ]
-    
-    /////////////////////// !!!!!!!!!!!!!!!!!
 
-    
     /// Return current color style
     var currentStyle: [ElementsOfTheme: UIColor] {
-        return UserDefaults.standard.value(forKey: KeyForUserDefaults.themeSwitcher.rawValue) as! Bool ? darkTheme : lightTheme
+        if let val = UserDefaults.standard.value(forKey: KeyForUserDefaults.themeSwitcher.rawValue) as? Bool {
+            return val ? darkTheme : lightTheme
+        }
+        return darkTheme
     }
     
     /// Return current image for home screen
     var currentHomeImage: UIImage {
-        return UserDefaults.standard.value(forKey: KeyForUserDefaults.themeSwitcher.rawValue) as! Bool ? #imageLiteral(resourceName: "winterNight") : #imageLiteral(resourceName: "summerDay")
+        if let val = UserDefaults.standard.value(forKey: KeyForUserDefaults.themeSwitcher.rawValue) as? Bool {
+            return val ? #imageLiteral(resourceName: "winterNight") : #imageLiteral(resourceName: "summerDay")
+        }
+        return #imageLiteral(resourceName: "winterNight")
     }
     
     /// Return current image for emitting
     var currentImageForEmitting: UIImage {
-        return UserDefaults.standard.value(forKey: KeyForUserDefaults.themeSwitcher.rawValue) as! Bool ? (snowEmitter[ElementForEmitter.emitterImage] as! UIImage) : (bubblesEmitter[ElementForEmitter.emitterImage] as! UIImage)
+        if let val = UserDefaults.standard.value(forKey: KeyForUserDefaults.themeSwitcher.rawValue) as? Bool {
+            return val ? (snowEmitter[ElementForEmitter.emitterImage] as? UIImage ?? UIImage()) : (bubblesEmitter[ElementForEmitter.emitterImage] as? UIImage ?? UIImage())
+        }
+        return snowEmitter[ElementForEmitter.emitterImage] as? UIImage ?? UIImage()
     }
     
     /// Return current settings for emitter
     var currentEmitter: [ElementForEmitter: Any] {
-        return UserDefaults.standard.value(forKey: KeyForUserDefaults.themeSwitcher.rawValue) as! Bool ? snowEmitter : bubblesEmitter
+        if let val = UserDefaults.standard.value(forKey: KeyForUserDefaults.themeSwitcher.rawValue) as? Bool {
+            return val ? snowEmitter : bubblesEmitter
+        }
+        return snowEmitter
     }
     
     /// Return current font in app
     var currentFont: String {
-        return UserDefaults.standard.value(forKey: KeyForUserDefaults.appFont.rawValue) as! String
+        if let val = UserDefaults.standard.value(forKey: KeyForUserDefaults.appFont.rawValue) as? String {
+            return val
+        }
+        return "PingFang HK"
     }
 }

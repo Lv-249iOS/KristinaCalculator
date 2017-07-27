@@ -29,6 +29,8 @@ class Validator {
             buffer = buffer + "\(num)"
         } else if buffer.characters.count >= 3, buffer.substring(from: buffer.index(buffer.endIndex, offsetBy: -3)) == "( -" {
             buffer = buffer + "\(num)"
+        } else if buffer.characters.last == ")" {
+            buffer = buffer + " × \(num)"
         } else {
             buffer = buffer + " \(num)"
         }
@@ -119,7 +121,7 @@ class Validator {
         } else {
             buffer = buffer + " ln ("
         }
-        Brain.shared.countLeftBrackets += 1
+        input.countLeftBrackets += 1
     }
     
     static func validateSin() {
@@ -131,7 +133,7 @@ class Validator {
             buffer = buffer + " sin ("
         }
         
-        Brain.shared.countLeftBrackets += 1
+        input.countLeftBrackets += 1
     }
     
     static func validateCos() {
@@ -142,7 +144,7 @@ class Validator {
         } else {
             buffer = buffer + " cos ("
         }
-        Brain.shared.countLeftBrackets += 1
+        input.countLeftBrackets += 1
     }
     
     static func validatePi() {
@@ -167,19 +169,19 @@ class Validator {
         } else {
             buffer = buffer + " ("
         }
-        Brain.shared.countLeftBrackets += 1
+        input.countLeftBrackets += 1
     }
     
     static func validateRightBracket() {
-        if Brain.shared.countLeftBrackets != 0 {
+        if input.countLeftBrackets != 0 {
             if isLastInputDigit() ||
-                (buffer.characters.last == ")" && Brain.shared.countLeftBrackets > Brain.shared.countRightBrackets) {
+                (buffer.characters.last == ")" && input.countLeftBrackets > input.countRightBrackets) {
                 buffer = buffer + " )"
-                Brain.shared.countRightBrackets += 1
+                input.countRightBrackets += 1
             } else if !(buffer.characters.last == "(") {
                 buffer.characters.removeLast()
                 buffer = buffer + ")"
-                Brain.shared.countRightBrackets += 1
+                input.countRightBrackets += 1
             }
         }
     }

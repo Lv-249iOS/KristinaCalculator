@@ -16,7 +16,9 @@ let kChangeFont = NSNotification.Name("ChangeFont")
 
 // Alias for singleton of StyleManager
 let style = StyleManager.shared
-
+let input = IntputAdapter.shared
+let output = OutputAdapter.shared
+let brain = Brain.shared
 
 
 enum MathOperation: String {
@@ -29,9 +31,9 @@ enum MathOperation: String {
     case mns  = "-"
     case ln   = "ln"
     case cos  = "cos"
-    
+    case bracketL = "("
+    case bracketR = ")"
 }
-
 
 enum ElementForEmitter: String {
     case emitterImage = "emitterImage"
@@ -56,5 +58,4 @@ enum ElementsOfTheme: String {
     case buttonColor = "buttonColor"
     case utilitybuttonColor = "utilitybuttonColor"
     case equal = "equal"
-
 }

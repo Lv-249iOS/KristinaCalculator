@@ -107,7 +107,7 @@ extension SettingsController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     /// Return view of each row in PickerView (UIPickerViewDelegate protocol)
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: UIFont.familyNames[row], attributes: [NSForegroundColorAttributeName: style.currentStyle[ElementsOfTheme.textColor]!])
+        return NSAttributedString(string: UIFont.familyNames[row], attributes: [NSForegroundColorAttributeName: style.currentStyle[ElementsOfTheme.textColor] ?? .white])
     }
     
     /// Called when some row is selected

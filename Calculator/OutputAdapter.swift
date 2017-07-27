@@ -16,7 +16,9 @@ class OutputAdapter: OutputProtocol {
     var historyDisplay: ((String)->())?
     
     func presentResult(result: String) {
-        resultDisplay?(result)
+        let preparedResult = result == "-0.0" ? "0" : String(format: "%g", Double(result) ?? 0.0)
+        
+        resultDisplay?(preparedResult)
     }
     
     func presentHistory(history: String) {

@@ -11,34 +11,13 @@ import Foundation
 class Brain: Model {
     
     static let shared = Brain()
-
-    let output = OutputAdapter.shared
-    var equation: String!
+    var equation: String?
     var history: String?
+    var missedBrackets: String?
 
-    var countLeftBrackets: Int = 0
-    var countRightBrackets: Int = 0
-
-    func resetProperties() {
-        countLeftBrackets = 0
-        countRightBrackets = 0
-    }
-    
-    func addMissedRightBrackets(_ equation: String) -> String {
-        var missingBrackets: String = ""
-        var counter = countRightBrackets
-        
-        while countLeftBrackets > counter {
-            missingBrackets = missingBrackets + " )"
-            counter += 1
-        }
-        
-        return equation + missingBrackets
-    }
-    
     func enterEquation(equation: String) {
         self.history = equation
-        self.equation = addMissedRightBrackets(equation)
+        self.equation = equation + (missedBrackets ?? "")
         process()
     }
     
@@ -47,30 +26,26 @@ class Brain: Model {
     }
     
     func clear() {
-        resetProperties()
+        missedBrackets = nil
         equation = nil
         output.presentHistory(history: "")
         output.presentResult(result: "0")
     }
     
     func equal() -> String {
-        resetProperties()
+        missedBrackets = nil
         equation = String(format: "%g", calculateResult())
-        
-        if equation == "-0" {
-            equation = "0"
-        }
-        
-        output.presentResult(result: equation)
+
+        output.presentResult(result: equation ?? "")
         output.presentHistory(history: "")
         
-        return equation
+        return equation ?? ""
     }
 
     func process() {
         let result = calculateResult()
         
-        result != -0.0 ? (output.presentResult(result: String(format: "%g", result))) : (output.presentResult(result: String(format: "%g", 0)))
+        output.presentResult(result: String(result))
         presentHistory(currentInput: history)
     }
     
@@ -80,42 +55,41 @@ class Brain: Model {
     }
     
     func calculateResult() -> Double {
-        let rpnStr = reverseToPolandNotation(tokens: parseInfix(equation)) // reverse to RPN
+        let rpnStr = reverseToPolandNotation(tokens: parseInfix(equation ?? "")) // reverse to RPN
         var stack : [String] = [] // buffer for digit
         
         for tok in rpnStr {
             if Double(tok) != nil  {
                 stack += [tok]
                 
-            } else if !stack.isEmpty && (tok == "sin" || tok == "cos" || tok == "ln" || tok == "√") {
+            } else if !stack.isEmpty && (tok == MathOperation.sin.rawValue || tok == MathOperation.cos.rawValue || tok == MathOperation.ln.rawValue || tok == MathOperation.sqrt.rawValue) {
                 if let operand = Double((stack.removeLast())) {
                     switch tok {
-                    case "sin":
+                    case MathOperation.sin.rawValue:
                         stack += [String(sin(operand))]
-                    case "cos":
+                    case MathOperation.cos.rawValue:
                         stack += [String(cos(operand))]
-                    case "ln":
+                    case MathOperation.ln.rawValue:
                         stack += [String(log(operand))]
-                    case "√":
+                    case MathOperation.sqrt.rawValue:
                         stack += [String(sqrt(operand))]
                     default:
                         break
                     }
                 }
-                
             } else {
                 if stack.count > 1 {
                     if let secondOperand = Double(stack.removeLast()), let firstOperand = Double(stack.removeLast()) {
                         switch tok {
-                        case "+":
+                        case MathOperation.pls.rawValue:
                             stack += [String(firstOperand + secondOperand)]
-                        case "-":
+                        case MathOperation.mns.rawValue:
                             stack += [String(firstOperand - secondOperand)]
-                        case "÷":
+                        case MathOperation.div.rawValue:
                             stack += [String(firstOperand / secondOperand)]
-                        case "×":
+                        case MathOperation.mul.rawValue:
                             stack += [String(firstOperand * secondOperand)]
-                        case "^":
+                        case MathOperation.pow.rawValue:
                             stack += [String(pow(firstOperand,secondOperand))]
                         default:
                             break
@@ -138,29 +112,30 @@ class Brain: Model {
 
         // dictionary with precedence of operation
         let operationPrec: Dictionary<String, Int> = [
-            "^": 4,
-            "√" : 5,
-            "×" : 3,
-            "÷" : 3,
-            "+" : 2,
-            "-" : 2,
-            "ln" : 4,
-            "sin" : 5,
-            "cos" : 5,
+            MathOperation.pow.rawValue: 4,
+            MathOperation.sqrt.rawValue: 5,
+            MathOperation.mul.rawValue: 3,
+            MathOperation.div.rawValue: 3,
+            MathOperation.pls.rawValue: 2,
+            MathOperation.mns.rawValue: 2,
+            MathOperation.ln.rawValue: 4,
+            MathOperation.sin.rawValue: 5,
+            MathOperation.cos.rawValue: 5,
         ]
         
         // loop take 1 element and put on the right place and drop brackets 
         for tok in tokens {
             switch tok {
-            case "(":
+            case MathOperation.bracketL.rawValue:
                 stack += [tok]
-            case ")":
+            case MathOperation.bracketR.rawValue:
                 while !stack.isEmpty {
                     let op = stack.removeLast()
-                    if op == "(" {
+                    if op == MathOperation.bracketL.rawValue {
                         break
                     } else {
-                        rpn += [op] }
+                        rpn += [op]
+                    }
                 }
             default:
                 if let operand1 = operationPrec[tok] {
