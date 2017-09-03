@@ -7,51 +7,51 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E80FF391F165B1A0069B891 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E80FF381F165B1A0069B891 /* RoundButton.swift */; };
-		0E81C10E1F0B9F93006CCD23 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E81C10D1F0B9F93006CCD23 /* Validator.swift */; };
-		0E8382AF1F0F66290062DCA2 /* KeypadPlusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8382AE1F0F66290062DCA2 /* KeypadPlusController.swift */; };
-		0E8FEDFF1F18A9E1007275C7 /* ImageEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8FEDFE1F18A9E1007275C7 /* ImageEmitter.swift */; };
 		0E9002AF1F03C2D00016977B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002AE1F03C2D00016977B /* AppDelegate.swift */; };
 		0E9002B41F03C2D00016977B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E9002B21F03C2D00016977B /* Main.storyboard */; };
 		0E9002B61F03C2D00016977B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E9002B51F03C2D00016977B /* Assets.xcassets */; };
 		0E9002B91F03C2D00016977B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E9002B71F03C2D00016977B /* LaunchScreen.storyboard */; };
-		0E9002C11F03C2F90016977B /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002C01F03C2F90016977B /* Protocols.swift */; };
-		0E9002C31F03C3250016977B /* Brain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002C21F03C3250016977B /* Brain.swift */; };
-		0E9002C51F03C3330016977B /* InputAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002C41F03C3330016977B /* InputAdapter.swift */; };
-		0E9002C71F03C3420016977B /* OutputAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002C61F03C3420016977B /* OutputAdapter.swift */; };
-		0E9002CA1F03C3810016977B /* KeypadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002C91F03C3810016977B /* KeypadController.swift */; };
-		0E9002CC1F03C3950016977B /* InfoPresentedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002CB1F03C3950016977B /* InfoPresentedController.swift */; };
-		0E9002CE1F03C3F30016977B /* MainLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9002CD1F03C3F30016977B /* MainLayoutController.swift */; };
-		0E98A9691F15421300BA0BFF /* ProgramNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98A9681F15421300BA0BFF /* ProgramNavigationController.swift */; };
 		0EB2DB671F13872400D0BB71 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB2DB661F13872400D0BB71 /* Constants.swift */; };
-		0EB2DB691F138EB800D0BB71 /* StyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB2DB681F138EB800D0BB71 /* StyleManager.swift */; };
-		0EB2DB6D1F13C6D400D0BB71 /* AdditionKeypadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB2DB6C1F13C6D400D0BB71 /* AdditionKeypadController.swift */; };
-		0EBC5A4A1F10F64B00498602 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC5A491F10F64B00498602 /* SettingsController.swift */; };
+		A94BDF061F5BF0710085E073 /* AdditionKeypadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDEFF1F5BF0710085E073 /* AdditionKeypadController.swift */; };
+		A94BDF071F5BF0710085E073 /* InfoPresentedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDF001F5BF0710085E073 /* InfoPresentedController.swift */; };
+		A94BDF081F5BF0710085E073 /* KeypadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDF011F5BF0710085E073 /* KeypadController.swift */; };
+		A94BDF091F5BF0710085E073 /* KeypadPlusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDF021F5BF0710085E073 /* KeypadPlusController.swift */; };
+		A94BDF0A1F5BF0710085E073 /* MainLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDF031F5BF0710085E073 /* MainLayoutController.swift */; };
+		A94BDF0B1F5BF0710085E073 /* ProgramNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDF041F5BF0710085E073 /* ProgramNavigationController.swift */; };
+		A94BDF0C1F5BF0710085E073 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDF051F5BF0710085E073 /* SettingsController.swift */; };
+		A94BDF111F5BF0E30085E073 /* ImageEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDF0E1F5BF0E30085E073 /* ImageEmitter.swift */; };
+		A94BDF121F5BF0E30085E073 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDF0F1F5BF0E30085E073 /* RoundButton.swift */; };
+		A94BDF131F5BF0E30085E073 /* StyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDF101F5BF0E30085E073 /* StyleManager.swift */; };
+		A94BDF191F5BF1260085E073 /* Brain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDF141F5BF1260085E073 /* Brain.swift */; };
+		A94BDF1A1F5BF1260085E073 /* InputAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDF151F5BF1260085E073 /* InputAdapter.swift */; };
+		A94BDF1B1F5BF1260085E073 /* OutputAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDF161F5BF1260085E073 /* OutputAdapter.swift */; };
+		A94BDF1C1F5BF1260085E073 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDF171F5BF1260085E073 /* Protocols.swift */; };
+		A94BDF1D1F5BF1260085E073 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDF181F5BF1260085E073 /* Validator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0E80FF381F165B1A0069B891 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
-		0E81C10D1F0B9F93006CCD23 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Validator.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0E8382AE1F0F66290062DCA2 /* KeypadPlusController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeypadPlusController.swift; sourceTree = "<group>"; };
-		0E8FEDFE1F18A9E1007275C7 /* ImageEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEmitter.swift; sourceTree = "<group>"; };
 		0E9002AB1F03C2CF0016977B /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9002AE1F03C2D00016977B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E9002B31F03C2D00016977B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0E9002B51F03C2D00016977B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E9002B81F03C2D00016977B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E9002BA1F03C2D00016977B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0E9002C01F03C2F90016977B /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		0E9002C21F03C3250016977B /* Brain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brain.swift; sourceTree = "<group>"; };
-		0E9002C41F03C3330016977B /* InputAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputAdapter.swift; sourceTree = "<group>"; };
-		0E9002C61F03C3420016977B /* OutputAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputAdapter.swift; sourceTree = "<group>"; };
-		0E9002C91F03C3810016977B /* KeypadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeypadController.swift; sourceTree = "<group>"; };
-		0E9002CB1F03C3950016977B /* InfoPresentedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPresentedController.swift; sourceTree = "<group>"; };
-		0E9002CD1F03C3F30016977B /* MainLayoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainLayoutController.swift; sourceTree = "<group>"; };
-		0E98A9681F15421300BA0BFF /* ProgramNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramNavigationController.swift; sourceTree = "<group>"; };
 		0EB2DB661F13872400D0BB71 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		0EB2DB681F138EB800D0BB71 /* StyleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleManager.swift; sourceTree = "<group>"; };
-		0EB2DB6C1F13C6D400D0BB71 /* AdditionKeypadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdditionKeypadController.swift; sourceTree = "<group>"; };
-		0EBC5A491F10F64B00498602 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		A94BDEFF1F5BF0710085E073 /* AdditionKeypadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdditionKeypadController.swift; sourceTree = "<group>"; };
+		A94BDF001F5BF0710085E073 /* InfoPresentedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPresentedController.swift; sourceTree = "<group>"; };
+		A94BDF011F5BF0710085E073 /* KeypadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeypadController.swift; sourceTree = "<group>"; };
+		A94BDF021F5BF0710085E073 /* KeypadPlusController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeypadPlusController.swift; sourceTree = "<group>"; };
+		A94BDF031F5BF0710085E073 /* MainLayoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainLayoutController.swift; sourceTree = "<group>"; };
+		A94BDF041F5BF0710085E073 /* ProgramNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramNavigationController.swift; sourceTree = "<group>"; };
+		A94BDF051F5BF0710085E073 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		A94BDF0E1F5BF0E30085E073 /* ImageEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEmitter.swift; sourceTree = "<group>"; };
+		A94BDF0F1F5BF0E30085E073 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		A94BDF101F5BF0E30085E073 /* StyleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleManager.swift; sourceTree = "<group>"; };
+		A94BDF141F5BF1260085E073 /* Brain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brain.swift; sourceTree = "<group>"; };
+		A94BDF151F5BF1260085E073 /* InputAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputAdapter.swift; sourceTree = "<group>"; };
+		A94BDF161F5BF1260085E073 /* OutputAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputAdapter.swift; sourceTree = "<group>"; };
+		A94BDF171F5BF1260085E073 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		A94BDF181F5BF1260085E073 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,30 +65,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E14D79B1F03C49200A239EA /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				0E98A9681F15421300BA0BFF /* ProgramNavigationController.swift */,
-				0EBC5A491F10F64B00498602 /* SettingsController.swift */,
-				0E9002CD1F03C3F30016977B /* MainLayoutController.swift */,
-				0E9002CB1F03C3950016977B /* InfoPresentedController.swift */,
-				0E9002C91F03C3810016977B /* KeypadController.swift */,
-				0EB2DB6C1F13C6D400D0BB71 /* AdditionKeypadController.swift */,
-				0E8382AE1F0F66290062DCA2 /* KeypadPlusController.swift */,
-			);
-			name = Controllers;
-			sourceTree = "<group>";
-		};
-		0E8FEE001F18D1E0007275C7 /* Style */ = {
-			isa = PBXGroup;
-			children = (
-				0E80FF381F165B1A0069B891 /* RoundButton.swift */,
-				0EB2DB681F138EB800D0BB71 /* StyleManager.swift */,
-				0E8FEDFE1F18A9E1007275C7 /* ImageEmitter.swift */,
-			);
-			name = Style;
-			sourceTree = "<group>";
-		};
 		0E9002A21F03C2CF0016977B = {
 			isa = PBXGroup;
 			children = (
@@ -108,14 +84,13 @@
 		0E9002AD1F03C2CF0016977B /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				0E14D79B1F03C49200A239EA /* Controllers */,
-				0E8FEE001F18D1E0007275C7 /* Style */,
+				A94BDF0D1F5BF0B50085E073 /* Style */,
+				A94BDEFE1F5BF0250085E073 /* Classes */,
 				0E9002C81F03C34B0016977B /* Model */,
-				0E9002AE1F03C2D00016977B /* AppDelegate.swift */,
+				A94BDF1E1F5BF14E0085E073 /* Storyboards */,
 				0EB2DB661F13872400D0BB71 /* Constants.swift */,
-				0E9002B21F03C2D00016977B /* Main.storyboard */,
+				0E9002AE1F03C2D00016977B /* AppDelegate.swift */,
 				0E9002B51F03C2D00016977B /* Assets.xcassets */,
-				0E9002B71F03C2D00016977B /* LaunchScreen.storyboard */,
 				0E9002BA1F03C2D00016977B /* Info.plist */,
 			);
 			path = Calculator;
@@ -124,13 +99,46 @@
 		0E9002C81F03C34B0016977B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0E9002C01F03C2F90016977B /* Protocols.swift */,
-				0E9002C21F03C3250016977B /* Brain.swift */,
-				0E9002C41F03C3330016977B /* InputAdapter.swift */,
-				0E9002C61F03C3420016977B /* OutputAdapter.swift */,
-				0E81C10D1F0B9F93006CCD23 /* Validator.swift */,
+				A94BDF141F5BF1260085E073 /* Brain.swift */,
+				A94BDF151F5BF1260085E073 /* InputAdapter.swift */,
+				A94BDF161F5BF1260085E073 /* OutputAdapter.swift */,
+				A94BDF171F5BF1260085E073 /* Protocols.swift */,
+				A94BDF181F5BF1260085E073 /* Validator.swift */,
 			);
-			name = Model;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A94BDEFE1F5BF0250085E073 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A94BDEFF1F5BF0710085E073 /* AdditionKeypadController.swift */,
+				A94BDF001F5BF0710085E073 /* InfoPresentedController.swift */,
+				A94BDF011F5BF0710085E073 /* KeypadController.swift */,
+				A94BDF021F5BF0710085E073 /* KeypadPlusController.swift */,
+				A94BDF031F5BF0710085E073 /* MainLayoutController.swift */,
+				A94BDF041F5BF0710085E073 /* ProgramNavigationController.swift */,
+				A94BDF051F5BF0710085E073 /* SettingsController.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		A94BDF0D1F5BF0B50085E073 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				A94BDF0E1F5BF0E30085E073 /* ImageEmitter.swift */,
+				A94BDF0F1F5BF0E30085E073 /* RoundButton.swift */,
+				A94BDF101F5BF0E30085E073 /* StyleManager.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		A94BDF1E1F5BF14E0085E073 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0E9002B21F03C2D00016977B /* Main.storyboard */,
+				0E9002B71F03C2D00016977B /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,23 +213,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E80FF391F165B1A0069B891 /* RoundButton.swift in Sources */,
-				0EBC5A4A1F10F64B00498602 /* SettingsController.swift in Sources */,
-				0E9002C11F03C2F90016977B /* Protocols.swift in Sources */,
-				0E8382AF1F0F66290062DCA2 /* KeypadPlusController.swift in Sources */,
-				0E9002CC1F03C3950016977B /* InfoPresentedController.swift in Sources */,
-				0E81C10E1F0B9F93006CCD23 /* Validator.swift in Sources */,
-				0E9002C71F03C3420016977B /* OutputAdapter.swift in Sources */,
-				0E8FEDFF1F18A9E1007275C7 /* ImageEmitter.swift in Sources */,
-				0E9002C31F03C3250016977B /* Brain.swift in Sources */,
+				A94BDF121F5BF0E30085E073 /* RoundButton.swift in Sources */,
+				A94BDF131F5BF0E30085E073 /* StyleManager.swift in Sources */,
+				A94BDF0C1F5BF0710085E073 /* SettingsController.swift in Sources */,
+				A94BDF111F5BF0E30085E073 /* ImageEmitter.swift in Sources */,
+				A94BDF191F5BF1260085E073 /* Brain.swift in Sources */,
+				A94BDF081F5BF0710085E073 /* KeypadController.swift in Sources */,
+				A94BDF1A1F5BF1260085E073 /* InputAdapter.swift in Sources */,
+				A94BDF0A1F5BF0710085E073 /* MainLayoutController.swift in Sources */,
+				A94BDF0B1F5BF0710085E073 /* ProgramNavigationController.swift in Sources */,
+				A94BDF091F5BF0710085E073 /* KeypadPlusController.swift in Sources */,
 				0EB2DB671F13872400D0BB71 /* Constants.swift in Sources */,
-				0E9002C51F03C3330016977B /* InputAdapter.swift in Sources */,
-				0E98A9691F15421300BA0BFF /* ProgramNavigationController.swift in Sources */,
+				A94BDF061F5BF0710085E073 /* AdditionKeypadController.swift in Sources */,
+				A94BDF1D1F5BF1260085E073 /* Validator.swift in Sources */,
 				0E9002AF1F03C2D00016977B /* AppDelegate.swift in Sources */,
-				0E9002CE1F03C3F30016977B /* MainLayoutController.swift in Sources */,
-				0E9002CA1F03C3810016977B /* KeypadController.swift in Sources */,
-				0EB2DB691F138EB800D0BB71 /* StyleManager.swift in Sources */,
-				0EB2DB6D1F13C6D400D0BB71 /* AdditionKeypadController.swift in Sources */,
+				A94BDF071F5BF0710085E073 /* InfoPresentedController.swift in Sources */,
+				A94BDF1B1F5BF1260085E073 /* OutputAdapter.swift in Sources */,
+				A94BDF1C1F5BF1260085E073 /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
