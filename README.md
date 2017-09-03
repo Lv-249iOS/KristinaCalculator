@@ -8,4 +8,4 @@ Features:
 - Change the font ofthetex
 
 # Tools & Technologies
-Swift,  XCode  8,  Foundation and  UIKit  frameworks,  Git,  JIRA,  Autolayout,  Size classes,NotificationCenter,  UserDefaults,  CAEmitterLayer, Delegates,  Protocols, Extensions
+Foundation and  UIKit  frameworks, Autolayout,  Size classes, NotificationCenter,  UserDefaults,  CAEmitterLayer, Delegates,  Protocols, Extensions
